@@ -1,5 +1,5 @@
 {
-  "hash": "d1c95a287e8323bb20154a483be507fd",
+  "hash": "1479c94f0b2f778c3c4c500dca706a6c",
   "summaries": {
     "4ef430dd": {
       "id": "4ef430dd",
@@ -12,7 +12,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-08T16:00:35.321Z"
+      "updated_at": "2026-03-08T16:32:39.041Z"
     }
   },
   "details": {
@@ -112,14 +112,14 @@
           "appName": "llamacppqwen35a3bone",
           "version": "1.0.6",
           "versionName": "1.0.6",
-          "mergedAt": "2026-03-08T16:00:35.322Z",
+          "mergedAt": "2026-03-08T16:32:39.042Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-08T16:00:35.322Z"
+      "updated_at": "2026-03-08T16:32:39.042Z"
     }
   },
   "latest": [
