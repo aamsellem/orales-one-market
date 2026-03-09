@@ -1,5 +1,5 @@
 {
-  "hash": "f6e26b0c0c8e6baf79b3720416c669c9",
+  "hash": "03ce3b9972533594548a4d216de9ae49",
   "summaries": {
     "4ef430dd": {
       "id": "4ef430dd",
@@ -12,7 +12,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-08T23:18:48.144Z"
+      "updated_at": "2026-03-09T06:46:10.281Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -25,7 +25,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-08T23:18:48.146Z"
+      "updated_at": "2026-03-09T06:46:10.284Z"
     }
   },
   "details": {
@@ -125,14 +125,14 @@
           "appName": "llamacppqwen35a3bone",
           "version": "1.0.7",
           "versionName": "1.0.7",
-          "mergedAt": "2026-03-08T23:18:48.145Z",
+          "mergedAt": "2026-03-09T06:46:10.282Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-08T23:18:48.145Z"
+      "updated_at": "2026-03-09T06:46:10.282Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -230,14 +230,14 @@
           "appName": "qwen3ttstone",
           "version": "1.0.7",
           "versionName": "1.0.7",
-          "mergedAt": "2026-03-08T23:18:48.146Z",
+          "mergedAt": "2026-03-09T06:46:10.284Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-08T23:18:48.146Z"
+      "updated_at": "2026-03-09T06:46:10.284Z"
     }
   },
   "latest": [
