@@ -8,7 +8,7 @@ metadata:
   description: "Qwen3.5 35B-A3B via llama.cpp — optimized for Olares One"
   appid: llamacppqwen35a3bone
   title: Qwen3.5 35B-A3B (Olares One)
-  version: '1.0.9'
+  version: '1.0.10'
   categories:
     - AI
 entrances:
@@ -20,7 +20,7 @@ entrances:
     openMethod: window
     authLevel: internal
 spec:
-  versionName: '1.0.9'
+  versionName: '1.0.10'
   fullDescription: |
     Qwen3.5 35B-A3B (MoE, 3B active) served via llama.cpp — optimized for Olares One.
     RTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.

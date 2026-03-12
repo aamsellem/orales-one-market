@@ -1,45 +1,54 @@
 # Orales One Market
 
-Custom [Olares](https://olares.com) Market source optimized for the **Olares One** device.
+A curated app store for the **Olares One** — the first Olares hardware device, packing an RTX 5090M, 96GB DDR5, and a 24-core Intel CPU into a compact form factor.
 
-> RTX 5090M (24GB) + Core Ultra 9 275HX (24 cores) + 96GB DDR5
+Every app here is hand-tuned for this exact hardware. No generic configs — just the fastest possible inference on 24GB of GDDR7.
 
-A single Cloudflare Worker that serves the full Market Source API — app catalog, chart downloads, and icons.
+> **One-click install.** Add the market source, and apps appear in your Olares Market alongside the official catalog.
 
 ## Apps
 
-| App | Model | Backend | Quant | Performance |
-|-----|-------|---------|-------|-------------|
-| llamacppqwen35a3bone | Qwen3.5 35B-A3B | llama.cpp b8284 | UD-Q4_K_XL | **128.75 t/s** |
-| llamacppglm47flash | GLM-4.7-Flash 30B-A3B | llama.cpp b8284 | UD-Q4_K_XL | — |
-| qwen3ttstone | Qwen3-TTS 1.7B | Gradio | BF16 | TTS + voice cloning |
+### LLM Inference
 
-## Setup
+| App | Model | Speed | Details |
+|-----|-------|-------|---------|
+| **Qwen3.5 35B-A3B** | 35B params, 3B active (MoE) | **128+ t/s** | Unsloth UD-Q4_K_XL, llama.cpp b8284, flash attention, CUDA graph opt |
+| **GLM-4.7-Flash** | 30B params, 3B active (MoE) | — | Same optimized stack, MLA attention |
 
-Add this URL as a market source in **Olares Market > Settings**:
+Full-size MoE models running entirely on GPU at speeds that rival much smaller dense models.
+
+### Voice & Audio
+
+| App | Model | Features |
+|-----|-------|----------|
+| **Qwen3-TTS 1.7B** | Text-to-speech | 9 premium voices, zero-shot voice cloning from 3s of audio, 10 languages |
+
+## Quick Start
+
+Add this URL as a market source in **Olares Market > Settings > Add Source**:
 
 ```
 https://orales-one-market.aamsellem.workers.dev
 ```
 
-The market syncs every 5 minutes.
+Apps show up within 5 minutes. Install like any other Olares app — models download automatically on first launch.
 
-## Development
+## How It Works
+
+A single Cloudflare Worker serves the full Olares Market Source API. Each app is a Helm chart with GPU-optimized configs, packaged and deployed from this repo.
 
 ```bash
 npm install
-npm run dev              # Local dev server (localhost:8787)
+npm run dev              # Local dev (localhost:8787)
 npm run deploy           # Deploy to Cloudflare Workers
 ```
 
 ### Adding an app
 
-1. Create an app directory at the repo root with `Chart.yaml`, `OlaresManifest.yaml`, and `templates/`
+1. Create an app directory with `Chart.yaml`, `OlaresManifest.yaml`, and `templates/`
 2. Add an icon in `icons/<app-name>.png`
 3. Package: `helm package <app-dir> -d charts/`
-4. Build & deploy: `npm run deploy`
-
-The build script (`scripts/build-catalog.js`) scans app directories, packages charts and icons as base64, and generates the catalog served by the worker.
+4. Deploy: `npm run deploy`
 
 ### API Endpoints
 
