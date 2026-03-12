@@ -1,0 +1,61 @@
+---
+olaresManifest.version: '0.10.0'
+olaresManifest.type: app
+apiVersion: 'v2'
+metadata:
+  name: llamacppglm47flash
+  icon: https://orales-one-market.aamsellem.workers.dev/icons/llamacppglm47flash.png
+  description: "GLM-4.7-Flash 30B-A3B via llama.cpp — optimized for Olares One"
+  appid: llamacppglm47flash
+  title: GLM-4.7-Flash (Olares One)
+  version: '1.0.6'
+  categories:
+    - AI
+entrances:
+  - name: llamacppglm47flash
+    port: 8080
+    host: llamacppglm47flash
+    title: GLM-47-Flash One
+    icon: https://orales-one-market.aamsellem.workers.dev/icons/llamacppglm47flash.png
+    openMethod: window
+    authLevel: internal
+spec:
+  versionName: '1.0.6'
+  fullDescription: |
+    GLM-4.7-Flash (MoE, 30B total / 3B active) served via llama.cpp — optimized for Olares One.
+    RTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.
+    Unsloth Dynamic Q4_K_XL quantization (17.5GB, important layers upcasted to 8/16-bit).
+    All layers on GPU, flash attention, CUDA graph optimization, and Jinja chat templates.
+    llama.cpp b8234 with DeepSeek-V2 MLA attention support.
+    Downloads the GGUF model on first launch (~17.5GB) and caches it.
+    Exposes an OpenAI-compatible API on port 8080.
+
+  developer: aamsellem
+  website: https://github.com/aamsellem/orales-one-market
+  sourceCode: https://github.com/aamsellem/orales-one-market
+  submitter: aamsellem
+  locale:
+    - en-US
+  license:
+    - text: MIT
+      url: https://github.com/THUDM/GLM-4/blob/main/LICENSE
+
+  limitedCpu: 16
+  requiredCpu: 4
+  requiredDisk: 25Gi
+  limitedDisk: 40Gi
+  limitedMemory: 40Gi
+  requiredMemory: 20Gi
+  requiredGpu: 1Gi
+  limitedGpu: 24Gi
+
+  supportArch:
+    - amd64
+permission:
+  appData: true
+options:
+  apiTimeout: 0
+  dependencies:
+    - name: olares
+      version: '>=1.12.3-0'
+      type: system

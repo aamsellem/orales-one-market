@@ -5,9 +5,9 @@ metadata:
   name: llamacpp-env
   namespace: "{{ .Release.Namespace }}"
 data:
-  MODEL_URL: "https://huggingface.co/unsloth/Qwen3.5-35B-A3B-GGUF/resolve/main/Qwen3.5-35B-A3B-UD-Q4_K_XL.gguf"
-  MODEL_FILE: "Qwen3.5-35B-A3B-UD-Q4_K_XL.gguf"
-  MODEL_ALIAS: "qwen3.5-35b-a3b"
+  MODEL_URL: "https://huggingface.co/unsloth/GLM-4.7-Flash-GGUF/resolve/main/GLM-4.7-Flash-UD-Q4_K_XL.gguf"
+  MODEL_FILE: "GLM-4.7-Flash-UD-Q4_K_XL.gguf"
+  MODEL_ALIAS: "glm-4.7-flash"
   CONTEXT_SIZE: "32768"
   N_GPU_LAYERS: "99"
   THREADS: "16"
@@ -17,8 +17,8 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: llamacppqwen35a3bone
-  name: llamacppqwen35a3bone
+    io.kompose.service: llamacppglm47flash
+  name: llamacppglm47flash
   namespace: "{{ .Release.Namespace }}"
   annotations:
     applications.app.bytetrade.io/gpu-inject: "true"
@@ -26,7 +26,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: llamacppqwen35a3bone
+      io.kompose.service: llamacppglm47flash
   strategy:
     type: Recreate
   template:
@@ -34,7 +34,7 @@ spec:
       creationTimestamp: null
       labels:
         io.kompose.network/chrome-default: "true"
-        io.kompose.service: llamacppqwen35a3bone
+        io.kompose.service: llamacppglm47flash
     spec:
       initContainers:
         - name: model-downloader
@@ -69,7 +69,7 @@ spec:
               name: models
       containers:
         - name: llamacpp-server
-          image: "ghcr.io/ggml-org/llama.cpp:server-cuda-b8284"
+          image: "ghcr.io/ggml-org/llama.cpp:server-cuda-b8234"
           args:
             - "--host"
             - "0.0.0.0"
@@ -90,13 +90,12 @@ spec:
             - "--cache-type-v"
             - "q8_0"
             - "--batch-size"
-            - "2048"
+            - "512"
             - "--ubatch-size"
-            - "1024"
+            - "512"
             - "--parallel"
             - "1"
             - "--mlock"
-            - "--swa-full"
             - "--flash-attn"
             - "auto"
             - "--op-offload"
@@ -136,7 +135,7 @@ spec:
               memory: 40Gi
             requests:
               cpu: 4000m
-              memory: 24Gi
+              memory: 20Gi
           volumeMounts:
             - mountPath: "/models"
               name: models
@@ -157,8 +156,8 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: llamacppqwen35a3bone
-  name: llamacppqwen35a3bone
+    io.kompose.service: llamacppglm47flash
+  name: llamacppglm47flash
   namespace: "{{ .Release.Namespace }}"
 spec:
   ports:
@@ -166,6 +165,6 @@ spec:
       port: 8080
       targetPort: 8080
   selector:
-    io.kompose.service: llamacppqwen35a3bone
+    io.kompose.service: llamacppglm47flash
 status:
   loadBalancer: {}

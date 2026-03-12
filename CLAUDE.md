@@ -110,7 +110,7 @@ Only Olares One optimized apps belong here. Generic apps stay in `orales-market`
 
 ## Olares Manifest Constraints
 
-- Entrance title: max 30 chars, only `[a-z0-9A-Z-\s]`, NO parentheses
+- Entrance title: max 30 chars, only `[a-z0-9A-Z-\s]` — NO dots, parentheses, or special chars. Replace dots with hyphens (e.g., `GLM-4.7` → `GLM-47`)
 - Proxy image: `beclab/aboveos-bitnami-openresty:1.25.3-2`
 - Manifest version: `0.10.0` (must match official beclab/apps format, NOT 0.11.0)
 - Top-level `apiVersion: 'v2'` required in OlaresManifest.yaml

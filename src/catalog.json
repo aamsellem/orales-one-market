@@ -1,10 +1,23 @@
 {
-  "hash": "03ce3b9972533594548a4d216de9ae49",
+  "hash": "d55f0caf17e4e099b43dd6294cbb4b53",
   "summaries": {
+    "c1ca229f": {
+      "id": "c1ca229f",
+      "name": "llamacppglm47flash",
+      "version": "1.0.6",
+      "category": "AI",
+      "description": "GLM-4.7-Flash 30B-A3B via llama.cpp — optimized for Olares One",
+      "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppglm47flash.png",
+      "screenshots": null,
+      "tags": null,
+      "metadata": null,
+      "source": 1,
+      "updated_at": "2026-03-12T22:08:21.013Z"
+    },
     "4ef430dd": {
       "id": "4ef430dd",
       "name": "llamacppqwen35a3bone",
-      "version": "1.0.7",
+      "version": "1.0.9",
       "category": "AI",
       "description": "Qwen3.5 35B-A3B via llama.cpp — optimized for Olares One",
       "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen35a3bone.png",
@@ -12,7 +25,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-09T06:46:10.281Z"
+      "updated_at": "2026-03-12T22:08:21.015Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -25,25 +38,130 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-09T06:46:10.284Z"
+      "updated_at": "2026-03-12T22:08:21.016Z"
     }
   },
   "details": {
+    "c1ca229f": {
+      "id": "c1ca229f",
+      "name": "llamacppglm47flash",
+      "cfgType": "app",
+      "chartName": "llamacppglm47flash-1.0.6.tgz",
+      "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppglm47flash.png",
+      "description": "GLM-4.7-Flash 30B-A3B via llama.cpp — optimized for Olares One",
+      "appID": "c1ca229f",
+      "title": "GLM-4.7-Flash (Olares One)",
+      "version": "1.0.6",
+      "categories": [
+        "AI"
+      ],
+      "versionName": "1.0.6",
+      "fullDescription": "GLM-4.7-Flash (MoE, 30B total / 3B active) served via llama.cpp — optimized for Olares One.\nRTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.\nUnsloth Dynamic Q4_K_XL quantization (17.5GB, important layers upcasted to 8/16-bit).\nAll layers on GPU, flash attention, CUDA graph optimization, and Jinja chat templates.\nllama.cpp b8234 with DeepSeek-V2 MLA attention support.\nDownloads the GGUF model on first launch (~17.5GB) and caches it.\nExposes an OpenAI-compatible API on port 8080.\n",
+      "upgradeDescription": "",
+      "promoteImage": null,
+      "promoteVideo": "",
+      "subCategory": "",
+      "locale": [
+        "en-US"
+      ],
+      "developer": "aamsellem",
+      "requiredMemory": "21474836480",
+      "requiredDisk": "26843545600",
+      "supportClient": {},
+      "supportArch": [
+        "amd64"
+      ],
+      "requiredGPU": "1073741824",
+      "requiredCPU": "4",
+      "rating": 0,
+      "target": "",
+      "permission": {
+        "appData": true
+      },
+      "entrances": [
+        {
+          "name": "llamacppglm47flash",
+          "host": "llamacppglm47flash",
+          "port": 8080,
+          "title": "GLM-47-Flash One",
+          "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppglm47flash.png",
+          "authLevel": "internal",
+          "invisible": false,
+          "openMethod": "window",
+          "disablePreload": false
+        }
+      ],
+      "middleware": null,
+      "options": {
+        "apiTimeout": 0,
+        "dependencies": [
+          {
+            "name": "olares",
+            "version": ">=1.12.3-0",
+            "type": "system"
+          }
+        ]
+      },
+      "submitter": "aamsellem",
+      "doc": "",
+      "website": "https://github.com/aamsellem/orales-one-market",
+      "featuredImage": "",
+      "sourceCode": "https://github.com/aamsellem/orales-one-market",
+      "license": [
+        {
+          "text": "MIT",
+          "url": "https://github.com/THUDM/GLM-4/blob/main/LICENSE"
+        }
+      ],
+      "legal": null,
+      "i18n": {
+        "en-US": {
+          "metadata": {
+            "title": "GLM-4.7-Flash (Olares One)",
+            "description": "GLM-4.7-Flash 30B-A3B via llama.cpp — optimized for Olares One"
+          },
+          "entrances": null,
+          "spec": {
+            "fullDescription": "GLM-4.7-Flash (MoE, 30B total / 3B active) served via llama.cpp — optimized for Olares One.\nRTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.\nUnsloth Dynamic Q4_K_XL quantization (17.5GB, important layers upcasted to 8/16-bit).\nAll layers on GPU, flash attention, CUDA graph optimization, and Jinja chat templates.\nllama.cpp b8234 with DeepSeek-V2 MLA attention support.\nDownloads the GGUF model on first launch (~17.5GB) and caches it.\nExposes an OpenAI-compatible API on port 8080.\n",
+            "upgradeDescription": ""
+          }
+        }
+      },
+      "namespace": "",
+      "onlyAdmin": false,
+      "lastCommitHash": "",
+      "createTime": 0,
+      "updateTime": 0,
+      "count": null,
+      "versionHistory": [
+        {
+          "appName": "llamacppglm47flash",
+          "version": "1.0.6",
+          "versionName": "1.0.6",
+          "mergedAt": "2026-03-12T22:08:21.014Z",
+          "upgradeDescription": ""
+        }
+      ],
+      "screenshots": null,
+      "tags": null,
+      "metadata": null,
+      "updated_at": "2026-03-12T22:08:21.014Z"
+    },
     "4ef430dd": {
       "id": "4ef430dd",
       "name": "llamacppqwen35a3bone",
       "cfgType": "app",
-      "chartName": "llamacppqwen35a3bone-1.0.7.tgz",
+      "chartName": "llamacppqwen35a3bone-1.0.9.tgz",
       "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen35a3bone.png",
       "description": "Qwen3.5 35B-A3B via llama.cpp — optimized for Olares One",
       "appID": "4ef430dd",
       "title": "Qwen3.5 35B-A3B (Olares One)",
-      "version": "1.0.7",
+      "version": "1.0.9",
       "categories": [
         "AI"
       ],
-      "versionName": "1.0.7",
-      "fullDescription": "Qwen3.5 35B-A3B (MoE, 3B active) served via llama.cpp — optimized for Olares One.\nRTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.\nUnsloth Dynamic Q4_K_XL quantization (important layers upcasted to 8/16-bit).\nMoE experts offloaded to CPU RAM, attention on GPU.\nFlash attention, CUDA graph optimization, and op-offload enabled.\nllama.cpp b8234 with GATED_DELTA_NET fused op for Qwen MoE.\nDownloads the GGUF model on first launch (~22GB) and caches it.\nExposes an OpenAI-compatible API on port 8080.\n",
+      "versionName": "1.0.9",
+      "fullDescription": "Qwen3.5 35B-A3B (MoE, 3B active) served via llama.cpp — optimized for Olares One.\nRTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.\nUnsloth Dynamic Q4_K_XL quantization (important layers upcasted to 8/16-bit).\nMoE experts offloaded to CPU RAM, attention on GPU.\nFlash attention, CUDA graph optimization, and op-offload enabled.\nllama.cpp b8284 with improved GDN CUDA kernels and chunked fused GDN path.\nDownloads the GGUF model on first launch (~22GB) and caches it.\nExposes an OpenAI-compatible API on port 8080.\n",
       "upgradeDescription": "",
       "promoteImage": null,
       "promoteVideo": "",
@@ -91,13 +209,13 @@
       },
       "submitter": "aamsellem",
       "doc": "",
-      "website": "https://github.com/aamsellem/orales-market",
+      "website": "https://github.com/aamsellem/orales-one-market",
       "featuredImage": "",
-      "sourceCode": "https://github.com/aamsellem/orales-market",
+      "sourceCode": "https://github.com/aamsellem/orales-one-market",
       "license": [
         {
           "text": "MIT",
-          "url": "https://github.com/ggerganov/llama.cpp/blob/master/LICENSE"
+          "url": "https://github.com/ggml-org/llama.cpp/blob/master/LICENSE"
         }
       ],
       "legal": null,
@@ -109,7 +227,7 @@
           },
           "entrances": null,
           "spec": {
-            "fullDescription": "Qwen3.5 35B-A3B (MoE, 3B active) served via llama.cpp — optimized for Olares One.\nRTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.\nUnsloth Dynamic Q4_K_XL quantization (important layers upcasted to 8/16-bit).\nMoE experts offloaded to CPU RAM, attention on GPU.\nFlash attention, CUDA graph optimization, and op-offload enabled.\nllama.cpp b8234 with GATED_DELTA_NET fused op for Qwen MoE.\nDownloads the GGUF model on first launch (~22GB) and caches it.\nExposes an OpenAI-compatible API on port 8080.\n",
+            "fullDescription": "Qwen3.5 35B-A3B (MoE, 3B active) served via llama.cpp — optimized for Olares One.\nRTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.\nUnsloth Dynamic Q4_K_XL quantization (important layers upcasted to 8/16-bit).\nMoE experts offloaded to CPU RAM, attention on GPU.\nFlash attention, CUDA graph optimization, and op-offload enabled.\nllama.cpp b8284 with improved GDN CUDA kernels and chunked fused GDN path.\nDownloads the GGUF model on first launch (~22GB) and caches it.\nExposes an OpenAI-compatible API on port 8080.\n",
             "upgradeDescription": ""
           }
         }
@@ -123,16 +241,16 @@
       "versionHistory": [
         {
           "appName": "llamacppqwen35a3bone",
-          "version": "1.0.7",
-          "versionName": "1.0.7",
-          "mergedAt": "2026-03-09T06:46:10.282Z",
+          "version": "1.0.9",
+          "versionName": "1.0.9",
+          "mergedAt": "2026-03-12T22:08:21.015Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-09T06:46:10.282Z"
+      "updated_at": "2026-03-12T22:08:21.015Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -230,17 +348,18 @@
           "appName": "qwen3ttstone",
           "version": "1.0.7",
           "versionName": "1.0.7",
-          "mergedAt": "2026-03-09T06:46:10.284Z",
+          "mergedAt": "2026-03-12T22:08:21.016Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-09T06:46:10.284Z"
+      "updated_at": "2026-03-12T22:08:21.016Z"
     }
   },
   "latest": [
+    "llamacppglm47flash",
     "llamacppqwen35a3bone",
     "qwen3ttstone"
   ]
