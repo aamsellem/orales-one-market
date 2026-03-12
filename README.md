@@ -10,7 +10,9 @@ A single Cloudflare Worker that serves the full Market Source API — app catalo
 
 | App | Model | Backend | Quant | Performance |
 |-----|-------|---------|-------|-------------|
-| llamacppqwen35a3bone | Qwen3.5 35B-A3B | llama.cpp b8234 | UD-Q4_K_XL | **128.75 t/s** |
+| llamacppqwen35a3bone | Qwen3.5 35B-A3B | llama.cpp b8284 | UD-Q4_K_XL | **128.75 t/s** |
+| llamacppglm47flash | GLM-4.7-Flash 30B-A3B | llama.cpp b8284 | UD-Q4_K_XL | — |
+| qwen3ttstone | Qwen3-TTS 1.7B | Gradio | BF16 | TTS + voice cloning |
 
 ## Setup
 
