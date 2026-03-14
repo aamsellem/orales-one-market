@@ -1,0 +1,225 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: comfyuione
+  name: comfyuione
+  namespace: "{{ .Release.Namespace }}"
+  annotations:
+    applications.app.bytetrade.io/gpu-inject: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: comfyuione
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.network/chrome-default: "true"
+        io.kompose.service: comfyuione
+    spec:
+      initContainers:
+        - name: init-chmod-data
+          image: "docker.io/alpine:3.20"
+          command:
+            - sh
+            - '-c'
+            - |
+              chown -R 1000:1000 /root
+              chown -R 1000:1000 /ai
+          resources:
+            limits:
+              cpu: "1"
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 64Mi
+          volumeMounts:
+            - name: appdata
+              mountPath: /root
+            - name: ai
+              mountPath: /ai
+          securityContext:
+            runAsUser: 0
+      containers:
+        - name: comfyui
+          image: "yanwk/comfyui-boot:cu128-slim"
+          env:
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+            - name: TZ
+              value: Etc/UTC
+            - name: CLI_ARGS
+              value: "--highvram"
+            - name: HOME
+              value: /root
+            - name: PIP_CACHE_DIR
+              value: /root/.cache/pip
+            - name: CACHE_DIR
+              value: /root/.cache
+            - name: HUGGINGFACE_HUB_CACHE
+              value: /root/.cache
+          securityContext:
+            runAsUser: 1000
+          ports:
+            - containerPort: 8188
+          resources:
+            requests:
+              cpu: 2000m
+              memory: 8Gi
+            limits:
+              cpu: "8"
+              memory: 32Gi
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8188
+            initialDelaySeconds: 30
+            timeoutSeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 60
+          startupProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - "pgrep python3 > /dev/null 2>&1 || exit 1"
+            initialDelaySeconds: 10
+            periodSeconds: 15
+            timeoutSeconds: 2
+            successThreshold: 1
+            failureThreshold: 80
+          volumeMounts:
+            - name: appdata
+              mountPath: /root
+            - name: modellibckp
+              mountPath: /root/ComfyUI/models/checkpoints
+            - name: modelliblora
+              mountPath: /root/ComfyUI/models/loras
+            - name: modellibvae
+              mountPath: /root/ComfyUI/models/vae
+            - name: modellibhypernetworks
+              mountPath: /root/ComfyUI/models/hypernetworks
+            - name: modellibembeddings
+              mountPath: /root/ComfyUI/models/embeddings
+            - name: modellibclip
+              mountPath: /root/ComfyUI/models/clip
+            - name: modellibclipvision
+              mountPath: /root/ComfyUI/models/clip_vision
+            - name: modellibcontrolnet
+              mountPath: /root/ComfyUI/models/controlnet
+            - name: modellibinpaint
+              mountPath: /root/ComfyUI/models/inpaint
+            - name: modellibupscale
+              mountPath: /root/ComfyUI/models/upscale_models
+            - name: modellibipadapter
+              mountPath: /root/ComfyUI/models/ipadapter
+            - name: modellibunet
+              mountPath: /root/ComfyUI/models/unet
+            - name: modellibstyle
+              mountPath: /root/ComfyUI/models/style_models
+            - name: modellibfacerestore
+              mountPath: /root/ComfyUI/models/facerestore_models
+            - name: modeldiffusion
+              mountPath: /root/ComfyUI/models/diffusion_models
+            - name: output
+              mountPath: /root/ComfyUI/output
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      volumes:
+        - name: output
+          hostPath:
+            type: DirectoryOrCreate
+            path: "{{ .Values.userspace.appData }}/comfyuione/output"
+        - name: ai
+          hostPath:
+            type: DirectoryOrCreate
+            path: "{{ .Values.userspace.appData }}/ai"
+        - name: appdata
+          hostPath:
+            type: DirectoryOrCreate
+            path: "{{ .Values.userspace.appData }}/comfyuione"
+        - name: modellibckp
+          hostPath:
+            type: DirectoryOrCreate
+            path: "{{ .Values.userspace.appData }}/ai/model/main"
+        - name: modelliblora
+          hostPath:
+            type: DirectoryOrCreate
+            path: "{{ .Values.userspace.appData }}/ai/model/lora"
+        - name: modellibvae
+          hostPath:
+            type: DirectoryOrCreate
+            path: "{{ .Values.userspace.appData }}/ai/model/vae"
+        - name: modellibembeddings
+          hostPath:
+            type: DirectoryOrCreate
+            path: "{{ .Values.userspace.appData }}/ai/model/embeddings"
+        - name: modellibhypernetworks
+          hostPath:
+            type: DirectoryOrCreate
+            path: "{{ .Values.userspace.appData }}/ai/model/hypernetworks"
+        - name: modellibclip
+          hostPath:
+            type: DirectoryOrCreate
+            path: "{{ .Values.userspace.appData }}/ai/model/clip"
+        - name: modellibclipvision
+          hostPath:
+            path: "{{ .Values.userspace.appData }}/ai/model/clip_vision"
+            type: DirectoryOrCreate
+        - name: modellibcontrolnet
+          hostPath:
+            path: "{{ .Values.userspace.appData }}/ai/model/controlnet"
+            type: DirectoryOrCreate
+        - name: modellibinpaint
+          hostPath:
+            path: "{{ .Values.userspace.appData }}/ai/model/inpaint"
+            type: DirectoryOrCreate
+        - name: modellibupscale
+          hostPath:
+            path: "{{ .Values.userspace.appData }}/ai/model/upscale_models"
+            type: DirectoryOrCreate
+        - name: modellibipadapter
+          hostPath:
+            path: "{{ .Values.userspace.appData }}/ai/model/ipadapter"
+            type: DirectoryOrCreate
+        - name: modellibunet
+          hostPath:
+            path: "{{ .Values.userspace.appData }}/ai/model/unet"
+            type: DirectoryOrCreate
+        - name: modellibstyle
+          hostPath:
+            path: "{{ .Values.userspace.appData }}/ai/model/style_models"
+            type: DirectoryOrCreate
+        - name: modellibfacerestore
+          hostPath:
+            path: "{{ .Values.userspace.appData }}/ai/model/facerestore_models"
+            type: DirectoryOrCreate
+        - name: modeldiffusion
+          hostPath:
+            path: "{{ .Values.userspace.appData }}/ai/model/diffusion_models"
+            type: DirectoryOrCreate
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: comfyuione
+  name: comfyuione
+  namespace: "{{ .Release.Namespace }}"
+spec:
+  ports:
+    - name: "comfyui"
+      port: 8188
+      targetPort: 8188
+  selector:
+    io.kompose.service: comfyuione
+status:
+  loadBalancer: {}

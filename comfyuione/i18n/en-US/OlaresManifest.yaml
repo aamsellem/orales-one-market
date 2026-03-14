@@ -1,0 +1,25 @@
+metadata:
+  description: "ComfyUI v0.17.0 — node-based AI image generation, optimized for Olares One"
+  title: ComfyUI v0-17-0 (Olares One)
+entrances:
+  - name: comfyuione
+    title: ComfyUI One
+spec:
+  fullDescription: |
+    ComfyUI v0.17.0 — the most powerful node-based AI image generation UI, optimized for Olares One.
+    RTX 5090M (24GB GDDR7) + 96GB DDR5 + Core Ultra 9 275HX.
+    CUDA 12.8 for full Blackwell GPU support (sm_120).
+    High VRAM mode enabled — keeps models in GPU memory for maximum performance.
+    Supports SD 1.x, SD 2.x, SDXL, SD3, Flux, Stable Video Diffusion, and more.
+    Includes ComfyUI-Manager for easy custom node installation.
+    Shared model directories with other Olares AI apps.
+
+    New in v0.17.0:
+    - Flux 2 Klein KV cache model support
+    - Modular asset architecture with async loading
+    - Enhanced VRAM management and memory optimization
+    - Painter node for image editing
+    - Pre-attention patches for Flux and Qwen image models
+
+  upgradeDescription: |
+    Initial release for Olares One with ComfyUI v0.17.0.

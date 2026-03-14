@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: '0.17.0'
+description: ComfyUI v0.17.0 — node-based AI image generation, optimized for Olares One
+name: comfyuione
+type: application
+version: '1.0.0'

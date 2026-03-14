@@ -1,6 +1,19 @@
 {
-  "hash": "4cd36d4f9ea583bc7b65f4d8088ec0da",
+  "hash": "a9f9cbba5d4fddc1adbc3ac30f7189a8",
   "summaries": {
+    "f5cc3c19": {
+      "id": "f5cc3c19",
+      "name": "comfyuione",
+      "version": "1.0.0",
+      "category": "Creativity",
+      "description": "ComfyUI v0.17.0 — node-based AI image generation, optimized for Olares One",
+      "icon": "https://file.bttcdn.com/appstore/comfyui/icon.png",
+      "screenshots": null,
+      "tags": null,
+      "metadata": null,
+      "source": 1,
+      "updated_at": "2026-03-14T20:52:42.194Z"
+    },
     "c1ca229f": {
       "id": "c1ca229f",
       "name": "llamacppglm47flash",
@@ -12,7 +25,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-12T22:48:58.800Z"
+      "updated_at": "2026-03-14T20:52:42.196Z"
     },
     "4ef430dd": {
       "id": "4ef430dd",
@@ -25,7 +38,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-12T22:48:58.802Z"
+      "updated_at": "2026-03-14T20:52:42.197Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -38,10 +51,124 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-12T22:48:58.804Z"
+      "updated_at": "2026-03-14T20:52:42.198Z"
     }
   },
   "details": {
+    "f5cc3c19": {
+      "id": "f5cc3c19",
+      "name": "comfyuione",
+      "cfgType": "app",
+      "chartName": "comfyuione-1.0.0.tgz",
+      "icon": "https://file.bttcdn.com/appstore/comfyui/icon.png",
+      "description": "ComfyUI v0.17.0 — node-based AI image generation, optimized for Olares One",
+      "appID": "f5cc3c19",
+      "title": "ComfyUI v0-17-0 (Olares One)",
+      "version": "1.0.0",
+      "categories": [
+        "Creativity"
+      ],
+      "versionName": "0.17.0",
+      "fullDescription": "ComfyUI v0.17.0 — the most powerful node-based AI image generation UI, optimized for Olares One.\nRTX 5090M (24GB GDDR7) + 96GB DDR5 + Core Ultra 9 275HX.\nCUDA 12.8 for full Blackwell GPU support (sm_120).\nHigh VRAM mode enabled — keeps models in GPU memory for maximum performance.\nSupports SD 1.x, SD 2.x, SDXL, SD3, Flux, Stable Video Diffusion, and more.\nIncludes ComfyUI-Manager for easy custom node installation.\nShared model directories with other Olares AI apps.\n\nNew in v0.17.0:\n- Flux 2 Klein KV cache model support\n- Modular asset architecture with async loading\n- Enhanced VRAM management and memory optimization\n- Painter node for image editing\n- Pre-attention patches for Flux and Qwen image models\n",
+      "upgradeDescription": "Initial release for Olares One with ComfyUI v0.17.0.\n",
+      "promoteImage": [
+        "https://file.bttcdn.com/appstore/comfyui/1.png",
+        "https://file.bttcdn.com/appstore/comfyui/2.png",
+        "https://file.bttcdn.com/appstore/comfyui/3.png",
+        "https://file.bttcdn.com/appstore/comfyui/4.png"
+      ],
+      "promoteVideo": "",
+      "subCategory": "",
+      "locale": [
+        "en-US"
+      ],
+      "developer": "Comfy-Org",
+      "requiredMemory": "8589934592",
+      "requiredDisk": "21474836480",
+      "supportClient": {},
+      "supportArch": [
+        "amd64"
+      ],
+      "requiredGPU": "4294967296",
+      "requiredCPU": "2",
+      "rating": 0,
+      "target": "",
+      "permission": {
+        "appData": true,
+        "appCache": true,
+        "userData": [
+          "Home"
+        ]
+      },
+      "entrances": [
+        {
+          "name": "comfyuione",
+          "host": "comfyuione",
+          "port": 8188,
+          "title": "ComfyUI One",
+          "icon": "https://file.bttcdn.com/appstore/comfyui/icon.png",
+          "authLevel": "private",
+          "invisible": false,
+          "openMethod": "window",
+          "disablePreload": false
+        }
+      ],
+      "middleware": null,
+      "options": {
+        "apiTimeout": 0,
+        "dependencies": [
+          {
+            "name": "olares",
+            "version": ">=1.12.3-0",
+            "type": "system"
+          }
+        ]
+      },
+      "submitter": "aamsellem",
+      "doc": "",
+      "website": "https://github.com/Comfy-Org/ComfyUI",
+      "featuredImage": "https://file.bttcdn.com/appstore/comfyui/1.png",
+      "sourceCode": "https://github.com/Comfy-Org/ComfyUI",
+      "license": [
+        {
+          "text": "GPL-3.0",
+          "url": "https://github.com/Comfy-Org/ComfyUI/blob/main/LICENSE"
+        }
+      ],
+      "legal": null,
+      "i18n": {
+        "en-US": {
+          "metadata": {
+            "title": "ComfyUI v0-17-0 (Olares One)",
+            "description": "ComfyUI v0.17.0 — node-based AI image generation, optimized for Olares One"
+          },
+          "entrances": null,
+          "spec": {
+            "fullDescription": "ComfyUI v0.17.0 — the most powerful node-based AI image generation UI, optimized for Olares One.\nRTX 5090M (24GB GDDR7) + 96GB DDR5 + Core Ultra 9 275HX.\nCUDA 12.8 for full Blackwell GPU support (sm_120).\nHigh VRAM mode enabled — keeps models in GPU memory for maximum performance.\nSupports SD 1.x, SD 2.x, SDXL, SD3, Flux, Stable Video Diffusion, and more.\nIncludes ComfyUI-Manager for easy custom node installation.\nShared model directories with other Olares AI apps.\n\nNew in v0.17.0:\n- Flux 2 Klein KV cache model support\n- Modular asset architecture with async loading\n- Enhanced VRAM management and memory optimization\n- Painter node for image editing\n- Pre-attention patches for Flux and Qwen image models\n",
+            "upgradeDescription": "Initial release for Olares One with ComfyUI v0.17.0.\n"
+          }
+        }
+      },
+      "namespace": "",
+      "onlyAdmin": false,
+      "lastCommitHash": "",
+      "createTime": 0,
+      "updateTime": 0,
+      "count": null,
+      "versionHistory": [
+        {
+          "appName": "comfyuione",
+          "version": "1.0.0",
+          "versionName": "0.17.0",
+          "mergedAt": "2026-03-14T20:52:42.195Z",
+          "upgradeDescription": ""
+        }
+      ],
+      "screenshots": null,
+      "tags": null,
+      "metadata": null,
+      "updated_at": "2026-03-14T20:52:42.195Z"
+    },
     "c1ca229f": {
       "id": "c1ca229f",
       "name": "llamacppglm47flash",
@@ -138,14 +265,14 @@
           "appName": "llamacppglm47flash",
           "version": "1.0.6",
           "versionName": "1.0.6",
-          "mergedAt": "2026-03-12T22:48:58.801Z",
+          "mergedAt": "2026-03-14T20:52:42.196Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-12T22:48:58.801Z"
+      "updated_at": "2026-03-14T20:52:42.196Z"
     },
     "4ef430dd": {
       "id": "4ef430dd",
@@ -243,14 +370,14 @@
           "appName": "llamacppqwen35a3bone",
           "version": "1.0.11",
           "versionName": "1.0.11",
-          "mergedAt": "2026-03-12T22:48:58.802Z",
+          "mergedAt": "2026-03-14T20:52:42.197Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-12T22:48:58.802Z"
+      "updated_at": "2026-03-14T20:52:42.197Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -348,17 +475,18 @@
           "appName": "qwen3ttstone",
           "version": "1.0.7",
           "versionName": "1.0.7",
-          "mergedAt": "2026-03-12T22:48:58.804Z",
+          "mergedAt": "2026-03-14T20:52:42.198Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-12T22:48:58.804Z"
+      "updated_at": "2026-03-14T20:52:42.198Z"
     }
   },
   "latest": [
+    "comfyuione",
     "llamacppglm47flash",
     "llamacppqwen35a3bone",
     "qwen3ttstone"
