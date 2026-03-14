@@ -21,7 +21,7 @@ metadata:
   name: llamacppqwen35a3bone
   namespace: "{{ .Release.Namespace }}"
   annotations:
-    applications.app.bytetrade.io/gpu-inject: "true"
+    applications.app.bytetrade.io/gpu-inject: "false"
 spec:
   replicas: 1
   selector:
@@ -69,7 +69,7 @@ spec:
               name: models
       containers:
         - name: llamacpp-server
-          image: "ghcr.io/ggml-org/llama.cpp:server-cuda-b8334"
+          image: "ghcr.io/ggml-org/llama.cpp:server-cuda13-b8334"
           command: ["/app/llama-server"]
           args:
             - "--host"

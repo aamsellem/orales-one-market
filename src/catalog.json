@@ -1,10 +1,10 @@
 {
-  "hash": "469ac9494423f728bcf630f13d939467",
+  "hash": "5f145aa8565d6f3c996ce55ab5b13afb",
   "summaries": {
     "4ef430dd": {
       "id": "4ef430dd",
       "name": "llamacppqwen35a3bone",
-      "version": "1.0.17",
+      "version": "1.0.19",
       "category": "AI",
       "description": "Qwen3.5 35B-A3B via llama.cpp — optimized for Olares One",
       "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen35a3bone.png",
@@ -12,7 +12,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-14T14:35:04.719Z"
+      "updated_at": "2026-03-14T14:48:00.903Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -25,7 +25,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-14T14:35:04.722Z"
+      "updated_at": "2026-03-14T14:48:00.906Z"
     },
     "285e9d99": {
       "id": "285e9d99",
@@ -38,7 +38,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-14T14:35:04.723Z"
+      "updated_at": "2026-03-14T14:48:00.907Z"
     }
   },
   "details": {
@@ -46,16 +46,16 @@
       "id": "4ef430dd",
       "name": "llamacppqwen35a3bone",
       "cfgType": "app",
-      "chartName": "llamacppqwen35a3bone-1.0.17.tgz",
+      "chartName": "llamacppqwen35a3bone-1.0.19.tgz",
       "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen35a3bone.png",
       "description": "Qwen3.5 35B-A3B via llama.cpp — optimized for Olares One",
       "appID": "4ef430dd",
       "title": "Qwen3.5 35B-A3B (Olares One)",
-      "version": "1.0.17",
+      "version": "1.0.19",
       "categories": [
         "AI"
       ],
-      "versionName": "1.0.17",
+      "versionName": "1.0.19",
       "fullDescription": "Qwen3.5 35B-A3B (MoE, 3B active) served via llama.cpp — optimized for Olares One.\nRTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.\nUnsloth Dynamic Q4_K_XL quantization (important layers upcasted to 8/16-bit).\nMoE experts offloaded to CPU RAM, attention on GPU.\nFlash attention, CUDA graph optimization, and op-offload enabled.\nllama.cpp b8334 with GATED_DELTA_NET fused op for Qwen MoE.\nDownloads the GGUF model on first launch (~22GB) and caches it.\nExposes an OpenAI-compatible API on port 8080.\n",
       "upgradeDescription": "",
       "promoteImage": null,
@@ -136,16 +136,16 @@
       "versionHistory": [
         {
           "appName": "llamacppqwen35a3bone",
-          "version": "1.0.17",
-          "versionName": "1.0.17",
-          "mergedAt": "2026-03-14T14:35:04.721Z",
+          "version": "1.0.19",
+          "versionName": "1.0.19",
+          "mergedAt": "2026-03-14T14:48:00.905Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-14T14:35:04.721Z"
+      "updated_at": "2026-03-14T14:48:00.905Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -243,14 +243,14 @@
           "appName": "qwen3ttstone",
           "version": "1.0.7",
           "versionName": "1.0.7",
-          "mergedAt": "2026-03-14T14:35:04.722Z",
+          "mergedAt": "2026-03-14T14:48:00.906Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-14T14:35:04.722Z"
+      "updated_at": "2026-03-14T14:48:00.906Z"
     },
     "285e9d99": {
       "id": "285e9d99",
@@ -348,14 +348,14 @@
           "appName": "vllmqwen3527bone",
           "version": "1.0.1",
           "versionName": "1.0.1",
-          "mergedAt": "2026-03-14T14:35:04.723Z",
+          "mergedAt": "2026-03-14T14:48:00.908Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-14T14:35:04.723Z"
+      "updated_at": "2026-03-14T14:48:00.908Z"
     }
   },
   "latest": [
