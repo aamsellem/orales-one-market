@@ -8,7 +8,7 @@ data:
   MODEL_URL: "https://huggingface.co/unsloth/Qwen3.5-35B-A3B-GGUF/resolve/main/Qwen3.5-35B-A3B-UD-Q4_K_XL.gguf"
   MODEL_FILE: "Qwen3.5-35B-A3B-UD-Q4_K_XL.gguf"
   MODEL_ALIAS: "qwen3.5-35b-a3b"
-  CONTEXT_SIZE: "16384"
+  CONTEXT_SIZE: "32768"
   N_GPU_LAYERS: "99"
   THREADS: "16"
 ---
@@ -90,9 +90,9 @@ spec:
             - "--cache-type-v"
             - "q8_0"
             - "--batch-size"
-            - "512"
+            - "2048"
             - "--ubatch-size"
-            - "512"
+            - "1024"
             - "--parallel"
             - "1"
             - "--mlock"
@@ -102,6 +102,10 @@ spec:
             - "--op-offload"
             - "--fused-gdn"
             - "auto"
+            - "--jinja"
+            - "--slot-save-path"
+            - "/cache"
+            - "--no-context-shift"
           env:
             - name: GGML_CUDA_GRAPH_OPT
               value: "1"
@@ -138,11 +142,15 @@ spec:
           volumeMounts:
             - mountPath: "/models"
               name: models
+            - mountPath: "/cache"
+              name: cache
       volumes:
         - name: models
           hostPath:
             path: "{{ .Values.userspace.appData }}/models"
             type: DirectoryOrCreate
+        - name: cache
+          emptyDir: {}
       restartPolicy: Always
 status: {}
 ---
