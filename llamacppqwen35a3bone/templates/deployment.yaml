@@ -69,7 +69,7 @@ spec:
               name: models
       containers:
         - name: llamacpp-server
-          image: "ghcr.io/ggml-org/llama.cpp:server-cuda-b8234"
+          image: "ghcr.io/ggml-org/llama.cpp:server-cuda-b8338"
           args:
             - "--host"
             - "0.0.0.0"
@@ -100,6 +100,8 @@ spec:
             - "--flash-attn"
             - "auto"
             - "--op-offload"
+            - "--fused-gdn"
+            - "auto"
           env:
             - name: GGML_CUDA_GRAPH_OPT
               value: "1"

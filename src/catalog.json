@@ -1,10 +1,10 @@
 {
-  "hash": "27d382c0e2124432b9b0ff82d8494033",
+  "hash": "a435165d27d94fb6608c3e05ba910f6c",
   "summaries": {
     "4ef430dd": {
       "id": "4ef430dd",
       "name": "llamacppqwen35a3bone",
-      "version": "1.0.7",
+      "version": "1.0.8",
       "category": "AI",
       "description": "Qwen3.5 35B-A3B via llama.cpp — optimized for Olares One",
       "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen35a3bone.png",
@@ -12,7 +12,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-13T20:32:09.507Z"
+      "updated_at": "2026-03-14T13:10:08.562Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -25,12 +25,12 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-13T20:32:09.509Z"
+      "updated_at": "2026-03-14T13:10:08.565Z"
     },
     "285e9d99": {
       "id": "285e9d99",
       "name": "vllmqwen3527bone",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "category": "AI",
       "description": "Qwen3.5 27B NVFP4 via vLLM — optimized for Olares One",
       "icon": "https://orales-one-market.aamsellem.workers.dev/icons/vllmqwen3527bone.png",
@@ -38,7 +38,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-13T20:32:09.510Z"
+      "updated_at": "2026-03-14T13:10:08.567Z"
     }
   },
   "details": {
@@ -46,16 +46,16 @@
       "id": "4ef430dd",
       "name": "llamacppqwen35a3bone",
       "cfgType": "app",
-      "chartName": "llamacppqwen35a3bone-1.0.7.tgz",
+      "chartName": "llamacppqwen35a3bone-1.0.8.tgz",
       "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen35a3bone.png",
       "description": "Qwen3.5 35B-A3B via llama.cpp — optimized for Olares One",
       "appID": "4ef430dd",
       "title": "Qwen3.5 35B-A3B (Olares One)",
-      "version": "1.0.7",
+      "version": "1.0.8",
       "categories": [
         "AI"
       ],
-      "versionName": "1.0.7",
+      "versionName": "1.0.8",
       "fullDescription": "Qwen3.5 35B-A3B (MoE, 3B active) served via llama.cpp — optimized for Olares One.\nRTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.\nUnsloth Dynamic Q4_K_XL quantization (important layers upcasted to 8/16-bit).\nMoE experts offloaded to CPU RAM, attention on GPU.\nFlash attention, CUDA graph optimization, and op-offload enabled.\nllama.cpp b8234 with GATED_DELTA_NET fused op for Qwen MoE.\nDownloads the GGUF model on first launch (~22GB) and caches it.\nExposes an OpenAI-compatible API on port 8080.\n",
       "upgradeDescription": "",
       "promoteImage": null,
@@ -136,16 +136,16 @@
       "versionHistory": [
         {
           "appName": "llamacppqwen35a3bone",
-          "version": "1.0.7",
-          "versionName": "1.0.7",
-          "mergedAt": "2026-03-13T20:32:09.508Z",
+          "version": "1.0.8",
+          "versionName": "1.0.8",
+          "mergedAt": "2026-03-14T13:10:08.564Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-13T20:32:09.508Z"
+      "updated_at": "2026-03-14T13:10:08.564Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -243,29 +243,29 @@
           "appName": "qwen3ttstone",
           "version": "1.0.7",
           "versionName": "1.0.7",
-          "mergedAt": "2026-03-13T20:32:09.509Z",
+          "mergedAt": "2026-03-14T13:10:08.565Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-13T20:32:09.509Z"
+      "updated_at": "2026-03-14T13:10:08.565Z"
     },
     "285e9d99": {
       "id": "285e9d99",
       "name": "vllmqwen3527bone",
       "cfgType": "app",
-      "chartName": "vllmqwen3527bone-1.0.0.tgz",
+      "chartName": "vllmqwen3527bone-1.0.1.tgz",
       "icon": "https://orales-one-market.aamsellem.workers.dev/icons/vllmqwen3527bone.png",
       "description": "Qwen3.5 27B NVFP4 via vLLM — optimized for Olares One",
       "appID": "285e9d99",
       "title": "Qwen3.5 27B NVFP4 vLLM One",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "categories": [
         "AI"
       ],
-      "versionName": "1.0.0",
+      "versionName": "1.0.1",
       "fullDescription": "Qwen3.5 27B (dense, Mamba-hybrid) served via vLLM with NVFP4 quantization — optimized for Olares One.\nRTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.\nNVFP4 (NVIDIA FP4) native Blackwell quantization — 19.7GB model weights.\nRequires SM 12.0 (Blackwell architecture) for FP4 tensor core instructions.\nUses vLLM cu130-nightly with native NVFP4 Marlin backend.\nDownloads the model from HuggingFace on first launch (~20GB) and caches it.\nExposes an OpenAI-compatible API on port 8000.\n",
       "upgradeDescription": "",
       "promoteImage": null,
@@ -292,7 +292,7 @@
         {
           "name": "vllmqwen3527bone",
           "host": "vllmqwen3527bone",
-          "port": 8080,
+          "port": 8000,
           "title": "Qwen 27B NVFP4 vLLM One",
           "icon": "https://orales-one-market.aamsellem.workers.dev/icons/vllmqwen3527bone.png",
           "authLevel": "internal",
@@ -346,16 +346,16 @@
       "versionHistory": [
         {
           "appName": "vllmqwen3527bone",
-          "version": "1.0.0",
-          "versionName": "1.0.0",
-          "mergedAt": "2026-03-13T20:32:09.511Z",
+          "version": "1.0.1",
+          "versionName": "1.0.1",
+          "mergedAt": "2026-03-14T13:10:08.567Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-13T20:32:09.511Z"
+      "updated_at": "2026-03-14T13:10:08.567Z"
     }
   },
   "latest": [

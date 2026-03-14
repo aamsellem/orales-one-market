@@ -8,19 +8,19 @@ metadata:
   description: "Qwen3.5 27B NVFP4 via vLLM — optimized for Olares One"
   appid: vllmqwen3527bone
   title: Qwen3.5 27B NVFP4 vLLM One
-  version: '1.0.0'
+  version: '1.0.1'
   categories:
     - AI
 entrances:
   - name: vllmqwen3527bone
-    port: 8080
+    port: 8000
     host: vllmqwen3527bone
     title: Qwen 27B NVFP4 vLLM One
     icon: https://orales-one-market.aamsellem.workers.dev/icons/vllmqwen3527bone.png
     openMethod: window
     authLevel: internal
 spec:
-  versionName: '1.0.0'
+  versionName: '1.0.1'
   fullDescription: |
     Qwen3.5 27B (dense, Mamba-hybrid) served via vLLM with NVFP4 quantization — optimized for Olares One.
     RTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.

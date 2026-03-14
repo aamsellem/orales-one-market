@@ -7,10 +7,10 @@ metadata:
 data:
   MODEL_NAME: "Kbenkhaled/Qwen3.5-27B-NVFP4"
   MODEL_ALIAS: "qwen3.5-27b"
-  MAX_MODEL_LEN: "16384"
+  MAX_MODEL_LEN: "4096"
   GPU_MEMORY_UTILIZATION: "0.92"
   MAX_NUM_SEQS: "2"
-  MAX_NUM_BATCHED_TOKENS: "4096"
+  MAX_NUM_BATCHED_TOKENS: "2048"
 ---
 apiVersion: apps/v1
 kind: Deployment
