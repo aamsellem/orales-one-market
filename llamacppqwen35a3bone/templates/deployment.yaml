@@ -69,7 +69,8 @@ spec:
               name: models
       containers:
         - name: llamacpp-server
-          image: "ghcr.io/ggml-org/llama.cpp:server-cuda-b8234"
+          image: "ghcr.io/ggml-org/llama.cpp:server-cuda-b8334"
+          command: ["/app/llama-server"]
           args:
             - "--host"
             - "0.0.0.0"
