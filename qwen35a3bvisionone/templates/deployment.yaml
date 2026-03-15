@@ -2,13 +2,15 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: llamacpp-env
+  name: llamacpp-vision-env
   namespace: "{{ .Release.Namespace }}"
 data:
   MODEL_URL: "https://huggingface.co/unsloth/Qwen3.5-35B-A3B-GGUF/resolve/main/Qwen3.5-35B-A3B-UD-Q4_K_XL.gguf"
   MODEL_FILE: "Qwen3.5-35B-A3B-UD-Q4_K_XL.gguf"
-  MODEL_ALIAS: "qwen3.5-35b-a3b"
-  CONTEXT_SIZE: "32768"
+  MMPROJ_URL: "https://huggingface.co/steampunque/Qwen3.5-35B-A3B-MP-GGUF/resolve/main/Qwen3.5-35B-A3B.mmproj.gguf"
+  MMPROJ_FILE: "Qwen3.5-35B-A3B.mmproj.gguf"
+  MODEL_ALIAS: "qwen3.5-35b-a3b-vision"
+  CONTEXT_SIZE: "16384"
   N_GPU_LAYERS: "99"
   THREADS: "16"
 ---
@@ -26,8 +28,8 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: llamacppqwen35a3bone
-  name: llamacppqwen35a3bone
+    io.kompose.service: qwen35a3bvisionone
+  name: qwen35a3bvisionone
   namespace: "{{ .Release.Namespace }}"
   annotations:
     applications.app.bytetrade.io/gpu-inject: "false"
@@ -35,7 +37,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: llamacppqwen35a3bone
+      io.kompose.service: qwen35a3bvisionone
   strategy:
     type: Recreate
   template:
@@ -43,7 +45,7 @@ spec:
       creationTimestamp: null
       labels:
         io.kompose.network/chrome-default: "true"
-        io.kompose.service: llamacppqwen35a3bone
+        io.kompose.service: qwen35a3bvisionone
     spec:
       initContainers:
         - name: model-downloader
@@ -52,6 +54,7 @@ spec:
             - sh
             - '-c'
             - |
+              # Download main model
               MODEL_PATH="/models/${MODEL_FILE}"
               if [ -f "$MODEL_PATH" ]; then
                 echo "Model already downloaded: $MODEL_PATH"
@@ -60,12 +63,24 @@ spec:
                 echo "Downloading model from $MODEL_URL ..."
                 wget -O "$MODEL_PATH.tmp" "$MODEL_URL"
                 mv "$MODEL_PATH.tmp" "$MODEL_PATH"
-                echo "Download complete."
+                echo "Model download complete."
                 ls -lh "$MODEL_PATH"
+              fi
+              # Download mmproj (vision projector)
+              MMPROJ_PATH="/models/${MMPROJ_FILE}"
+              if [ -f "$MMPROJ_PATH" ]; then
+                echo "mmproj already downloaded: $MMPROJ_PATH"
+                ls -lh "$MMPROJ_PATH"
+              else
+                echo "Downloading mmproj from $MMPROJ_URL ..."
+                wget -O "$MMPROJ_PATH.tmp" "$MMPROJ_URL"
+                mv "$MMPROJ_PATH.tmp" "$MMPROJ_PATH"
+                echo "mmproj download complete."
+                ls -lh "$MMPROJ_PATH"
               fi
           envFrom:
             - configMapRef:
-                name: llamacpp-env
+                name: llamacpp-vision-env
           resources:
             limits:
               cpu: "2"
@@ -87,6 +102,8 @@ spec:
             - "8080"
             - "--model"
             - "/models/$(MODEL_FILE)"
+            - "--mmproj"
+            - "/models/$(MMPROJ_FILE)"
             - "--alias"
             - "$(MODEL_ALIAS)"
             - "--ctx-size"
@@ -121,7 +138,7 @@ spec:
               value: "1"
           envFrom:
             - configMapRef:
-                name: llamacpp-env
+                name: llamacpp-vision-env
           ports:
             - containerPort: 8080
           livenessProbe:
@@ -174,8 +191,8 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: llamacppqwen35a3bone
-  name: llamacppqwen35a3bone
+    io.kompose.service: qwen35a3bvisionone
+  name: qwen35a3bvisionone
   namespace: "{{ .Release.Namespace }}"
 spec:
   ports:
@@ -183,6 +200,6 @@ spec:
       port: 8080
       targetPort: 8080
   selector:
-    io.kompose.service: llamacppqwen35a3bone
+    io.kompose.service: qwen35a3bvisionone
 status:
   loadBalancer: {}

@@ -10,6 +10,7 @@ A single Cloudflare Worker that serves the full Market Source API — app catalo
 
 | App | Model | Backend | Quant | Performance |
 |-----|-------|---------|-------|-------------|
+| llamacppnemotron30a3bone | Nemotron 3 Nano 30B-A3B | llama.cpp b8334 | UD-Q4_K_XL | **184 t/s** |
 | llamacppqwen35a3bone | Qwen3.5 35B-A3B | llama.cpp b8234 | UD-Q4_K_XL | **128.75 t/s** |
 
 ## Setup

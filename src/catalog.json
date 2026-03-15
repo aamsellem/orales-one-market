@@ -1,10 +1,49 @@
 {
-  "hash": "5f145aa8565d6f3c996ce55ab5b13afb",
+  "hash": "5b86ad6d9e29cd6262d5ed981174ecb3",
   "summaries": {
+    "f5cc3c19": {
+      "id": "f5cc3c19",
+      "name": "comfyuione",
+      "version": "1.0.11",
+      "category": "Creativity",
+      "description": "The most powerful and modular stable diffusion GUI and backend.",
+      "icon": "https://file.bttcdn.com/appstore/comfyui/icon.png",
+      "screenshots": null,
+      "tags": null,
+      "metadata": null,
+      "source": 1,
+      "updated_at": "2026-03-15T08:04:34.899Z"
+    },
+    "6dfccbf6": {
+      "id": "6dfccbf6",
+      "name": "comfyuioneclient",
+      "version": "1.0.0",
+      "category": "Creativity",
+      "description": "The most powerful and modular stable diffusion GUI and backend.",
+      "icon": "https://file.bttcdn.com/appstore/comfyui/icon.png",
+      "screenshots": null,
+      "tags": null,
+      "metadata": null,
+      "source": 1,
+      "updated_at": "2026-03-15T08:04:34.901Z"
+    },
+    "491be3cd": {
+      "id": "491be3cd",
+      "name": "llamacppnemotron30a3bone",
+      "version": "1.0.2",
+      "category": "AI",
+      "description": "Nemotron 3 Nano 30B-A3B via llama.cpp — optimized for Olares One",
+      "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppnemotron30a3bone.png",
+      "screenshots": null,
+      "tags": null,
+      "metadata": null,
+      "source": 1,
+      "updated_at": "2026-03-15T08:04:34.903Z"
+    },
     "4ef430dd": {
       "id": "4ef430dd",
       "name": "llamacppqwen35a3bone",
-      "version": "1.0.19",
+      "version": "1.0.20",
       "category": "AI",
       "description": "Qwen3.5 35B-A3B via llama.cpp — optimized for Olares One",
       "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen35a3bone.png",
@@ -12,7 +51,20 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-14T14:48:00.903Z"
+      "updated_at": "2026-03-15T08:04:34.904Z"
+    },
+    "2c5c39c9": {
+      "id": "2c5c39c9",
+      "name": "qwen35a3bvisionone",
+      "version": "1.0.1",
+      "category": "AI",
+      "description": "Qwen3.5 35B-A3B Vision via llama.cpp — image + text, optimized for Olares One",
+      "icon": "https://orales-one-market.aamsellem.workers.dev/icons/qwen35a3bvisionone.png",
+      "screenshots": null,
+      "tags": null,
+      "metadata": null,
+      "source": 1,
+      "updated_at": "2026-03-15T08:04:34.905Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -25,7 +77,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-14T14:48:00.906Z"
+      "updated_at": "2026-03-15T08:04:34.906Z"
     },
     "285e9d99": {
       "id": "285e9d99",
@@ -38,24 +90,361 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-14T14:48:00.907Z"
+      "updated_at": "2026-03-15T08:04:34.907Z"
     }
   },
   "details": {
+    "f5cc3c19": {
+      "id": "f5cc3c19",
+      "name": "comfyuione",
+      "cfgType": "app",
+      "chartName": "comfyuione-1.0.11.tgz",
+      "icon": "https://file.bttcdn.com/appstore/comfyui/icon.png",
+      "description": "The most powerful and modular stable diffusion GUI and backend.",
+      "appID": "f5cc3c19",
+      "title": "ComfyUI For Cluster",
+      "version": "1.0.11",
+      "categories": [
+        "Creativity",
+        "Productivity"
+      ],
+      "versionName": "0.3.22",
+      "fullDescription": "## IMPORTANT NOTE ##\nPlease note that this is a cluster-scoped app, you will need the corresponding app to use it.\n\n## OVERVIEW ##\nThe most powerful and modular stable diffusion GUI and backend.\n\nThis ui will let you design and execute advanced stable diffusion pipelines using\na graph/nodes/flowchart based interface.\n",
+      "upgradeDescription": "Upgrade to v0.3.22\n",
+      "promoteImage": [
+        "https://file.bttcdn.com/appstore/comfyui/1.png",
+        "https://file.bttcdn.com/appstore/comfyui/2.png",
+        "https://file.bttcdn.com/appstore/comfyui/3.png",
+        "https://file.bttcdn.com/appstore/comfyui/4.png"
+      ],
+      "promoteVideo": "",
+      "subCategory": "",
+      "locale": [
+        "en-US"
+      ],
+      "developer": "comfyanonymous",
+      "requiredMemory": "3221225472",
+      "requiredDisk": "10737418240",
+      "supportClient": {},
+      "supportArch": [
+        "amd64"
+      ],
+      "requiredGPU": "2147483648",
+      "requiredCPU": "0.5",
+      "rating": 0,
+      "target": "",
+      "permission": {
+        "appData": true,
+        "appCache": true,
+        "userData": [
+          "Home"
+        ]
+      },
+      "entrances": [
+        {
+          "name": "comfyuioneentrance",
+          "host": "comfyuioneentrance",
+          "port": 8080,
+          "title": "ComfyUI For Cluster",
+          "icon": "https://file.bttcdn.com/appstore/comfyui/icon.png",
+          "authLevel": "private",
+          "invisible": true,
+          "openMethod": "",
+          "disablePreload": false
+        }
+      ],
+      "middleware": null,
+      "options": {
+        "dependencies": [
+          {
+            "name": "olares",
+            "type": "system",
+            "version": ">=1.12.3-0"
+          }
+        ],
+        "appScope": {
+          "clusterScoped": true,
+          "appRef": [
+            "comfyuioneclient"
+          ]
+        }
+      },
+      "submitter": "aamsellem",
+      "doc": "https://github.com/comfyanonymous/ComfyUI?tab=readme-ov-file#readme",
+      "website": "https://github.com/comfyanonymous/ComfyUI?tab=readme-ov-file#readme",
+      "featuredImage": "https://file.bttcdn.com/appstore/comfyui/1.png",
+      "sourceCode": "https://github.com/comfyanonymous/ComfyUI",
+      "license": [
+        {
+          "text": "GPL-3.0",
+          "url": "https://github.com/comfyanonymous/ComfyUI?tab=GPL-3.0-1-ov-file#readme"
+        }
+      ],
+      "legal": null,
+      "i18n": {
+        "en-US": {
+          "metadata": {
+            "title": "ComfyUI For Cluster",
+            "description": "The most powerful and modular stable diffusion GUI and backend."
+          },
+          "entrances": null,
+          "spec": {
+            "fullDescription": "## IMPORTANT NOTE ##\nPlease note that this is a cluster-scoped app, you will need the corresponding client app to use it.\n\n## Overview ##\nThe most powerful and modular stable diffusion GUI and backend.\n",
+            "upgradeDescription": "Upgrade to v0.3.22\n"
+          }
+        }
+      },
+      "namespace": "",
+      "onlyAdmin": true,
+      "lastCommitHash": "",
+      "createTime": 0,
+      "updateTime": 0,
+      "count": null,
+      "versionHistory": [
+        {
+          "appName": "comfyuione",
+          "version": "1.0.11",
+          "versionName": "0.3.22",
+          "mergedAt": "2026-03-15T08:04:34.900Z",
+          "upgradeDescription": ""
+        }
+      ],
+      "screenshots": null,
+      "tags": null,
+      "metadata": null,
+      "updated_at": "2026-03-15T08:04:34.900Z"
+    },
+    "6dfccbf6": {
+      "id": "6dfccbf6",
+      "name": "comfyuioneclient",
+      "cfgType": "app",
+      "chartName": "comfyuioneclient-1.0.0.tgz",
+      "icon": "https://file.bttcdn.com/appstore/comfyui/icon.png",
+      "description": "The most powerful and modular stable diffusion GUI and backend.",
+      "appID": "6dfccbf6",
+      "title": "ComfyUI",
+      "version": "1.0.0",
+      "categories": [
+        "Creativity",
+        "Productivity"
+      ],
+      "versionName": "0.3.22",
+      "fullDescription": "## IMPORTANT NOTE ##\nThis is the corresponding client app of \"ComfyUI For Cluster\". It requires \"ComfyUI For Cluster\" to be installed on your Olares cluster first.\n\n## OVERVIEW ##\nThe most powerful and modular stable diffusion GUI and backend.\n",
+      "upgradeDescription": "Initial release\n",
+      "promoteImage": [
+        "https://file.bttcdn.com/appstore/comfyui/1.png",
+        "https://file.bttcdn.com/appstore/comfyui/2.png",
+        "https://file.bttcdn.com/appstore/comfyui/3.png",
+        "https://file.bttcdn.com/appstore/comfyui/4.png"
+      ],
+      "promoteVideo": "",
+      "subCategory": "",
+      "locale": [
+        "en-US"
+      ],
+      "developer": "comfyanonymous",
+      "requiredMemory": "134217728",
+      "requiredDisk": "58720256",
+      "supportClient": {},
+      "supportArch": [
+        "amd64"
+      ],
+      "requiredGPU": "0",
+      "requiredCPU": "0.01",
+      "rating": 0,
+      "target": "",
+      "permission": {
+        "appData": true,
+        "appCache": true
+      },
+      "entrances": [
+        {
+          "name": "comfyuioneclient",
+          "host": "comfyuioneclient",
+          "port": 8080,
+          "title": "ComfyUI",
+          "icon": "https://file.bttcdn.com/appstore/comfyui/icon.png",
+          "authLevel": "internal",
+          "invisible": false,
+          "openMethod": "window",
+          "disablePreload": false
+        }
+      ],
+      "middleware": null,
+      "options": {
+        "dependencies": [
+          {
+            "name": "olares",
+            "type": "system",
+            "version": ">=1.12.3-0"
+          },
+          {
+            "name": "comfyuione",
+            "type": "application",
+            "version": ">=1.0.0",
+            "mandatory": true
+          }
+        ]
+      },
+      "submitter": "aamsellem",
+      "doc": "https://github.com/comfyanonymous/ComfyUI?tab=readme-ov-file#readme",
+      "website": "https://github.com/comfyanonymous/ComfyUI?tab=readme-ov-file#readme",
+      "featuredImage": "https://file.bttcdn.com/appstore/comfyui/1.png",
+      "sourceCode": "https://github.com/comfyanonymous/ComfyUI",
+      "license": [],
+      "legal": null,
+      "i18n": {
+        "en-US": {
+          "metadata": {
+            "title": "ComfyUI",
+            "description": "The most powerful and modular stable diffusion GUI and backend"
+          },
+          "entrances": null,
+          "spec": {
+            "fullDescription": "## IMPORTANT NOTE ##\nThis is the corresponding client app of \"ComfyUI For Cluster\". It requires \"ComfyUI For Cluster\" to be installed on your Olares cluster first.\n\n## OVERVIEW ##\nThe most powerful and modular stable diffusion GUI and backend.\n",
+            "upgradeDescription": "Initial release\n"
+          }
+        }
+      },
+      "namespace": "",
+      "onlyAdmin": false,
+      "lastCommitHash": "",
+      "createTime": 0,
+      "updateTime": 0,
+      "count": null,
+      "versionHistory": [
+        {
+          "appName": "comfyuioneclient",
+          "version": "1.0.0",
+          "versionName": "0.3.22",
+          "mergedAt": "2026-03-15T08:04:34.901Z",
+          "upgradeDescription": ""
+        }
+      ],
+      "screenshots": null,
+      "tags": null,
+      "metadata": null,
+      "updated_at": "2026-03-15T08:04:34.901Z"
+    },
+    "491be3cd": {
+      "id": "491be3cd",
+      "name": "llamacppnemotron30a3bone",
+      "cfgType": "app",
+      "chartName": "llamacppnemotron30a3bone-1.0.2.tgz",
+      "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppnemotron30a3bone.png",
+      "description": "Nemotron 3 Nano 30B-A3B via llama.cpp — optimized for Olares One",
+      "appID": "491be3cd",
+      "title": "Nemotron 30B-A3B Olares One",
+      "version": "1.0.2",
+      "categories": [
+        "AI"
+      ],
+      "versionName": "1.0.2",
+      "fullDescription": "Nemotron 3 Nano 30B-A3B (Hybrid Mamba-Transformer MoE, 3.5B active) served via llama.cpp — optimized for Olares One.\nRTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.\nUnsloth Dynamic Q4_K_XL quantization (important layers upcasted to 8/16-bit).\nHybrid architecture: 23 Mamba-2 layers + 6 GQA attention layers + MoE FFN.\nFlash attention, CUDA graph optimization, and op-offload enabled.\nBuilt-in reasoning mode with think/no-think toggle via chat template.\nDownloads the GGUF model on first launch (~23GB) and caches it.\nExposes an OpenAI-compatible API on port 8080.\n",
+      "upgradeDescription": "",
+      "promoteImage": null,
+      "promoteVideo": "",
+      "subCategory": "",
+      "locale": [
+        "en-US"
+      ],
+      "developer": "aamsellem",
+      "requiredMemory": "25769803776",
+      "requiredDisk": "32212254720",
+      "supportClient": {},
+      "supportArch": [
+        "amd64"
+      ],
+      "requiredGPU": "1073741824",
+      "requiredCPU": "4",
+      "rating": 0,
+      "target": "",
+      "permission": {
+        "appData": true
+      },
+      "entrances": [
+        {
+          "name": "llamacppnemotron30a3bone",
+          "host": "llamacppnemotron30a3bone",
+          "port": 8080,
+          "title": "Nemotron 30B-A3B One",
+          "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppnemotron30a3bone.png",
+          "authLevel": "internal",
+          "invisible": false,
+          "openMethod": "window",
+          "disablePreload": false
+        }
+      ],
+      "middleware": null,
+      "options": {
+        "apiTimeout": 0,
+        "dependencies": [
+          {
+            "name": "olares",
+            "version": ">=1.12.3-0",
+            "type": "system"
+          }
+        ]
+      },
+      "submitter": "aamsellem",
+      "doc": "",
+      "website": "https://github.com/aamsellem/orales-one-market",
+      "featuredImage": "",
+      "sourceCode": "https://github.com/aamsellem/orales-one-market",
+      "license": [
+        {
+          "text": "NVIDIA Nemotron Open Model License",
+          "url": "https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-nemotron-open-model-license/"
+        }
+      ],
+      "legal": null,
+      "i18n": {
+        "en-US": {
+          "metadata": {
+            "title": "Nemotron 30B-A3B Olares One",
+            "description": "Nemotron 3 Nano 30B-A3B via llama.cpp — optimized for Olares One"
+          },
+          "entrances": null,
+          "spec": {
+            "fullDescription": "Nemotron 3 Nano 30B-A3B (Hybrid Mamba-Transformer MoE, 3.5B active) served via llama.cpp — optimized for Olares One.\nRTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.\nUnsloth Dynamic Q4_K_XL quantization (important layers upcasted to 8/16-bit).\nHybrid architecture: 23 Mamba-2 layers + 6 GQA attention layers + MoE FFN.\nFlash attention, CUDA graph optimization, and op-offload enabled.\nBuilt-in reasoning mode with think/no-think toggle via chat template.\nDownloads the GGUF model on first launch (~23GB) and caches it.\nExposes an OpenAI-compatible API on port 8080.\n",
+            "upgradeDescription": ""
+          }
+        }
+      },
+      "namespace": "",
+      "onlyAdmin": false,
+      "lastCommitHash": "",
+      "createTime": 0,
+      "updateTime": 0,
+      "count": null,
+      "versionHistory": [
+        {
+          "appName": "llamacppnemotron30a3bone",
+          "version": "1.0.2",
+          "versionName": "1.0.2",
+          "mergedAt": "2026-03-15T08:04:34.903Z",
+          "upgradeDescription": ""
+        }
+      ],
+      "screenshots": null,
+      "tags": null,
+      "metadata": null,
+      "updated_at": "2026-03-15T08:04:34.903Z"
+    },
     "4ef430dd": {
       "id": "4ef430dd",
       "name": "llamacppqwen35a3bone",
       "cfgType": "app",
-      "chartName": "llamacppqwen35a3bone-1.0.19.tgz",
+      "chartName": "llamacppqwen35a3bone-1.0.20.tgz",
       "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen35a3bone.png",
       "description": "Qwen3.5 35B-A3B via llama.cpp — optimized for Olares One",
       "appID": "4ef430dd",
       "title": "Qwen3.5 35B-A3B (Olares One)",
-      "version": "1.0.19",
+      "version": "1.0.20",
       "categories": [
         "AI"
       ],
-      "versionName": "1.0.19",
+      "versionName": "1.0.20",
       "fullDescription": "Qwen3.5 35B-A3B (MoE, 3B active) served via llama.cpp — optimized for Olares One.\nRTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.\nUnsloth Dynamic Q4_K_XL quantization (important layers upcasted to 8/16-bit).\nMoE experts offloaded to CPU RAM, attention on GPU.\nFlash attention, CUDA graph optimization, and op-offload enabled.\nllama.cpp b8334 with GATED_DELTA_NET fused op for Qwen MoE.\nDownloads the GGUF model on first launch (~22GB) and caches it.\nExposes an OpenAI-compatible API on port 8080.\n",
       "upgradeDescription": "",
       "promoteImage": null,
@@ -136,16 +525,121 @@
       "versionHistory": [
         {
           "appName": "llamacppqwen35a3bone",
-          "version": "1.0.19",
-          "versionName": "1.0.19",
-          "mergedAt": "2026-03-14T14:48:00.905Z",
+          "version": "1.0.20",
+          "versionName": "1.0.20",
+          "mergedAt": "2026-03-15T08:04:34.904Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-14T14:48:00.905Z"
+      "updated_at": "2026-03-15T08:04:34.904Z"
+    },
+    "2c5c39c9": {
+      "id": "2c5c39c9",
+      "name": "qwen35a3bvisionone",
+      "cfgType": "app",
+      "chartName": "qwen35a3bvisionone-1.0.1.tgz",
+      "icon": "https://orales-one-market.aamsellem.workers.dev/icons/qwen35a3bvisionone.png",
+      "description": "Qwen3.5 35B-A3B Vision via llama.cpp — image + text, optimized for Olares One",
+      "appID": "2c5c39c9",
+      "title": "Qwen3.5 Vision (Olares One)",
+      "version": "1.0.1",
+      "categories": [
+        "AI"
+      ],
+      "versionName": "1.0.1",
+      "fullDescription": "Qwen3.5 35B-A3B Vision (MoE, 3B active) served via llama.cpp — optimized for Olares One.\nMultimodal: accepts images via OpenAI-compatible vision API (image_url format).\nRTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.\nUnsloth Dynamic Q4_K_XL quantization (22.2GB) + mmproj F16 (0.9GB).\nFlash attention, CUDA graph optimization, and op-offload enabled.\nllama.cpp b8334 with multimodal projector support.\nDownloads the GGUF model (~22GB) and mmproj (~0.9GB) on first launch.\nContext reduced to 16K to fit model + mmproj in 24GB VRAM.\nExposes an OpenAI-compatible API on port 8080.\n",
+      "upgradeDescription": "",
+      "promoteImage": null,
+      "promoteVideo": "",
+      "subCategory": "",
+      "locale": [
+        "en-US"
+      ],
+      "developer": "aamsellem",
+      "requiredMemory": "25769803776",
+      "requiredDisk": "37580963840",
+      "supportClient": {},
+      "supportArch": [
+        "amd64"
+      ],
+      "requiredGPU": "1073741824",
+      "requiredCPU": "4",
+      "rating": 0,
+      "target": "",
+      "permission": {
+        "appData": true
+      },
+      "entrances": [
+        {
+          "name": "qwen35a3bvisionone",
+          "host": "qwen35a3bvisionone",
+          "port": 8080,
+          "title": "Qwen 35B Vision One",
+          "icon": "https://orales-one-market.aamsellem.workers.dev/icons/qwen35a3bvisionone.png",
+          "authLevel": "internal",
+          "invisible": false,
+          "openMethod": "window",
+          "disablePreload": false
+        }
+      ],
+      "middleware": null,
+      "options": {
+        "apiTimeout": 0,
+        "dependencies": [
+          {
+            "name": "olares",
+            "version": ">=1.12.3-0",
+            "type": "system"
+          }
+        ]
+      },
+      "submitter": "aamsellem",
+      "doc": "",
+      "website": "https://github.com/aamsellem/orales-one-market",
+      "featuredImage": "",
+      "sourceCode": "https://github.com/aamsellem/orales-one-market",
+      "license": [
+        {
+          "text": "MIT",
+          "url": "https://github.com/ggerganov/llama.cpp/blob/master/LICENSE"
+        }
+      ],
+      "legal": null,
+      "i18n": {
+        "en-US": {
+          "metadata": {
+            "title": "Qwen3.5 Vision (Olares One)",
+            "description": "Qwen3.5 35B-A3B Vision via llama.cpp — image + text, optimized for Olares One"
+          },
+          "entrances": null,
+          "spec": {
+            "fullDescription": "Qwen3.5 35B-A3B Vision (MoE, 3B active) served via llama.cpp — optimized for Olares One.\nMultimodal: accepts images via OpenAI-compatible vision API (image_url format).\nRTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.\nUnsloth Dynamic Q4_K_XL quantization (22.2GB) + mmproj F16 (0.9GB).\nFlash attention, CUDA graph optimization, and op-offload enabled.\nllama.cpp b8334 with multimodal projector support.\nDownloads the GGUF model (~22GB) and mmproj (~0.9GB) on first launch.\nContext reduced to 16K to fit model + mmproj in 24GB VRAM.\nExposes an OpenAI-compatible API on port 8080.\n",
+            "upgradeDescription": ""
+          }
+        }
+      },
+      "namespace": "",
+      "onlyAdmin": false,
+      "lastCommitHash": "",
+      "createTime": 0,
+      "updateTime": 0,
+      "count": null,
+      "versionHistory": [
+        {
+          "appName": "qwen35a3bvisionone",
+          "version": "1.0.1",
+          "versionName": "1.0.1",
+          "mergedAt": "2026-03-15T08:04:34.905Z",
+          "upgradeDescription": ""
+        }
+      ],
+      "screenshots": null,
+      "tags": null,
+      "metadata": null,
+      "updated_at": "2026-03-15T08:04:34.905Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -243,14 +737,14 @@
           "appName": "qwen3ttstone",
           "version": "1.0.7",
           "versionName": "1.0.7",
-          "mergedAt": "2026-03-14T14:48:00.906Z",
+          "mergedAt": "2026-03-15T08:04:34.906Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-14T14:48:00.906Z"
+      "updated_at": "2026-03-15T08:04:34.906Z"
     },
     "285e9d99": {
       "id": "285e9d99",
@@ -348,18 +842,22 @@
           "appName": "vllmqwen3527bone",
           "version": "1.0.1",
           "versionName": "1.0.1",
-          "mergedAt": "2026-03-14T14:48:00.908Z",
+          "mergedAt": "2026-03-15T08:04:34.907Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-14T14:48:00.908Z"
+      "updated_at": "2026-03-15T08:04:34.907Z"
     }
   },
   "latest": [
+    "comfyuione",
+    "comfyuioneclient",
+    "llamacppnemotron30a3bone",
     "llamacppqwen35a3bone",
+    "qwen35a3bvisionone",
     "qwen3ttstone",
     "vllmqwen3527bone"
   ]
