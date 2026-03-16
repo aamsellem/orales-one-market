@@ -1,5 +1,5 @@
 {
-  "hash": "ac73b1d3d9bca82fbde45d2aada10c4b",
+  "hash": "8743e33b83ff35f1f04f0852672822f7",
   "summaries": {
     "c1ca229f": {
       "id": "c1ca229f",
@@ -12,12 +12,12 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-16T13:09:08.121Z"
+      "updated_at": "2026-03-16T13:28:52.137Z"
     },
     "4ef430dd": {
       "id": "4ef430dd",
       "name": "llamacppqwen35a3bone",
-      "version": "1.0.20",
+      "version": "1.0.12",
       "category": "AI",
       "description": "Qwen3.5 35B-A3B via llama.cpp — optimized for Olares One",
       "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen35a3bone.png",
@@ -25,7 +25,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-16T13:09:08.122Z"
+      "updated_at": "2026-03-16T13:28:52.140Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -38,7 +38,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-03-16T13:09:08.123Z"
+      "updated_at": "2026-03-16T13:28:52.142Z"
     }
   },
   "details": {
@@ -138,29 +138,29 @@
           "appName": "llamacppglm47flash",
           "version": "1.0.6",
           "versionName": "1.0.6",
-          "mergedAt": "2026-03-16T13:09:08.121Z",
+          "mergedAt": "2026-03-16T13:28:52.138Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-16T13:09:08.121Z"
+      "updated_at": "2026-03-16T13:28:52.138Z"
     },
     "4ef430dd": {
       "id": "4ef430dd",
       "name": "llamacppqwen35a3bone",
       "cfgType": "app",
-      "chartName": "llamacppqwen35a3bone-1.0.20.tgz",
+      "chartName": "llamacppqwen35a3bone-1.0.12.tgz",
       "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen35a3bone.png",
       "description": "Qwen3.5 35B-A3B via llama.cpp — optimized for Olares One",
       "appID": "4ef430dd",
       "title": "Qwen3.5 35B-A3B (Olares One)",
-      "version": "1.0.20",
+      "version": "1.0.12",
       "categories": [
         "AI"
       ],
-      "versionName": "1.0.20",
+      "versionName": "1.0.12",
       "fullDescription": "Qwen3.5 35B-A3B (MoE, 3B active) served via llama.cpp — optimized for Olares One.\nRTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.\nUnsloth Dynamic Q4_K_XL quantization (important layers upcasted to 8/16-bit).\nMoE experts offloaded to CPU RAM, attention on GPU.\nFlash attention, CUDA graph optimization, and op-offload enabled.\nllama.cpp b8369 — fixes HAMI/CUDA 13.x segfault on Blackwell GPUs.\nDownloads the GGUF model on first launch (~22GB) and caches it.\nExposes an OpenAI-compatible API on port 8080.\n",
       "upgradeDescription": "",
       "promoteImage": null,
@@ -241,16 +241,16 @@
       "versionHistory": [
         {
           "appName": "llamacppqwen35a3bone",
-          "version": "1.0.20",
-          "versionName": "1.0.20",
-          "mergedAt": "2026-03-16T13:09:08.122Z",
+          "version": "1.0.12",
+          "versionName": "1.0.12",
+          "mergedAt": "2026-03-16T13:28:52.140Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-16T13:09:08.122Z"
+      "updated_at": "2026-03-16T13:28:52.140Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -348,14 +348,14 @@
           "appName": "qwen3ttstone",
           "version": "1.0.7",
           "versionName": "1.0.7",
-          "mergedAt": "2026-03-16T13:09:08.123Z",
+          "mergedAt": "2026-03-16T13:28:52.142Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-03-16T13:09:08.123Z"
+      "updated_at": "2026-03-16T13:28:52.142Z"
     }
   },
   "latest": [
