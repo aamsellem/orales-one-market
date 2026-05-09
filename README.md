@@ -1,59 +1,14 @@
-# Orales One Market
+# Olares One Market
 
-A curated app store for the **Olares One** — the first Olares hardware device, packing an RTX 5090M, 96GB DDR5, and a 24-core Intel CPU into a compact form factor.
+A curated app store for the **Olares One** — the first Olares hardware device, packing an RTX 5090M (24 GB GDDR7), 96 GB DDR5, and a 24-core Intel Core Ultra 9 275HX into a compact form factor.
 
-Every app here is hand-tuned for this exact hardware. No generic configs — just the fastest possible inference on 24GB of GDDR7.
+Every app here is hand-tuned for this exact hardware. No generic configs — just the fastest possible inference on a single 24 GB consumer GPU.
 
 > **One-click install.** Add the market source, and apps appear in your Olares Market alongside the official catalog.
 
-## Apps (16)
-
-### LLM Inference (llama.cpp)
-
-All llama.cpp apps run on **b8667** with **Hadamard rotation** (TurboQuant) and **q4_0 KV cache** for 2x context vs q8_0.
-
-| App | Model | Speed | Context | Details |
-|-----|-------|-------|---------|---------|
-| llamacppqwen35a3bone | Qwen3.5 35B-A3B | **129 t/s** | 64K | UD-Q4_K_XL, thinking mode |
-| gemma426ba4bone | **Gemma 4 26B-A4B** | **119 t/s** | 64K | UD-Q4_K_XL + vision, LMArena 1441 |
-| llamacppnemotron30a3bone | Nemotron 3 Nano 30B-A3B | **184 t/s** | 128K | UD-Q4_K_XL, Mamba-2 hybrid |
-| cascade230a3bone | Nemotron Cascade 2 30B-A3B | — | 64K | Q4_K_S, math/code specialist |
-| qwen35a3bvisionone | Qwen3.5 35B-A3B Vision | **131 t/s** | 32K | UD-Q4_K_XL + mmproj, multimodal |
-| qwen35iq4visionone | Qwen3.5 35B-A3B Vision IQ4 | — | 32K | IQ4_XS + mmproj, vision |
-| llamacppqwen35iq4one | Qwen3.5 35B-A3B IQ4 | — | — | IQ4_XS, compact |
-| llamacppglm47flash | GLM-4.7 Flash | — | 32K | GLM-4 bilingual |
-
-### LLM Inference (vLLM)
-
-| App | Model | Details |
-|-----|-------|---------|
-| vllmqwen3527bone | Qwen3.5 27B | NVFP4, speculative decoding |
-
-### Voice & Audio (vLLM)
-
-| App | Model | Function | Details |
-|-----|-------|----------|---------|
-| vllmvoxtral3bone | **Voxtral Mini 3B** | ASR / Audio understanding | 2.7x faster than Whisper, 3.2% WER |
-| vllmvoxtralrt4bone | **Voxtral Realtime 4B** | Streaming ASR | Real-time WebSocket, 480ms latency |
-| vllmvoxtraltts4bone | **Voxtral 4B TTS** | Text-to-Speech | 20 voices, 9 languages, 70ms latency |
-
-### Creative
-
-| App | Model | Details |
-|-----|-------|---------|
-| qwen3ttstone | Qwen3-TTS 1.7B | 9 voices, zero-shot voice clone |
-
-### Other
-
-| App | Model | Details |
-|-----|-------|---------|
-| exl3qwen35a3bone | Qwen3.5 35B-A3B | ExLlamaV3 + TabbyAPI |
-| nemotron3nano4bone | Nemotron 3 Nano 4B | Lightweight 4B model |
-| devstralsmallone | Devstral Small 24B | Coding agent |
-
 ## Quick Start
 
-Add this URL as a market source in **Olares Market > Settings > Add Source**:
+Add this URL as a market source in **Olares Market → Settings → Add Source**:
 
 ```
 https://orales-one-market.aamsellem.workers.dev
@@ -61,13 +16,56 @@ https://orales-one-market.aamsellem.workers.dev
 
 Apps show up within 5 minutes. Install like any other Olares app — models download automatically on first launch.
 
-## Highlights
+## The Qwen 3.6 27B trio
 
-- **TurboQuant rotation** (Hadamard) on all llama.cpp apps — q4_0 KV cache with same quality as q8_0, enabling 2x context
-- **Gemma 4 26B-A4B** — Google's latest MoE with native vision, 119 t/s
-- **Voxtral family** — complete voice pipeline: ASR + streaming ASR + TTS
-- **128K context** on Nemotron (Mamba-2 hybrid = tiny KV cache)
-- **64K context** on Qwen3.5 and Gemma 4
+Three configs of the same model, each tuned for a different trade-off. Pick the one that matches your workload.
+
+| App | Speed | Context | Stack |
+|-----|-------|---------|-------|
+| **vllmqwen36turbo27bone** | **88 t/s** | 88K | vLLM + Genesis 28-patch + TurboQuant K8V4 + MTP n=3 |
+| **llamacppqwen36mtpone** | 77 t/s | **262K** | llama.cpp am17an MTP branch + havenoammo UD-Q3_K_XL |
+| **llamacppqwen36dflashone** | 76 t/s | 96K | buun-llama-cpp + spiritbuun DFlash drafter + turbo3 KV |
+
+For chat and quick coding the Turbo Fast app wins. For long-context work (codebase analysis, doc Q&A) the Long Context app holds the full 262K native window with 75–80% draft acceptance — first config validated to do that on a single 24 GB consumer GPU.
+
+## Gemma 4 — fastest path
+
+| App | Speed | Notes |
+|-----|-------|-------|
+| **vllmgemma4dflashone** | **214 t/s** | vLLM tokenspeed-preview + cyankiwi AWQ + z-lab DFlash, n_spec=13 |
+| **vllmgemma4e4bone** | — | E4B with vision + audio + MTP centroids masking |
+| **gemma426ba4bone** | 119 t/s | Atomic Chat llama.cpp fork with MTP, native vision |
+| **gemma4e2bone** | — | E2B 2.3B for voice-pipeline use |
+
+## Other LLMs
+
+| App | Model | Notes |
+|-----|-------|-------|
+| llamacppqwen35a3bone | Qwen3.5 35B-A3B | UD-Q4_K_XL, 129 t/s, 64K |
+| llamacppnemotron30a3bone | Nemotron 3 Nano 30B-A3B | 184 t/s, 128K (Mamba-2 hybrid) |
+| cascade230a3bone | Nemotron Cascade 2 30B-A3B | math + code specialist |
+| llamacppglm47flash | GLM-4.7 Flash | 30B-A3B bilingual |
+| qwen3coder30a3bone | Qwen3-Coder 30B-A3B | coding agent |
+| devstralsmallone | Devstral Small 24B | coding agent, 53.6% SWE-Bench |
+| qwen35a3bvisionone | Qwen3.5 35B-A3B Vision | + mmproj F16, 131 t/s |
+| qwen36a3bvisionone | Qwen3.6 35B-A3B Vision | image + text |
+| qwen35iq4visionone | Qwen3.5 35B-A3B Vision IQ4 | long context vision |
+| llamacppqwen35iq4one | Qwen3.5 35B-A3B IQ4 | compact long-context |
+| llamacppqwen36a3bone | Qwen3.6 35B-A3B | hybrid SSM/MoE |
+| nemotron3nano4bone | Nemotron 3 Nano 4B | lightweight edge model |
+| exl3qwen35a3bone | Qwen3.5 35B-A3B | ExLlamaV3 + TabbyAPI |
+| vllmqwen3527bone | Qwen3.5 27B | NVFP4, vLLM |
+
+## Voice & creative
+
+| App | Function | Notes |
+|-----|----------|-------|
+| omnivoiceone | TTS, 646 languages | voice clone, voice design, 0.6B |
+| qwen3ttstone | TTS, 1.7B | 9 voices, zero-shot voice clone |
+| vllmvoxtral3bone | ASR | 2.7× faster than Whisper, 3.2% WER |
+| vllmvoxtralrt4bone | Streaming ASR | real-time WebSocket, 480 ms latency |
+| vllmvoxtraltts4bone | TTS | 20 voices, 9 languages, 70 ms latency |
+| acestepxlone | Music generation | ACE-Step 1.5 XL (4B DiT, Turbo + SFT modes) |
 
 ## How It Works
 
@@ -89,9 +87,16 @@ npm run deploy           # Deploy to Cloudflare Workers
 | GET | `/api/v1/applications/{name}/chart?fileName=X` | Chart `.tgz` download |
 | GET | `/icons/{name}.png` | App icon |
 
+## Hardware
+
+- **GPU**: NVIDIA RTX 5090M — 24 GB GDDR7, 896 GB/s, sm_120 Blackwell
+- **CPU**: Intel Core Ultra 9 275HX — 24 cores, AVX2/FMA/F16C/AVX-VNNI
+- **RAM**: 96 GB DDR5 5600 MHz
+- **TDP**: GPU 175 W, CPU 160 W
+
 ## Related
 
-- [orales-market](https://github.com/aamsellem/orales-market) — Generic apps for any Olares hardware
+- [olares-market](https://github.com/aamsellem/orales-market) — generic apps for any Olares hardware
 
 ## License
 
