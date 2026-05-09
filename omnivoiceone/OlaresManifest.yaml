@@ -5,10 +5,10 @@ apiVersion: 'v2'
 metadata:
   name: omnivoiceone
   icon: https://orales-one-market.aamsellem.workers.dev/icons/omnivoiceone.png
-  description: "OmniVoice TTS (646 languages, voice cloning, 0.6B) — optimized for Olares One"
+  description: "OmniVoice TTS (646 languages, voice cloning, voice design, 0.6B) — optimized for Olares One"
   appid: omnivoiceone
   title: OmniVoice TTS One
-  version: '1.0.2'
+  version: '1.1.0'
   categories:
     - AI
 entrances:
@@ -20,19 +20,89 @@ entrances:
     openMethod: window
     authLevel: internal
 spec:
-  versionName: '1.0.0'
+  versionName: '1.1.0'
+  upgradeDescription: |
+    v1.1.0: expose full OmniVoice API — voice cloning (ref_audio), voice design (instruct: gender/age/pitch/accent/whisper), language_id, num_step, speed, duration. New endpoints /v1/audio/speech (JSON, OpenAI-compat extended) and /v1/audio/clone (multipart upload). See fullDescription for curl examples.
   fullDescription: |
-    OmniVoice TTS by k2-fsa — 646 languages, zero-shot voice cloning, 0.6B params.
+    OmniVoice TTS by k2-fsa — 646 languages, zero-shot voice cloning + voice design, 0.6B params.
     RTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.
-    Only ~2-4 GB VRAM — can run alongside LLM and STT for voice pipeline.
+    Only ~2-4 GB VRAM — runs alongside LLM and STT for a full voice pipeline.
     40x faster than real-time. Apache 2.0 license.
-    OpenAI-compatible /v1/audio/speech API endpoint.
-    French, English, German, Spanish, Italian, + 641 more languages.
-    Voice cloning from reference audio. Voice design (gender, age, pitch, accent).
-    Downloads model on first launch (~2GB) and caches it.
+
+    ===== HOW TO USE =====
+
+    Base URL inside the cluster: http://omnivoiceone:8000
+    Externally: https://omnivoiceone-<user>.<your-olares-domain>
+
+    --- 1. Basic TTS (OpenAI-compatible) ---
+
+    curl -X POST http://omnivoiceone:8000/v1/audio/speech \
+      -H "Content-Type: application/json" \
+      -d '{"input": "Hello world", "response_format": "wav"}' \
+      -o out.wav
+
+    --- 2. Voice design (via `instruct` field) ---
+
+    Attributes are free-text, comma-separated. Categories:
+      * gender:  male | female
+      * age:     child | teen | adult | elderly
+      * pitch:   very low | low | medium | high | very high
+      * style:   whisper
+      * accent:  american | british | (any)
+      * dialect: sichuan | shaanxi | (zh only)
+
+    curl -X POST http://omnivoiceone:8000/v1/audio/speech \
+      -H "Content-Type: application/json" \
+      -d '{
+        "input": "This is a British female with a low pitch.",
+        "instruct": "female, low pitch, british accent",
+        "language_id": "en",
+        "num_step": 32,
+        "speed": 1.0
+      }' -o out.wav
+
+    --- 3. Zero-shot voice cloning (multipart upload) ---
+
+    curl -X POST http://omnivoiceone:8000/v1/audio/clone \
+      -F "text=Bonjour, ceci est ma voix clonée." \
+      -F "ref_text=Voici une courte phrase de référence." \
+      -F "ref_audio=@./my_voice_sample.wav" \
+      -F "language_id=fr" \
+      -F "num_step=32" \
+      -o cloned.wav
+
+    --- 4. Voice cloning (JSON, base64 ref audio) ---
+
+    curl -X POST http://omnivoiceone:8000/v1/audio/speech \
+      -H "Content-Type: application/json" \
+      -d '{
+        "input": "Cloned output",
+        "ref_text": "Reference transcription",
+        "ref_audio_b64": "UklGRi...<base64 WAV>...AAA="
+      }' -o out.wav
+
+    --- 5. Other endpoints ---
+
+    GET  /health              — liveness
+    GET  /v1/models           — model list (OpenAI-compat)
+    GET  /v1/languages        — list all 646 supported language IDs
+
+    ===== PARAMETERS =====
+
+    input / text       : text to synthesize (required)
+    instruct           : voice design attributes (string, optional)
+    ref_audio_b64      : base64-encoded WAV for voice cloning (optional)
+    ref_text           : transcription of the reference audio (required if ref_audio)
+    language_id        : ISO-like language code ("en", "fr", "zh", ...)
+    num_step           : diffusion steps (default 32; more = better quality, slower)
+    speed              : 0.5 .. 2.0 (default 1.0)
+    duration           : max audio length in seconds (default 10.0)
+    response_format    : "wav" (only format supported)
+
+    Downloads model on first launch (~2GB) and caches it under /data/hf-cache.
 
   developer: aamsellem
-  website: https://github.com/aamsellem/olares-one-market
+  website: https://github.com/k2-fsa/OmniVoice
   sourceCode: https://github.com/aamsellem/olares-one-market
   submitter: aamsellem
   locale:

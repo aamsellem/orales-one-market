@@ -1,0 +1,195 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: llamacpp-vision-env
+  namespace: "{{ .Release.Namespace }}"
+data:
+  MODEL_URL: "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/resolve/main/Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf"
+  MODEL_FILE: "Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf"
+  MMPROJ_URL: "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/resolve/main/mmproj-F16.gguf"
+  MMPROJ_FILE: "Qwen3.6-35B-A3B-mmproj-F16.gguf"
+  MODEL_ALIAS: "qwen3.6-35b-a3b-vision"
+  CONTEXT_SIZE: "32768"
+  N_GPU_LAYERS: "99"
+  THREADS: "16"
+  CHAT_TEMPLATE_B64: "eyUtIHNldCBpbWFnZV9jb3VudCA9IG5hbWVzcGFjZSh2YWx1ZT0wKSAlfQp7JS0gc2V0IHZpZGVvX2NvdW50ID0gbmFtZXNwYWNlKHZhbHVlPTApICV9CnslLSBtYWNybyByZW5kZXJfY29udGVudChjb250ZW50LCBkb192aXNpb25fY291bnQsIGlzX3N5c3RlbV9jb250ZW50PWZhbHNlKSAlfQogICAgeyUtIGlmIGNvbnRlbnQgaXMgc3RyaW5nICV9CiAgICAgICAge3stIGNvbnRlbnQgfX0KICAgIHslLSBlbGlmIGNvbnRlbnQgaXMgaXRlcmFibGUgYW5kIGNvbnRlbnQgaXMgbm90IG1hcHBpbmcgJX0KICAgICAgICB7JS0gZm9yIGl0ZW0gaW4gY29udGVudCAlfQogICAgICAgICAgICB7JS0gaWYgJ2ltYWdlJyBpbiBpdGVtIG9yICdpbWFnZV91cmwnIGluIGl0ZW0gb3IgaXRlbS50eXBlID09ICdpbWFnZScgJX0KICAgICAgICAgICAgICAgIHslLSBpZiBpc19zeXN0ZW1fY29udGVudCAlfQogICAgICAgICAgICAgICAgICAgIHt7LSByYWlzZV9leGNlcHRpb24oJ1N5c3RlbSBtZXNzYWdlIGNhbm5vdCBjb250YWluIGltYWdlcy4nKSB9fQogICAgICAgICAgICAgICAgeyUtIGVuZGlmICV9CiAgICAgICAgICAgICAgICB7JS0gaWYgZG9fdmlzaW9uX2NvdW50ICV9CiAgICAgICAgICAgICAgICAgICAgeyUtIHNldCBpbWFnZV9jb3VudC52YWx1ZSA9IGltYWdlX2NvdW50LnZhbHVlICsgMSAlfQogICAgICAgICAgICAgICAgeyUtIGVuZGlmICV9CiAgICAgICAgICAgICAgICB7JS0gaWYgYWRkX3Zpc2lvbl9pZCAlfQogICAgICAgICAgICAgICAgICAgIHt7LSAnUGljdHVyZSAnIH4gaW1hZ2VfY291bnQudmFsdWUgfiAnOiAnIH19CiAgICAgICAgICAgICAgICB7JS0gZW5kaWYgJX0KICAgICAgICAgICAgICAgIHt7LSAnPHx2aXNpb25fc3RhcnR8Pjx8aW1hZ2VfcGFkfD48fHZpc2lvbl9lbmR8PicgfX0KICAgICAgICAgICAgeyUtIGVsaWYgJ3ZpZGVvJyBpbiBpdGVtIG9yIGl0ZW0udHlwZSA9PSAndmlkZW8nICV9CiAgICAgICAgICAgICAgICB7JS0gaWYgaXNfc3lzdGVtX2NvbnRlbnQgJX0KICAgICAgICAgICAgICAgICAgICB7ey0gcmFpc2VfZXhjZXB0aW9uKCdTeXN0ZW0gbWVzc2FnZSBjYW5ub3QgY29udGFpbiB2aWRlb3MuJykgfX0KICAgICAgICAgICAgICAgIHslLSBlbmRpZiAlfQogICAgICAgICAgICAgICAgeyUtIGlmIGRvX3Zpc2lvbl9jb3VudCAlfQogICAgICAgICAgICAgICAgICAgIHslLSBzZXQgdmlkZW9fY291bnQudmFsdWUgPSB2aWRlb19jb3VudC52YWx1ZSArIDEgJX0KICAgICAgICAgICAgICAgIHslLSBlbmRpZiAlfQogICAgICAgICAgICAgICAgeyUtIGlmIGFkZF92aXNpb25faWQgJX0KICAgICAgICAgICAgICAgICAgICB7ey0gJ1ZpZGVvICcgfiB2aWRlb19jb3VudC52YWx1ZSB+ICc6ICcgfX0KICAgICAgICAgICAgICAgIHslLSBlbmRpZiAlfQogICAgICAgICAgICAgICAge3stICc8fHZpc2lvbl9zdGFydHw+PHx2aWRlb19wYWR8Pjx8dmlzaW9uX2VuZHw+JyB9fQogICAgICAgICAgICB7JS0gZWxpZiAndGV4dCcgaW4gaXRlbSAlfQogICAgICAgICAgICAgICAge3stIGl0ZW0udGV4dCB9fQogICAgICAgICAgICB7JS0gZWxzZSAlfQogICAgICAgICAgICAgICAge3stIHJhaXNlX2V4Y2VwdGlvbignVW5leHBlY3RlZCBpdGVtIHR5cGUgaW4gY29udGVudC4nKSB9fQogICAgICAgICAgICB7JS0gZW5kaWYgJX0KICAgICAgICB7JS0gZW5kZm9yICV9CiAgICB7JS0gZWxpZiBjb250ZW50IGlzIG5vbmUgb3IgY29udGVudCBpcyB1bmRlZmluZWQgJX0KICAgICAgICB7ey0gJycgfX0KICAgIHslLSBlbHNlICV9CiAgICAgICAge3stIHJhaXNlX2V4Y2VwdGlvbignVW5leHBlY3RlZCBjb250ZW50IHR5cGUuJykgfX0KICAgIHslLSBlbmRpZiAlfQp7JS0gZW5kbWFjcm8gJX0KeyUtIGlmIG5vdCBtZXNzYWdlcyAlfQogICAge3stIHJhaXNlX2V4Y2VwdGlvbignTm8gbWVzc2FnZXMgcHJvdmlkZWQuJykgfX0KeyUtIGVuZGlmICV9CnslLSBpZiB0b29scyBhbmQgdG9vbHMgaXMgaXRlcmFibGUgYW5kIHRvb2xzIGlzIG5vdCBtYXBwaW5nICV9CiAgICB7ey0gJzx8aW1fc3RhcnR8PnN5c3RlbVxuJyB9fQogICAge3stICIjIFRvb2xzXG5cbllvdSBoYXZlIGFjY2VzcyB0byB0aGUgZm9sbG93aW5nIGZ1bmN0aW9uczpcblxuPHRvb2xzPiIgfX0KICAgIHslLSBmb3IgdG9vbCBpbiB0b29scyAlfQogICAgICAgIHt7LSAiXG4iIH19CiAgICAgICAge3stIHRvb2wgfCB0b2pzb24gfX0KICAgIHslLSBlbmRmb3IgJX0KICAgIHt7LSAiXG48L3Rvb2xzPiIgfX0KICAgIHt7LSAnXG5cbklmIHlvdSBjaG9vc2UgdG8gY2FsbCBhIGZ1bmN0aW9uIE9OTFkgcmVwbHkgaW4gdGhlIGZvbGxvd2luZyBmb3JtYXQgd2l0aCBOTyBzdWZmaXg6XG5cbjx0b29sX2NhbGw+XG48ZnVuY3Rpb249ZXhhbXBsZV9mdW5jdGlvbl9uYW1lPlxuPHBhcmFtZXRlcj1leGFtcGxlX3BhcmFtZXRlcl8xPlxudmFsdWVfMVxuPC9wYXJhbWV0ZXI+XG48cGFyYW1ldGVyPWV4YW1wbGVfcGFyYW1ldGVyXzI+XG5UaGlzIGlzIHRoZSB2YWx1ZSBmb3IgdGhlIHNlY29uZCBwYXJhbWV0ZXJcbnRoYXQgY2FuIHNwYW5cbm11bHRpcGxlIGxpbmVzXG48L3BhcmFtZXRlcj5cbjwvZnVuY3Rpb24+XG48L3Rvb2xfY2FsbD5cblxuPElNUE9SVEFOVD5cblJlbWluZGVyOlxuLSBGdW5jdGlvbiBjYWxscyBNVVNUIGZvbGxvdyB0aGUgc3BlY2lmaWVkIGZvcm1hdDogYW4gaW5uZXIgPGZ1bmN0aW9uPS4uLj48L2Z1bmN0aW9uPiBibG9jayBtdXN0IGJlIG5lc3RlZCB3aXRoaW4gPHRvb2xfY2FsbD48L3Rvb2xfY2FsbD4gWE1MIHRhZ3Ncbi0gUmVxdWlyZWQgcGFyYW1ldGVycyBNVVNUIGJlIHNwZWNpZmllZFxuLSBZb3UgbWF5IHByb3ZpZGUgb3B0aW9uYWwgcmVhc29uaW5nIGZvciB5b3VyIGZ1bmN0aW9uIGNhbGwgaW4gbmF0dXJhbCBsYW5ndWFnZSBCRUZPUkUgdGhlIGZ1bmN0aW9uIGNhbGwsIGJ1dCBOT1QgYWZ0ZXJcbi0gSWYgdGhlcmUgaXMgbm8gZnVuY3Rpb24gY2FsbCBhdmFpbGFibGUsIGFuc3dlciB0aGUgcXVlc3Rpb24gbGlrZSBub3JtYWwgd2l0aCB5b3VyIGN1cnJlbnQga25vd2xlZGdlIGFuZCBkbyBub3QgdGVsbCB0aGUgdXNlciBhYm91dCBmdW5jdGlvbiBjYWxsc1xuPC9JTVBPUlRBTlQ+JyB9fQogICAgeyUtIGlmIG1lc3NhZ2VzWzBdLnJvbGUgaW4gWydzeXN0ZW0nLCAnZGV2ZWxvcGVyJ10gJX0KICAgICAgICB7JS0gc2V0IGNvbnRlbnQgPSByZW5kZXJfY29udGVudChtZXNzYWdlc1swXS5jb250ZW50LCBmYWxzZSwgdHJ1ZSl8dHJpbSAlfQogICAgICAgIHslLSBpZiBjb250ZW50ICV9CiAgICAgICAgICAgIHt7LSAnXG5cbicgKyBjb250ZW50IH19CiAgICAgICAgeyUtIGVuZGlmICV9CiAgICB7JS0gZW5kaWYgJX0KICAgIHt7LSAnPHxpbV9lbmR8PlxuJyB9fQp7JS0gZWxzZSAlfQogICAgeyUtIGlmIG1lc3NhZ2VzWzBdLnJvbGUgaW4gWydzeXN0ZW0nLCAnZGV2ZWxvcGVyJ10gJX0KICAgICAgICB7JS0gc2V0IGNvbnRlbnQgPSByZW5kZXJfY29udGVudChtZXNzYWdlc1swXS5jb250ZW50LCBmYWxzZSwgdHJ1ZSl8dHJpbSAlfQogICAgICAgIHt7LSAnPHxpbV9zdGFydHw+c3lzdGVtXG4nICsgY29udGVudCArICc8fGltX2VuZHw+XG4nIH19CiAgICB7JS0gZW5kaWYgJX0KeyUtIGVuZGlmICV9CnslLSBzZXQgbnMgPSBuYW1lc3BhY2UobXVsdGlfc3RlcF90b29sPXRydWUsIGxhc3RfcXVlcnlfaW5kZXg9bWVzc2FnZXN8bGVuZ3RoIC0gMSkgJX0KeyUtIGZvciBtZXNzYWdlIGluIG1lc3NhZ2VzWzo6LTFdICV9CiAgICB7JS0gc2V0IGluZGV4ID0gKG1lc3NhZ2VzfGxlbmd0aCAtIDEpIC0gbG9vcC5pbmRleDAgJX0KICAgIHslLSBpZiBucy5tdWx0aV9zdGVwX3Rvb2wgYW5kIG1lc3NhZ2Uucm9sZSA9PSAidXNlciIgJX0KICAgICAgICB7JS0gc2V0IGNvbnRlbnQgPSByZW5kZXJfY29udGVudChtZXNzYWdlLmNvbnRlbnQsIGZhbHNlKXx0cmltICV9CiAgICAgICAgeyUtIGlmIG5vdChjb250ZW50LnN0YXJ0c3dpdGgoJzx0b29sX3Jlc3BvbnNlPicpIGFuZCBjb250ZW50LmVuZHN3aXRoKCc8L3Rvb2xfcmVzcG9uc2U+JykpICV9CiAgICAgICAgICAgIHslLSBzZXQgbnMubXVsdGlfc3RlcF90b29sID0gZmFsc2UgJX0KICAgICAgICAgICAgeyUtIHNldCBucy5sYXN0X3F1ZXJ5X2luZGV4ID0gaW5kZXggJX0KICAgICAgICB7JS0gZW5kaWYgJX0KICAgIHslLSBlbmRpZiAlfQp7JS0gZW5kZm9yICV9CnslLSBpZiBucy5tdWx0aV9zdGVwX3Rvb2wgJX0KICAgIHt7LSByYWlzZV9leGNlcHRpb24oJ05vIHVzZXIgcXVlcnkgZm91bmQgaW4gbWVzc2FnZXMuJykgfX0KeyUtIGVuZGlmICV9CnslLSBmb3IgbWVzc2FnZSBpbiBtZXNzYWdlcyAlfQogICAgeyUtIHNldCBjb250ZW50ID0gcmVuZGVyX2NvbnRlbnQobWVzc2FnZS5jb250ZW50LCB0cnVlKXx0cmltICV9CiAgICB7JS0gaWYgbWVzc2FnZS5yb2xlID09ICJzeXN0ZW0iICV9CiAgICAgICAgeyUtIGlmIG5vdCBsb29wLmZpcnN0ICV9CiAgICAgICAgICAgIHt7LSByYWlzZV9leGNlcHRpb24oJ1N5c3RlbSBtZXNzYWdlIG11c3QgYmUgYXQgdGhlIGJlZ2lubmluZy4nKSB9fQogICAgICAgIHslLSBlbmRpZiAlfQogICAgeyUtIGVsaWYgbWVzc2FnZS5yb2xlID09ICJkZXZlbG9wZXIiICV9CiAgICAgICAgeyUtIGlmIG5vdCBsb29wLmZpcnN0ICV9CiAgICAgICAgICAgIHt7LSAnPHxpbV9zdGFydHw+c3lzdGVtXG4nICsgY29udGVudCArICc8fGltX2VuZHw+XG4nIH19CiAgICAgICAgeyUtIGVuZGlmICV9CiAgICB7JS0gZWxpZiBtZXNzYWdlLnJvbGUgPT0gInVzZXIiICV9CiAgICAgICAge3stICc8fGltX3N0YXJ0fD4nICsgbWVzc2FnZS5yb2xlICsgJ1xuJyArIGNvbnRlbnQgKyAnPHxpbV9lbmR8PicgKyAnXG4nIH19CiAgICB7JS0gZWxpZiBtZXNzYWdlLnJvbGUgPT0gImFzc2lzdGFudCIgJX0KICAgICAgICB7JS0gc2V0IHJlYXNvbmluZ19jb250ZW50ID0gJycgJX0KICAgICAgICB7JS0gaWYgbWVzc2FnZS5yZWFzb25pbmdfY29udGVudCBpcyBzdHJpbmcgJX0KICAgICAgICAgICAgeyUtIHNldCByZWFzb25pbmdfY29udGVudCA9IG1lc3NhZ2UucmVhc29uaW5nX2NvbnRlbnQgJX0KICAgICAgICB7JS0gZWxzZSAlfQogICAgICAgICAgICB7JS0gaWYgJzwvdGhpbms+JyBpbiBjb250ZW50ICV9CiAgICAgICAgICAgICAgICB7JS0gc2V0IHJlYXNvbmluZ19jb250ZW50ID0gY29udGVudC5zcGxpdCgnPC90aGluaz4nKVswXS5yc3RyaXAoJ1xuJykuc3BsaXQoJzx0aGluaz4nKVstMV0ubHN0cmlwKCdcbicpICV9CiAgICAgICAgICAgICAgICB7JS0gc2V0IGNvbnRlbnQgPSBjb250ZW50LnNwbGl0KCc8L3RoaW5rPicpWy0xXS5sc3RyaXAoJ1xuJykgJX0KICAgICAgICAgICAgeyUtIGVuZGlmICV9CiAgICAgICAgeyUtIGVuZGlmICV9CiAgICAgICAgeyUtIHNldCByZWFzb25pbmdfY29udGVudCA9IHJlYXNvbmluZ19jb250ZW50fHRyaW0gJX0KICAgICAgICB7JS0gaWYgbG9vcC5pbmRleDAgPiBucy5sYXN0X3F1ZXJ5X2luZGV4ICV9CiAgICAgICAgICAgIHt7LSAnPHxpbV9zdGFydHw+JyArIG1lc3NhZ2Uucm9sZSArICdcbjx0aGluaz5cbicgKyByZWFzb25pbmdfY29udGVudCArICdcbjwvdGhpbms+XG5cbicgKyBjb250ZW50IH19CiAgICAgICAgeyUtIGVsc2UgJX0KICAgICAgICAgICAge3stICc8fGltX3N0YXJ0fD4nICsgbWVzc2FnZS5yb2xlICsgJ1xuJyArIGNvbnRlbnQgfX0KICAgICAgICB7JS0gZW5kaWYgJX0KICAgICAgICB7JS0gaWYgbWVzc2FnZS50b29sX2NhbGxzIGFuZCBtZXNzYWdlLnRvb2xfY2FsbHMgaXMgaXRlcmFibGUgYW5kIG1lc3NhZ2UudG9vbF9jYWxscyBpcyBub3QgbWFwcGluZyAlfQogICAgICAgICAgICB7JS0gZm9yIHRvb2xfY2FsbCBpbiBtZXNzYWdlLnRvb2xfY2FsbHMgJX0KICAgICAgICAgICAgICAgIHslLSBpZiB0b29sX2NhbGwuZnVuY3Rpb24gaXMgZGVmaW5lZCAlfQogICAgICAgICAgICAgICAgICAgIHslLSBzZXQgdG9vbF9jYWxsID0gdG9vbF9jYWxsLmZ1bmN0aW9uICV9CiAgICAgICAgICAgICAgICB7JS0gZW5kaWYgJX0KICAgICAgICAgICAgICAgIHslLSBpZiBsb29wLmZpcnN0ICV9CiAgICAgICAgICAgICAgICAgICAgeyUtIGlmIGNvbnRlbnR8dHJpbSAlfQogICAgICAgICAgICAgICAgICAgICAgICB7ey0gJ1xuXG48dG9vbF9jYWxsPlxuPGZ1bmN0aW9uPScgKyB0b29sX2NhbGwubmFtZSArICc+XG4nIH19CiAgICAgICAgICAgICAgICAgICAgeyUtIGVsc2UgJX0KICAgICAgICAgICAgICAgICAgICAgICAge3stICc8dG9vbF9jYWxsPlxuPGZ1bmN0aW9uPScgKyB0b29sX2NhbGwubmFtZSArICc+XG4nIH19CiAgICAgICAgICAgICAgICAgICAgeyUtIGVuZGlmICV9CiAgICAgICAgICAgICAgICB7JS0gZWxzZSAlfQogICAgICAgICAgICAgICAgICAgIHt7LSAnXG48dG9vbF9jYWxsPlxuPGZ1bmN0aW9uPScgKyB0b29sX2NhbGwubmFtZSArICc+XG4nIH19CiAgICAgICAgICAgICAgICB7JS0gZW5kaWYgJX0KICAgICAgICAgICAgICAgIHslLSBpZiB0b29sX2NhbGwuYXJndW1lbnRzIGlzIGRlZmluZWQgJX0KICAgICAgICAgICAgICAgICAgICB7JS0gZm9yIGFyZ3NfbmFtZSwgYXJnc192YWx1ZSBpbiB0b29sX2NhbGwuYXJndW1lbnRzfGl0ZW1zICV9CiAgICAgICAgICAgICAgICAgICAgICAgIHt7LSAnPHBhcmFtZXRlcj0nICsgYXJnc19uYW1lICsgJz5cbicgfX0KICAgICAgICAgICAgICAgICAgICAgICAgeyUtIHNldCBhcmdzX3ZhbHVlID0gYXJnc192YWx1ZSB8IHRvanNvbiB8IHNhZmUgaWYgYXJnc192YWx1ZSBpcyBtYXBwaW5nIG9yIChhcmdzX3ZhbHVlIGlzIHNlcXVlbmNlIGFuZCBhcmdzX3ZhbHVlIGlzIG5vdCBzdHJpbmcpIGVsc2UgYXJnc192YWx1ZSB8IHN0cmluZyAlfQogICAgICAgICAgICAgICAgICAgICAgICB7ey0gYXJnc192YWx1ZSB9fQogICAgICAgICAgICAgICAgICAgICAgICB7ey0gJ1xuPC9wYXJhbWV0ZXI+XG4nIH19CiAgICAgICAgICAgICAgICAgICAgeyUtIGVuZGZvciAlfQogICAgICAgICAgICAgICAgeyUtIGVuZGlmICV9CiAgICAgICAgICAgICAgICB7ey0gJzwvZnVuY3Rpb24+XG48L3Rvb2xfY2FsbD4nIH19CiAgICAgICAgICAgIHslLSBlbmRmb3IgJX0KICAgICAgICB7JS0gZW5kaWYgJX0KICAgICAgICB7ey0gJzx8aW1fZW5kfD5cbicgfX0KICAgIHslLSBlbGlmIG1lc3NhZ2Uucm9sZSA9PSAidG9vbCIgJX0KICAgICAgICB7JS0gaWYgbG9vcC5wcmV2aXRlbSBhbmQgbG9vcC5wcmV2aXRlbS5yb2xlICE9ICJ0b29sIiAlfQogICAgICAgICAgICB7ey0gJzx8aW1fc3RhcnR8PnVzZXInIH19CiAgICAgICAgeyUtIGVuZGlmICV9CiAgICAgICAge3stICdcbjx0b29sX3Jlc3BvbnNlPlxuJyB9fQogICAgICAgIHt7LSBjb250ZW50IH19CiAgICAgICAge3stICdcbjwvdG9vbF9yZXNwb25zZT4nIH19CiAgICAgICAgeyUtIGlmIG5vdCBsb29wLmxhc3QgYW5kIGxvb3AubmV4dGl0ZW0ucm9sZSAhPSAidG9vbCIgJX0KICAgICAgICAgICAge3stICc8fGltX2VuZHw+XG4nIH19CiAgICAgICAgeyUtIGVsaWYgbG9vcC5sYXN0ICV9CiAgICAgICAgICAgIHt7LSAnPHxpbV9lbmR8PlxuJyB9fQogICAgICAgIHslLSBlbmRpZiAlfQogICAgeyUtIGVsc2UgJX0KICAgICAgICB7ey0gcmFpc2VfZXhjZXB0aW9uKCdVbmV4cGVjdGVkIG1lc3NhZ2Ugcm9sZS4nKSB9fQogICAgeyUtIGVuZGlmICV9CnslLSBlbmRmb3IgJX0KeyUtIGlmIGFkZF9nZW5lcmF0aW9uX3Byb21wdCAlfQogICAge3stICc8fGltX3N0YXJ0fD5hc3Npc3RhbnRcbicgfX0KICAgIHslLSBpZiBlbmFibGVfdGhpbmtpbmcgaXMgZGVmaW5lZCBhbmQgZW5hYmxlX3RoaW5raW5nIGlzIGZhbHNlICV9CiAgICAgICAge3stICc8dGhpbms+XG5cbjwvdGhpbms+XG5cbicgfX0KICAgIHslLSBlbHNlICV9CiAgICAgICAge3stICc8dGhpbms+XG4nIH19CiAgICB7JS0gZW5kaWYgJX0KeyUtIGVuZGlmICV9"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: qwen36a3bvisionone
+  name: qwen36a3bvisionone
+  namespace: "{{ .Release.Namespace }}"
+  annotations:
+    applications.app.bytetrade.io/gpu-inject: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: qwen36a3bvisionone
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.network/chrome-default: "true"
+        io.kompose.service: qwen36a3bvisionone
+    spec:
+      initContainers:
+        - name: model-downloader
+          image: "docker.io/alpine:3.20"
+          command:
+            - sh
+            - '-c'
+            - |
+              # Download main model
+              MODEL_PATH="/models/${MODEL_FILE}"
+              if [ -f "$MODEL_PATH" ]; then
+                echo "Model already downloaded: $MODEL_PATH"
+                ls -lh "$MODEL_PATH"
+              else
+                echo "Downloading model from $MODEL_URL ..."
+                wget -O "$MODEL_PATH.tmp" "$MODEL_URL"
+                mv "$MODEL_PATH.tmp" "$MODEL_PATH"
+                echo "Model download complete."
+                ls -lh "$MODEL_PATH"
+              fi
+              # Download mmproj (vision projector)
+              MMPROJ_PATH="/models/${MMPROJ_FILE}"
+              if [ -f "$MMPROJ_PATH" ]; then
+                echo "mmproj already downloaded: $MMPROJ_PATH"
+                ls -lh "$MMPROJ_PATH"
+              else
+                echo "Downloading mmproj from $MMPROJ_URL ..."
+                wget -O "$MMPROJ_PATH.tmp" "$MMPROJ_URL"
+                mv "$MMPROJ_PATH.tmp" "$MMPROJ_PATH"
+                echo "mmproj download complete."
+                ls -lh "$MMPROJ_PATH"
+              fi
+              # Decode chat template
+              echo "$CHAT_TEMPLATE_B64" | base64 -d > /models/chat_template.jinja
+              echo "Chat template written."
+          envFrom:
+            - configMapRef:
+                name: llamacpp-vision-env
+          resources:
+            limits:
+              cpu: "2"
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          volumeMounts:
+            - mountPath: "/models"
+              name: models
+      containers:
+        - name: llamacpp-server
+          image: "ghcr.io/ggml-org/llama.cpp:server-cuda13-b8740"
+          command: ["/app/llama-server"]
+          args:
+            - "--host"
+            - "0.0.0.0"
+            - "--port"
+            - "8080"
+            - "--model"
+            - "/models/$(MODEL_FILE)"
+            - "--mmproj"
+            - "/models/$(MMPROJ_FILE)"
+            - "--alias"
+            - "$(MODEL_ALIAS)"
+            - "--ctx-size"
+            - "$(CONTEXT_SIZE)"
+            - "--n-gpu-layers"
+            - "$(N_GPU_LAYERS)"
+            - "--threads"
+            - "$(THREADS)"
+            - "--cache-type-k"
+            - "q4_0"
+            - "--cache-type-v"
+            - "q4_0"
+            - "--batch-size"
+            - "2048"
+            - "--ubatch-size"
+            - "1024"
+            - "--parallel"
+            - "1"
+            - "--mlock"
+            - "--swa-full"
+            - "--flash-attn"
+            - "auto"
+            - "--op-offload"
+            - "--jinja"
+            - "--chat-template-file"
+            - "/models/chat_template.jinja"
+            - "--slot-save-path"
+            - "/cache"
+            - "--no-context-shift"
+          env:
+            - name: GGML_CUDA_GRAPH_OPT
+              value: "1"
+          envFrom:
+            - configMapRef:
+                name: llamacpp-vision-env
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            timeoutSeconds: 10
+            periodSeconds: 30
+            failureThreshold: 5
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 30
+            timeoutSeconds: 10
+            periodSeconds: 10
+            failureThreshold: 120
+          resources:
+            limits:
+              cpu: "16"
+              memory: 40Gi
+            requests:
+              cpu: 4000m
+              memory: 24Gi
+          volumeMounts:
+            - mountPath: "/models"
+              name: models
+            - mountPath: "/cache"
+              name: cache
+      volumes:
+        - name: models
+          hostPath:
+            path: "{{ .Values.userspace.appData }}/models"
+            type: DirectoryOrCreate
+        - name: cache
+          emptyDir: {}
+      restartPolicy: Always
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: qwen36a3bvisionone
+  name: qwen36a3bvisionone
+  namespace: "{{ .Release.Namespace }}"
+spec:
+  ports:
+    - name: "llamacpp"
+      port: 8080
+      targetPort: 8080
+  selector:
+    io.kompose.service: qwen36a3bvisionone
+status:
+  loadBalancer: {}

@@ -32,27 +32,80 @@ spec:
 
               mkdir -p /app
               cat > /app/server.py << 'PYEOF'
+              import base64
               import io
               import os
-              import torch
-              import soundfile as sf
-              import numpy as np
-              from fastapi import FastAPI
-              from fastapi.responses import Response
-              from pydantic import BaseModel
+              import tempfile
               from typing import Optional
 
-              app = FastAPI(title="OmniVoice TTS")
+              import numpy as np
+              import soundfile as sf
+              import torch
+              from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+              from fastapi.responses import Response
+              from pydantic import BaseModel
 
-              model = None
+              app = FastAPI(title="OmniVoice TTS")
+              _model = None
+
 
               def get_model():
-                  global model
-                  if model is None:
+                  global _model
+                  if _model is None:
                       from omnivoice import OmniVoice
                       device = "cuda" if torch.cuda.is_available() else "cpu"
-                      model = OmniVoice.from_pretrained("k2-fsa/OmniVoice", device_map=device)
-                  return model
+                      dtype = torch.float16 if device == "cuda" else torch.float32
+                      _model = OmniVoice.from_pretrained(
+                          "k2-fsa/OmniVoice",
+                          device_map=device,
+                          dtype=dtype,
+                      )
+                  return _model
+
+
+              def to_wav_bytes(audio) -> bytes:
+                  """Normalize OmniVoice generate() output to a WAV byte stream.
+
+                  The API returns `audio[0]` as the waveform (per the upstream
+                  example in README). Defensive: accept np.ndarray, list, tuple,
+                  or torch.Tensor and always pick the first item if needed.
+                  """
+                  if isinstance(audio, (list, tuple)):
+                      audio = audio[0]
+                  if hasattr(audio, "detach"):
+                      audio = audio.detach().cpu().numpy()
+                  audio = np.asarray(audio)
+                  if audio.ndim > 1:
+                      audio = np.squeeze(audio)
+                  buf = io.BytesIO()
+                  sf.write(buf, audio, 24000, format="WAV")
+                  buf.seek(0)
+                  return buf.read()
+
+
+              def run_generate(
+                  text: str,
+                  instruct: Optional[str] = None,
+                  ref_audio_path: Optional[str] = None,
+                  ref_text: Optional[str] = None,
+                  language_id: Optional[str] = None,
+                  num_step: int = 32,
+                  speed: float = 1.0,
+                  duration: float = 10.0,
+              ) -> bytes:
+                  m = get_model()
+                  kwargs = {"text": text, "num_step": num_step, "speed": speed, "duration": duration}
+                  if instruct:
+                      kwargs["instruct"] = instruct
+                  if ref_audio_path:
+                      kwargs["ref_audio"] = ref_audio_path
+                      if ref_text:
+                          kwargs["ref_text"] = ref_text
+                  if language_id:
+                      kwargs["language_id"] = language_id
+                  audio = m.generate(**kwargs)
+                  return to_wav_bytes(audio)
+
 
               class SpeechRequest(BaseModel):
                   input: str
@@ -60,23 +113,96 @@ spec:
                   voice: str = "default"
                   response_format: str = "wav"
                   speed: float = 1.0
+                  # extended (non-OpenAI) fields
+                  instruct: Optional[str] = None
+                  language_id: Optional[str] = None
+                  num_step: int = 32
+                  duration: float = 10.0
+                  ref_text: Optional[str] = None
+                  ref_audio_b64: Optional[str] = None
+
 
               @app.get("/health")
               async def health():
                   return {"status": "ok"}
 
-              @app.post("/v1/audio/speech")
-              async def speech(req: SpeechRequest):
-                  m = get_model()
-                  audio = m.generate(text=req.input)
-                  buf = io.BytesIO()
-                  sf.write(buf, audio, 24000, format="WAV")
-                  buf.seek(0)
-                  return Response(content=buf.read(), media_type="audio/wav")
 
               @app.get("/v1/models")
               async def models():
                   return {"data": [{"id": "omnivoice", "object": "model"}]}
+
+
+              @app.get("/v1/languages")
+              async def languages():
+                  # OmniVoice ships with 646 languages; the full list is in its
+                  # tokenizer / config. Expose what we can from the loaded model.
+                  m = get_model()
+                  ids = getattr(m, "language_ids", None) or getattr(m, "languages", None)
+                  if ids is None:
+                      return {"note": "Use ISO-like codes such as en, fr, zh, de, es, it, ...",
+                              "reference": "https://github.com/k2-fsa/OmniVoice"}
+                  return {"languages": list(ids)}
+
+
+              @app.post("/v1/audio/speech")
+              async def speech(req: SpeechRequest):
+                  ref_path = None
+                  try:
+                      if req.ref_audio_b64:
+                          try:
+                              raw = base64.b64decode(req.ref_audio_b64)
+                          except Exception as exc:
+                              raise HTTPException(400, f"invalid ref_audio_b64: {exc}")
+                          fd, ref_path = tempfile.mkstemp(suffix=".wav")
+                          os.write(fd, raw)
+                          os.close(fd)
+                          if not req.ref_text:
+                              raise HTTPException(400, "ref_text is required when ref_audio_b64 is provided")
+                      wav = run_generate(
+                          text=req.input,
+                          instruct=req.instruct,
+                          ref_audio_path=ref_path,
+                          ref_text=req.ref_text,
+                          language_id=req.language_id,
+                          num_step=req.num_step,
+                          speed=req.speed,
+                          duration=req.duration,
+                      )
+                      return Response(content=wav, media_type="audio/wav")
+                  finally:
+                      if ref_path and os.path.exists(ref_path):
+                          os.remove(ref_path)
+
+
+              @app.post("/v1/audio/clone")
+              async def clone(
+                  text: str = Form(...),
+                  ref_text: str = Form(...),
+                  ref_audio: UploadFile = File(...),
+                  language_id: Optional[str] = Form(None),
+                  instruct: Optional[str] = Form(None),
+                  num_step: int = Form(32),
+                  speed: float = Form(1.0),
+                  duration: float = Form(10.0),
+              ):
+                  fd, ref_path = tempfile.mkstemp(suffix=os.path.splitext(ref_audio.filename or "ref.wav")[1] or ".wav")
+                  try:
+                      os.write(fd, await ref_audio.read())
+                      os.close(fd)
+                      wav = run_generate(
+                          text=text,
+                          instruct=instruct,
+                          ref_audio_path=ref_path,
+                          ref_text=ref_text,
+                          language_id=language_id,
+                          num_step=num_step,
+                          speed=speed,
+                          duration=duration,
+                      )
+                      return Response(content=wav, media_type="audio/wav")
+                  finally:
+                      if os.path.exists(ref_path):
+                          os.remove(ref_path)
               PYEOF
 
               exec uvicorn server:app --host 0.0.0.0 --port 8000 --app-dir /app

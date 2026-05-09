@@ -1,0 +1,135 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vllm-gemma4dflash-env
+  namespace: "{{ .Release.Namespace }}"
+data:
+  MODEL_NAME: "cyankiwi/gemma-4-26B-A4B-it-AWQ-4bit"
+  MODEL_ALIAS: "gemma-4-26b-a4b-dflash"
+  MAX_MODEL_LEN: "16384"
+  GPU_MEMORY_UTILIZATION: "0.92"
+  SPEC_CONFIG: '{"method":"dflash","model":"z-lab/gemma-4-26B-A4B-it-DFlash","num_speculative_tokens":13}'
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: vllmgemma4dflashone
+  name: vllmgemma4dflashone
+  namespace: "{{ .Release.Namespace }}"
+  annotations:
+    applications.app.bytetrade.io/gpu-inject: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: vllmgemma4dflashone
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.network/chrome-default: "true"
+        io.kompose.service: vllmgemma4dflashone
+    spec:
+      containers:
+        - name: vllm-server
+          image: "vllm/vllm-openai:tokenspeed-preview-x86_64-ubuntu2404"
+          command:
+            - "vllm"
+            - "serve"
+          args:
+            - "$(MODEL_NAME)"
+            - "--served-model-name"
+            - "$(MODEL_ALIAS)"
+            - "--host"
+            - "0.0.0.0"
+            - "--port"
+            - "8000"
+            - "--max-model-len"
+            - "$(MAX_MODEL_LEN)"
+            - "--gpu-memory-utilization"
+            - "$(GPU_MEMORY_UTILIZATION)"
+            - "--max-num-seqs"
+            - "4"
+            - "--max-num-batched-tokens"
+            - "8192"
+            - "--speculative-config"
+            - "$(SPEC_CONFIG)"
+            - "--kv-cache-dtype"
+            - "fp8"
+            - "--dtype"
+            - "auto"
+            - "--trust-remote-code"
+            - "--download-dir"
+            - "/models"
+            - "--enable-prefix-caching"
+          envFrom:
+            - configMapRef:
+                name: vllm-gemma4dflash-env
+          env:
+            - name: HF_HOME
+              value: "/models/huggingface"
+            - name: HF_ENDPOINT
+              value: "{{ .Values.olaresEnv.OLARES_USER_HUGGINGFACE_SERVICE }}"
+            - name: HF_TOKEN
+              value: "{{ .Values.olaresEnv.OLARES_USER_HUGGINGFACE_TOKEN }}"
+            # HAMi-core "0m" parsing bug workaround: Olares default
+            # CUDA_DEVICE_MEMORY_LIMIT_0=0m parses as "0 bytes". Override to
+            # 24400m (~80 MB margin under hardware 24463 MB).
+            - name: CUDA_DEVICE_MEMORY_LIMIT_0
+              value: "24400m"
+          ports:
+            - containerPort: 8000
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+              scheme: HTTP
+            initialDelaySeconds: 600
+            timeoutSeconds: 10
+            periodSeconds: 30
+            failureThreshold: 5
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 8000
+              scheme: HTTP
+            initialDelaySeconds: 120
+            timeoutSeconds: 10
+            periodSeconds: 15
+            failureThreshold: 120
+          resources:
+            limits:
+              cpu: "16"
+              memory: 40Gi
+              nvidia.com/gpu: "1"
+            requests:
+              cpu: 4000m
+              memory: 24Gi
+              nvidia.com/gpu: "1"
+          volumeMounts:
+            - mountPath: "/models"
+              name: models
+      volumes:
+        - name: models
+          hostPath:
+            path: "{{ .Values.userspace.appData }}/models"
+            type: DirectoryOrCreate
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: vllmgemma4dflashone
+  name: vllmgemma4dflashone
+  namespace: "{{ .Release.Namespace }}"
+spec:
+  ports:
+    - name: "vllm"
+      port: 8000
+      targetPort: 8000
+  selector:
+    io.kompose.service: vllmgemma4dflashone

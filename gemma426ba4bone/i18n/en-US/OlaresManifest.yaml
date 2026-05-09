@@ -6,7 +6,7 @@ spec:
     Google Gemma 4 26B-A4B (MoE, 3.8B active, 128 experts) with native vision — served via llama.cpp, optimized for Olares One.
     RTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.
     Unsloth Dynamic Q4_K_XL quantization (16GB model + 1.1GB vision projector = ~17GB, ~7GB free for KV cache).
-    64K context with q4_0 KV cache and Hadamard rotation.
+    128K context with TurboQuant turbo3 KV cache (3-bit Hadamard rotation).
     Native multimodal: text + image + video understanding.
     LMArena 1441 (vs Qwen3.5-35B-A3B 1400). AIME 2026 88.3%. LiveCodeBench 77.1%.
     Apache 2.0 license. Thinking mode with tool calling support.

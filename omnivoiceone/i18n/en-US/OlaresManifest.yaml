@@ -1,8 +1,28 @@
 metadata:
-  description: "OmniVoice TTS (646 languages, voice cloning, 0.6B) — optimized for Olares One"
+  description: "OmniVoice TTS (646 languages, voice cloning, voice design, 0.6B) — optimized for Olares One"
   title: OmniVoice TTS One
 spec:
   fullDescription: |
-    OmniVoice TTS — 646 languages, voice cloning, only 2-4GB VRAM.
-    OpenAI-compatible /v1/audio/speech API. Apache 2.0.
+    OmniVoice TTS by k2-fsa — 646 languages, voice cloning, voice design, only 2-4GB VRAM.
+    OpenAI-compatible /v1/audio/speech API + extended endpoints /v1/audio/clone + /v1/languages. Apache 2.0.
     Designed to run alongside LLM + STT for a complete voice pipeline.
+
+    Quick examples (base URL inside cluster: http://omnivoiceone:8000):
+
+    # Basic TTS
+    curl -X POST http://omnivoiceone:8000/v1/audio/speech \
+      -H "Content-Type: application/json" \
+      -d '{"input":"Hello world","language_id":"en"}' -o out.wav
+
+    # Voice design
+    curl -X POST http://omnivoiceone:8000/v1/audio/speech \
+      -H "Content-Type: application/json" \
+      -d '{"input":"A British lady whispering","instruct":"female, low pitch, british, whisper","language_id":"en"}' \
+      -o out.wav
+
+    # Voice cloning from a WAV file
+    curl -X POST http://omnivoiceone:8000/v1/audio/clone \
+      -F "text=Bonjour" -F "ref_text=Phrase de reference" \
+      -F "ref_audio=@./ref.wav" -F "language_id=fr" -o cloned.wav
+
+    See app details in the Market for full parameter reference.

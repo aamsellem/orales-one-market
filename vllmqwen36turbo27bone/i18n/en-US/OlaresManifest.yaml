@@ -1,0 +1,14 @@
+metadata:
+  title: Qwen36 27B Fast
+  description: "Qwen3.6 27B fastest stack — vLLM Turbo + Genesis on 24GB"
+
+spec:
+  fullDescription: |
+    Qwen3.6 27B dense served via vLLM 0.20 with Sandermage Genesis patches + TurboQuant K8V4 KV cache.
+    Target: Lorbus/Qwen3.6-27B-int4-AutoRound (~19GB, hybrid arch).
+    Custom image: cu130-nightly + Genesis v7.51-stable (28 monkey-patches, hybrid layer fix) + patch_tolist.
+    KV cache: turboquant_k8v4 (FP8 keys + 4-bit values, 2.6x compression).
+    MTP disabled (hybrid + cudagraph compat). flashinfer attention, AutoRound INT4, prefix caching, chunked prefill, qwen3_coder tools.
+    128K context window on 24GB. Targets ~75-90 t/s @ 128K (no MTP boost).
+    First launch downloads ~20GB from HuggingFace.
+    OpenAI-compatible API on port 8000.

@@ -8,7 +8,7 @@ metadata:
   description: "Gemma 4 E4B (Vision + Audio) via vLLM — optimized for Olares One"
   appid: vllmgemma4e4bone
   title: Gemma 4 E4B Voice One
-  version: '1.0.11'
+  version: '1.0.12'
   categories:
     - AI
 entrances:
@@ -20,14 +20,17 @@ entrances:
     openMethod: window
     authLevel: internal
 spec:
-  versionName: '1.0.0'
+  versionName: '1.0.12'
+  upgradeDescription: |
+    v1.0.12: align chart with validated MTP bench (178 t/s avg, 77% draft acceptance, first public Blackwell consumer mobile result for Gemma 4 E4B MTP). Image bumped to `vllm/vllm-openai:nightly-1acd67a795ebccdf9b9db7697ae9082058301657` (built post vLLM PR #41745 merge on 2026-05-06, native Gemma4MTP + Gemma4Proposer + centroids masking with CUDA graph capture). Adds `--speculative-config` with `google/gemma-4-E4B-it-assistant` MTP drafter (num_speculative_tokens=3). max-model-len 4K → 32K. gpu-memory-utilization 0.75 → 0.85.
   fullDescription: |
-    Google Gemma 4 E4B (8B params, 4.5B effective) with native audio + vision input — served via vLLM, optimized for Olares One.
+    Google Gemma 4 E4B (8B params, 4.5B effective) with native audio + vision input + MTP speculative decoding — served via vLLM, optimized for Olares One.
     RTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.
     Native audio understanding: ask questions about audio, transcribe speech, summarize conversations.
     Native vision: analyze images, read documents, understand screenshots.
-    BF16 precision (~10GB VRAM with audio encoder). 8K context.
-    gpu-memory-utilization 0.45 (~10GB) — leaves room for TTS alongside.
+    Multi-Token Prediction speculative decoding: 178 t/s avg (77% draft acceptance) on Olares One (validated 2026-05-07).
+    BF16 precision (~10GB VRAM model + 0.5 GB MTP drafter). 32K context.
+    gpu-memory-utilization 0.85 — leaves room for TTS alongside.
     OpenAI-compatible API with audio_url support in chat completions.
     Apache 2.0 license. Thinking mode with tool calling.
     Downloads model on first launch (~10GB) and caches it.

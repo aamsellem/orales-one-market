@@ -7,10 +7,10 @@ metadata:
 data:
   MODEL_URL: "https://huggingface.co/unsloth/gemma-4-26B-A4B-it-GGUF/resolve/main/gemma-4-26B-A4B-it-UD-Q4_K_XL.gguf"
   MODEL_FILE: "gemma-4-26B-A4B-it-UD-Q4_K_XL.gguf"
-  MMPROJ_URL: "https://huggingface.co/unsloth/gemma-4-26B-A4B-it-GGUF/resolve/main/mmproj-BF16.gguf"
-  MMPROJ_FILE: "mmproj-BF16.gguf"
-  MODEL_ALIAS: "gemma-4-26b-a4b"
-  CONTEXT_SIZE: "65536"
+  MTP_URL: "https://huggingface.co/AtomicChat/gemma-4-26B-A4B-it-assistant-GGUF/resolve/main/gemma-4-26B-A4B-it-assistant.Q4_K_M.gguf"
+  MTP_FILE: "gemma-4-26B-A4B-it-assistant.Q4_K_M.gguf"
+  MODEL_ALIAS: "gemma-4-26b-a4b-mtp"
+  CONTEXT_SIZE: "131072"
   N_GPU_LAYERS: "99"
   THREADS: "16"
 ---
@@ -47,26 +47,19 @@ spec:
             - |
               MODEL_PATH="/models/${MODEL_FILE}"
               if [ -f "$MODEL_PATH" ]; then
-                echo "Model already downloaded: $MODEL_PATH"
-                ls -lh "$MODEL_PATH"
+                echo "Target already downloaded: $MODEL_PATH"; ls -lh "$MODEL_PATH"
               else
-                echo "Downloading model from $MODEL_URL ..."
-                wget -O "$MODEL_PATH.tmp" "$MODEL_URL"
-                mv "$MODEL_PATH.tmp" "$MODEL_PATH"
-                echo "Download complete."
+                echo "Downloading target from $MODEL_URL ..."
+                wget -O "$MODEL_PATH.tmp" "$MODEL_URL" && mv "$MODEL_PATH.tmp" "$MODEL_PATH"
                 ls -lh "$MODEL_PATH"
               fi
-              # Download mmproj (vision projector)
-              MMPROJ_PATH="/models/${MMPROJ_FILE}"
-              if [ -f "$MMPROJ_PATH" ]; then
-                echo "mmproj already downloaded: $MMPROJ_PATH"
-                ls -lh "$MMPROJ_PATH"
+              MTP_PATH="/models/${MTP_FILE}"
+              if [ -f "$MTP_PATH" ]; then
+                echo "MTP drafter already downloaded: $MTP_PATH"; ls -lh "$MTP_PATH"
               else
-                echo "Downloading mmproj from $MMPROJ_URL ..."
-                wget -O "$MMPROJ_PATH.tmp" "$MMPROJ_URL"
-                mv "$MMPROJ_PATH.tmp" "$MMPROJ_PATH"
-                echo "mmproj download complete."
-                ls -lh "$MMPROJ_PATH"
+                echo "Downloading MTP drafter from $MTP_URL ..."
+                wget -O "$MTP_PATH.tmp" "$MTP_URL" && mv "$MTP_PATH.tmp" "$MTP_PATH"
+                ls -lh "$MTP_PATH"
               fi
           envFrom:
             - configMapRef:
@@ -83,8 +76,8 @@ spec:
               name: models
       containers:
         - name: llamacpp-server
-          image: "ghcr.io/ggml-org/llama.cpp:server-cuda13-b8740"
-          command: ["/app/llama-server"]
+          image: "docker.io/aamsellem/llamacpp-atomic-mtp:0.1.0"
+          command: ["llama-server"]
           args:
             - "--host"
             - "0.0.0.0"
@@ -92,20 +85,34 @@ spec:
             - "8080"
             - "--model"
             - "/models/$(MODEL_FILE)"
-            - "--mmproj"
-            - "/models/$(MMPROJ_FILE)"
+            - "--mtp-head"
+            - "/models/$(MTP_FILE)"
+            - "--spec-type"
+            - "mtp"
+            - "--draft-block-size"
+            - "3"
+            - "--draft-max"
+            - "8"
+            - "--draft-min"
+            - "0"
             - "--alias"
             - "$(MODEL_ALIAS)"
             - "--ctx-size"
             - "$(CONTEXT_SIZE)"
-            - "--n-gpu-layers"
+            - "-ngl"
             - "$(N_GPU_LAYERS)"
+            - "-ngld"
+            - "99"
             - "--threads"
             - "$(THREADS)"
-            - "--cache-type-k"
-            - "q4_0"
-            - "--cache-type-v"
-            - "q4_0"
+            - "-ctk"
+            - "turbo3"
+            - "-ctv"
+            - "turbo3"
+            - "-ctkd"
+            - "turbo3"
+            - "-ctvd"
+            - "turbo3"
             - "--batch-size"
             - "2048"
             - "--ubatch-size"
@@ -113,9 +120,8 @@ spec:
             - "--parallel"
             - "1"
             - "--mlock"
-            - "--flash-attn"
-            - "auto"
-            - "--op-offload"
+            - "-fa"
+            - "on"
             - "--jinja"
             - "--slot-save-path"
             - "/cache"

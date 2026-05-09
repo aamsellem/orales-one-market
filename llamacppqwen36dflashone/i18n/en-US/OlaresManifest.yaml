@@ -1,0 +1,16 @@
+metadata:
+  title: Qwen36 27B DFlash One
+  description: "Qwen3.6 27B + DFlash speculative + TurboQuant turbo3 KV — 76 t/s @ 96K via buun-llama-cpp fork"
+
+spec:
+  fullDescription: |
+    Qwen3.6 27B with DFlash speculative decoding + TurboQuant turbo3 KV cache via spiritbuun/buun-llama-cpp fork (forked from TheTom/llama-cpp-turboquant).
+    Image: aamsellem/buun-llama-cpp-dflash:0.2.0
+    Target: unsloth/Qwen3.6-27B-Q4_K_M.gguf (15.6 GB, standard quant — NOT MTP variant which buun rejects)
+    Drafter: spiritbuun/Qwen3.6-27B-DFlash-GGUF/dflash-draft-3.6-q4_k_m.gguf (986 MB)
+    Spec config: --spec-type dflash, gamma=6, KV turbo3 (3-bit Hadamard, 4.5x compression vs f16)
+    Effective context: 96K per-seq (n_seq_max=2 dual-buffer divides ctx-size 196608)
+    Validated bench Olares One 2026-05-09: 76 t/s avg @ 96K (Space Invaders 2000 tokens × 3 runs).
+    +17% vs llamacppqwen36mtpone (65 t/s @ 128K MTP).
+    For 128K context use llamacppqwen36mtpone. For 88 t/s @ 88K use vllmqwen36turbo27bone.
+    OpenAI-compatible API on port 8000.

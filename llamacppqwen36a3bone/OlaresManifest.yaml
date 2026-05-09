@@ -1,0 +1,65 @@
+---
+olaresManifest.version: '0.10.0'
+olaresManifest.type: app
+apiVersion: 'v2'
+metadata:
+  name: llamacppqwen36a3bone
+  icon: https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen36a3bone.png
+  description: "Qwen3.6 35B-A3B via llama.cpp — optimized for Olares One"
+  appid: llamacppqwen36a3bone
+  title: Qwen3.6 35B-A3B (Olares One)
+  version: '1.0.0'
+  categories:
+    - AI
+entrances:
+  - name: llamacppqwen36a3bone
+    port: 8080
+    host: llamacppqwen36a3bone
+    title: Qwen 36B-A3B One
+    icon: https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen36a3bone.png
+    openMethod: window
+    authLevel: internal
+spec:
+  versionName: '1.0.0'
+  upgradeDescription: |
+    v1.0.0: initial release. Qwen3.6-35B-A3B (Apache 2.0, April 2026). Same hybrid SSM/MoE architecture as 3.5 — reuses proven Olares One config (llama.cpp b8740, UD-Q4_K_XL, KV q4_0 with Hadamard rotation, batch 2048/ubatch 1024, 64K ctx). SWE-bench 70.0→73.4, Terminal-Bench 40.5→51.5.
+  fullDescription: |
+    Qwen3.6 35B-A3B (MoE, 3B active) served via llama.cpp — optimized for Olares One.
+    RTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.
+    Unsloth Dynamic Q4_K_XL quantization (important layers upcasted to 8/16-bit).
+    llama.cpp b8740 with GATED_DELTA_NET fused op + Hadamard rotation for KV cache.
+    KV cache q4_0 (2x smaller than q8_0, same quality via rotation).
+    Flash attention, CUDA graph optimization, and op-offload enabled.
+    Downloads the GGUF model on first launch (~22GB) and caches it.
+    Exposes an OpenAI-compatible API on port 8080.
+    Native 262K context, extensible to 1M with YaRN.
+
+  developer: aamsellem
+  website: https://github.com/aamsellem/olares-one-market
+  sourceCode: https://github.com/aamsellem/olares-one-market
+  submitter: aamsellem
+  locale:
+    - en-US
+  license:
+    - text: Apache-2.0
+      url: https://huggingface.co/Qwen/Qwen3.6-35B-A3B/blob/main/LICENSE
+
+  limitedCpu: 16
+  requiredCpu: 4
+  requiredDisk: 30Gi
+  limitedDisk: 50Gi
+  limitedMemory: 40Gi
+  requiredMemory: 24Gi
+  requiredGpu: 1Gi
+  limitedGpu: 24Gi
+
+  supportArch:
+    - amd64
+permission:
+  appData: true
+options:
+  apiTimeout: 0
+  dependencies:
+    - name: olares
+      version: '>=1.12.3-0'
+      type: system

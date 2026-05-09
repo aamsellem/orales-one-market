@@ -1,0 +1,237 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: acestepxlone
+  name: acestepxlone
+  namespace: "{{ .Release.Namespace }}"
+  annotations:
+    applications.app.bytetrade.io/gpu-inject: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: acestepxlone
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.network/chrome-default: "true"
+        io.kompose.service: acestepxlone
+    spec:
+      initContainers:
+        - name: setup
+          image: "docker.io/alpine:3.20"
+          command:
+            - sh
+            - '-c'
+            - |
+              chmod -R 777 /checkpoints
+              chmod -R 777 /outputs
+              echo "setup complete"
+          volumeMounts:
+            - mountPath: "/checkpoints"
+              name: checkpoints
+            - mountPath: "/outputs"
+              name: outputs
+          resources:
+            limits:
+              cpu: "1"
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 64Mi
+      containers:
+        - name: acestep
+          image: "docker.io/aamsellem/acestepxl:v1.1.1"
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              set -e
+              echo "=== ACE-Step XL Turbo — Olares One ==="
+              echo "GPU: $(nvidia-smi --query-gpu=name,memory.total --format=csv,noheader 2>/dev/null || echo 'not detected')"
+              echo "Python: $(python3 --version)"
+
+              cd /app
+
+              echo "Waiting for model downloads..."
+              while true; do
+                READY=true
+                [ ! -f "/checkpoints/acestep-v15-xl-turbo/.acestep-v15-xl-turbo.done" ] && echo "  Waiting for XL Turbo model..." && READY=false
+                [ ! -f "/checkpoints/acestep-v15-xl-sft/.acestep-v15-xl-sft.done" ] && echo "  Waiting for XL SFT model..." && READY=false
+                [ ! -f "/checkpoints/acestep-5Hz-lm-0.6B/.acestep-5Hz-lm-0.6B.done" ] && echo "  Waiting for LM model..." && READY=false
+                [ "$READY" = true ] && echo "All models ready!" && break
+                sleep 10
+              done
+
+              mkdir -p /tmp/ui
+              sed 's|http://localhost:8001||g' /app/ui/studio.html > /tmp/ui/index.html
+
+              python3 -m acestep.api_server --host 0.0.0.0 --port 8001 --init-llm --lm-model-path acestep-5Hz-lm-0.6B &
+
+              echo "Waiting for API server..."
+              until curl -sf http://localhost:8001/health > /dev/null 2>&1; do sleep 2; done
+              echo "API server ready!"
+
+              exec python3 -c "
+              import http.server, urllib.request
+              class H(http.server.SimpleHTTPRequestHandler):
+                  def __init__(s, *a, **k): super().__init__(*a, directory='/tmp/ui', **k)
+                  def _px(s, m):
+                      cl = int(s.headers.get('Content-Length', 0))
+                      b = s.rfile.read(cl) if cl else None
+                      rq = urllib.request.Request('http://localhost:8001'+s.path, data=b, method=m)
+                      ct = s.headers.get('Content-Type')
+                      if ct: rq.add_header('Content-Type', ct)
+                      try:
+                          with urllib.request.urlopen(rq, timeout=1800) as r:
+                              d = r.read(); s.send_response(r.status)
+                              for h in ['Content-Type']: v=r.getheader(h); v and s.send_header(h,v)
+                              s.send_header('Content-Length', str(len(d))); s.end_headers(); s.wfile.write(d)
+                      except Exception as e: s.send_error(502, str(e))
+                  def do_POST(s): s._px('POST')
+                  def do_GET(s):
+                      if s.path.startswith(('/v1/','/health','/release_task','/query_result')): s._px('GET')
+                      else: super().do_GET()
+              print('Studio UI on port 7860')
+              http.server.HTTPServer(('0.0.0.0', 7860), H).serve_forever()
+              "
+          env:
+            - name: ACESTEP_CONFIG_PATH
+              value: "acestep-v15-xl-turbo"
+            - name: ACESTEP_INIT_LLM
+              value: "true"
+            - name: ACESTEP_LM_MODEL_PATH
+              value: "acestep-5Hz-lm-0.6B"
+            - name: ACESTEP_LM_BACKEND
+              value: "pt"
+            - name: ACESTEP_USE_FLASH_ATTENTION
+              value: "true"
+            - name: ACESTEP_OFFLOAD_TO_CPU
+              value: "false"
+            - name: ACESTEP_LM_OFFLOAD_TO_CPU
+              value: "false"
+            - name: ACESTEP_DEVICE
+              value: "auto"
+            - name: TOKENIZERS_PARALLELISM
+              value: "false"
+            - name: HF_HOME
+              value: "/checkpoints/hf-cache"
+            - name: HF_HUB_CACHE
+              value: "/checkpoints/hf-cache"
+          ports:
+            - containerPort: 7860
+          startupProbe:
+            httpGet:
+              path: /
+              port: 7860
+              scheme: HTTP
+            initialDelaySeconds: 120
+            timeoutSeconds: 15
+            periodSeconds: 15
+            failureThreshold: 360
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 7860
+              scheme: HTTP
+            initialDelaySeconds: 120
+            timeoutSeconds: 15
+            periodSeconds: 30
+            failureThreshold: 5
+          resources:
+            limits:
+              cpu: "16"
+              memory: 32Gi
+            requests:
+              cpu: "4"
+              memory: 12Gi
+          volumeMounts:
+            - mountPath: "/app/checkpoints"
+              name: checkpoints
+            - mountPath: "/checkpoints"
+              name: checkpoints
+            - mountPath: "/app/gradio_outputs"
+              name: outputs
+            - mountPath: "/app/.cache/acestep/tmp/api_audio"
+              name: outputs
+      volumes:
+        - name: checkpoints
+          hostPath:
+            path: "{{ .Values.userspace.appData }}/acestepxlone/checkpoints"
+            type: DirectoryOrCreate
+        - name: outputs
+          hostPath:
+            path: "{{ .Values.userspace.userData }}/AI/output/acestepxlone"
+            type: DirectoryOrCreate
+      restartPolicy: Always
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels:
+    io.kompose.service: acestepxlone-download
+  name: acestepxlone-download
+  namespace: "{{ .Release.Namespace }}"
+spec:
+  ttlSecondsAfterFinished: 100
+  backoffLimit: 3
+  template:
+    metadata:
+      labels:
+        io.kompose.service: acestepxlone-download
+    spec:
+      containers:
+        - name: downloader
+          image: "docker.io/beclab/harveyff-hf-downloader-only:v0.0.6"
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              /app/hf-downloader --tasks '{"tasks":[{"repo":"ACE-Step/acestep-v15-xl-turbo","file":"","ref":"main","outDir":"/checkpoints/acestep-v15-xl-turbo","doneNameTpl":".acestep-v15-xl-turbo.done"},{"repo":"ACE-Step/acestep-v15-xl-sft","file":"","ref":"main","outDir":"/checkpoints/acestep-v15-xl-sft","doneNameTpl":".acestep-v15-xl-sft.done"},{"repo":"ACE-Step/acestep-5Hz-lm-0.6B","file":"","ref":"main","outDir":"/checkpoints/acestep-5Hz-lm-0.6B","doneNameTpl":".acestep-5Hz-lm-0.6B.done"}]}' &
+              PID=$!
+              while true; do
+                if [ -f "/checkpoints/acestep-v15-xl-turbo/.acestep-v15-xl-turbo.done" ] && [ -f "/checkpoints/acestep-v15-xl-sft/.acestep-v15-xl-sft.done" ] && [ -f "/checkpoints/acestep-5Hz-lm-0.6B/.acestep-5Hz-lm-0.6B.done" ]; then
+                  echo "All downloads complete, exiting"
+                  kill $PID 2>/dev/null
+                  exit 0
+                fi
+                sleep 5
+              done
+          env:
+            - name: HF_ENDPOINT
+              value: "{{ .Values.olaresEnv.OLARES_USER_HUGGINGFACE_SERVICE | default "https://huggingface.co" }}"
+            - name: HF_TOKEN
+              value: "{{ .Values.olaresEnv.OLARES_USER_HUGGINGFACE_TOKEN | default "" }}"
+          volumeMounts:
+            - mountPath: "/checkpoints"
+              name: checkpoints
+          resources:
+            limits:
+              cpu: "2"
+              memory: 2Gi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+      volumes:
+        - name: checkpoints
+          hostPath:
+            path: "{{ .Values.userspace.appData }}/acestepxlone/checkpoints"
+            type: DirectoryOrCreate
+      restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: acestepxlone
+  name: acestepxlone
+  namespace: "{{ .Release.Namespace }}"
+spec:
+  ports:
+    - name: "studio"
+      port: 7860
+      targetPort: 7860
+  selector:
+    io.kompose.service: acestepxlone

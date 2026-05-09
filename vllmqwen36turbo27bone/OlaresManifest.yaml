@@ -1,0 +1,108 @@
+---
+olaresManifest.version: '0.10.0'
+olaresManifest.type: app
+apiVersion: 'v2'
+metadata:
+  name: vllmqwen36turbo27bone
+  icon: https://orales-one-market.aamsellem.workers.dev/icons/vllmqwen36turbo27bone.png
+  description: "Qwen3.6 27B fastest stack — vLLM Turbo + Genesis on 24GB"
+  appid: vllmqwen36turbo27bone
+  title: Qwen36 27B Fast
+  version: '2.5.7'
+  categories:
+    - AI
+entrances:
+  - name: vllmqwen36turbo27bone
+    port: 8000
+    host: vllmqwen36turbo27bone
+    title: Qwen36 27B Fast
+    icon: https://orales-one-market.aamsellem.workers.dev/icons/vllmqwen36turbo27bone.png
+    openMethod: window
+    authLevel: internal
+spec:
+  versionName: '2.5.7'
+  upgradeDescription: |
+    v2.5.7: revert MAX_MODEL_LEN 128000 → 88000. The 128K bump (v2.5.6) was attempted with the new HAMi cap at 24300m hoping for +1.3 GB KV cache headroom, but vLLM still reports the practical cap at 88704 tokens (3.94 GiB KV needed at 128K vs only 2.97 GiB available after model + cudagraphs + mamba state). The KV cache budget calculation is not improved by the HAMi cap bump because vLLM allocates `gpu_memory_utilization=0.97 * total_vram` first and the KV cache fits in what's left — the HAMi cap was already large enough vs `0.97 * 24300m`. To go higher than 88K we'd need either 0.99 GPU util (HAMi-risky) or MTP n=3 → n=1 (-spec speedup). Bonus log finding: Genesis P22 auto-skipped because vLLM PR #40655 merged upstream (bhoomit moved init out) — one less patch to maintain over time.
+    v2.5.6: bump MAX_MODEL_LEN 88000 → 128000. Previously 96K and 128K OOMed at gpu_memory_utilization=0.97 with HAMi cap at 23000m (3.17 GiB / 3.94 GiB KV needed vs 2.97 GiB available). With v2.5.2 HAMi override 24300m (+1.3 GB headroom) we should fit 128K (3.94 GiB KV needed, ~4.27 GiB now available). If boot OOMs at KV cache profiling, downgrade to v2.5.5 (88K) or try 96K. Also drop t/s from title and description (reality may vary by hardware/config).
+    v2.5.5: revert P5B — `GENESIS_ENABLE_P5B_KV=1` causes CUDA OOM at first inference on 24GB. P5B pre-allocates padded buffers for KV homogenization, which combined with P38 (TQ continuation memory prealloc) overflows the 24300m HAMi cap (512 MiB requested when only 646 MiB free). P5B is incompatible with our stack on 24GB hardware regardless of K8V4 vs 4bit_nc. Sticking with the v2.5.3 config minus P5B as the stable baseline.
+    v2.5.4: enable Genesis P5B (KV cache pad-smaller-to-max strategy) — `GENESIS_ENABLE_P5B_KV=1`. Was disabled in v2.2.1 due to TorchDynamo shape mismatch with `turboquant_4bit_nc + MTP` but our current stack uses `turboquant_k8v4` (different code path). Expected ~34% per-block VRAM saving on Mamba blocks → potential context bump or KV cache headroom. If boot crashes with shape mismatch, downgrade to v2.5.3.
+    v2.5.3: drop `--prefix-caching-hash-algo xxhash` flag — the Genesis custom image doesn't have the `xxhash` Python package installed and the engine crashes after a few requests with `ModuleNotFoundError: xxhash`. Default hash algorithm (sha256/builtin) works fine, only marginally slower for prefix cache lookup.
+    v2.5.2: add HAMi-core `0m` parsing bug workaround — set `CUDA_DEVICE_MEMORY_LIMIT_0=24300m` env var. Olares sets this env to `0m` by default which HAMi parses as "0 bytes available", crashing EagleProposer.__init__ → torch.zeros under spec decoding (CUDA driver error: invalid argument). Same fix already applied in `lucedflashqwen36one` v1.4.2+. The 24300m value also gives margin to avoid the cache migration OOM seen on long-context after several requests (~150 MB margin under hardware 24463 MB cap). No functional change — pure crash prevention.
+    v2.5.1: bump MAX_MODEL_LEN 80000 → 88000 (the practical hard ceiling at gpu_memory_utilization=0.97 on Olares One — vLLM estimate 88704). Bench results (Space Invaders × 3, max_tokens=800):
+      - 80K: 88.16 t/s avg [80-93]
+      - 88K: 71.13 t/s incl. cold start | 84 t/s steady-state runs 2-3
+      - 96K: OOM (3.17 GiB KV needed vs 2.97 GiB available)
+      - 128K: OOM (3.94 GiB KV needed)
+    Chart now matches the validated ceiling. To push above 88K, future versions need either gpu_memory_utilization → 0.99 (HAMi-risky) or MTP n=3 → n=1 (loses spec speed) or fp8_e5m2 KV cache (less compression).
+    v2.5.0: second attempt at vLLM v0.20.0 official base. Image `aamsellem/vllm-qwen36-blackwell:0.20.0-genesis-v3`. Same Genesis v7.51 patches as v2.3.0 BUT with P8 short-circuited via `disable_p8.py` build-time edit (rewrites apply_patch_8_kv_hybrid_reporting() to early-return _skipped). This bypasses the broken `token_capacity_kv_cache_groups` import that crashed v2.3.0 at engine boot. Other Genesis patches expected to apply normally (28 applied / 31 skipped / 0 failed projected). If boot succeeds, validates that v0.20.0 works for our hybrid TurboQuant + MTP n=3 stack with only one Sandermage compat fix needed. If boot fails again, fall back to v2.4.0 cu130-nightly base.
+    v2.4.0: rollback to cu130-nightly base image (`aamsellem/vllm-qwen36-blackwell:0.20.0-genesis`) after v2.3.0 boot crash. Genesis v7.51 P8 (KV hybrid reporting per-token capacity) wires `import token_capacity_kv_cache_groups` from `vllm.v1.core.kv_cache_utils`, but v0.20.0 stable has refactored that function out of the public API — sub-patch kv_cache_utils self-skipped on `required_anchor_missing` but scheduler sub-patch inserted the broken import anyway, causing `ImportError` at engine boot. Same chart spec as v2.2.2 stable (TurboQuant K8V4 + MTP n=3 + 80K context). v2.3.x kept on Hub for the upcoming v3 build that will short-circuit P8 to fix v0.20.0 compat.
+    v2.3.0: bump base image to official `vllm/vllm-openai:v0.20.0` (released 2026-04-27) instead of cu130-nightly fe9c3d6. Tag: `aamsellem/vllm-qwen36-blackwell:0.20.0-genesis-v2`. CRASHED at boot — Genesis P8 incompatible with v0.20.0 (see v2.4.0 above for root cause). Image kept on Hub for diagnostic comparison.
+    v2.2.2: rollback to TurboQuant K8V4 + MTP n=3 + 80K context (4096 batched_tokens) — proven stable. v2.2.0 / v2.2.1 attempted turboquant_4bit_nc (3.8x compression vs 2.6x for K8V4) which gave 60 t/s avg in one bench run on 2026-04-27 but boot is intermittent: TorchDynamo shape mismatch (FakeTensor mul, 196608 vs 48*s72) at engine init, randomly succeeds or fails depending on cudagraph capture state. K8V4 boots reliably 100% of the time at 38 t/s avg. Trade-off: ~30% slower decode but no crashloop. The 4bit_nc + MTP combo on Blackwell sm_120 hybrid stays a future target — needs upstream fix or different cudagraph_capture_sizes filter.
+    v2.2.1: remove GENESIS_ENABLE_P5B_KV. P5B (pad-smaller-to-max KV strategy) is incompatible with turboquant_4bit_nc + MTP n=3 on Blackwell sm_120 — produces TorchDynamo shape mismatch (FakeTensor mul op, 196608 vs 48*s72) at engine init. Same root cause as 3bit_nc + MTP and P65 disabled. v2.2.0 shipped with P5B=1 by mistake (we had measured 60 t/s with P5B=0 during testing); v2.2.0 deploys went into CrashLoopBackOff (Exit 137 → actually shape mismatch + watchdog kill).
+    v2.2.0: switch KV cache turboquant_k8v4 → turboquant_4bit_nc (3.8x compression vs 2.6x). Bench 2026-04-27 on Olares One (RTX 5090M sm_120, 24GB): 60 t/s avg [46-73 range, 3 prompts × 800 tokens] vs 38 t/s avg with K8V4. KV pool 177K tokens (vs 120K K8V4) → max_model_len bumped 80K → 100K. max_num_batched_tokens 4096 → 8192 to fit 4bit_nc Mamba block_size. Genesis P64/P60/P62 enabled (qwen3coder MTP streaming + GDN ngram + struct-out timing) — no measurable gain but no harm. Genesis P65 mandatory: without it the engine fails to boot at TorchDynamo shape inference (mul op tensor mismatch with MTP draft + TurboQuant kernel). P5B kept enabled (4bit_nc compatible; only 3bit_nc breaks).
+    Negative results documented: 3bit_nc + MTP n=3 = TorchDynamo shape mismatch (RuntimeError); MTP n=1 slower than n=3 (32 vs 37 t/s K8V4); DFlash drafter z-lab too big BF16 to fit on 24GB after target.
+    v2.1.1: drop max_model_len 128000 → 80000. MTP n=3 + TurboQuant K8V4 needs 3.94 GiB KV at 128K but only 2.97 GiB available after model + drafter + cudagraphs. 80K still beats v2.2.2 dense (75K) and keeps the MTP speedup.
+    v2.1.0: re-enable MTP n=3 speculative decoding. Genesis P65 (TurboQuant spec-decode cudagraph downgrade) + P66 (cudagraph_capture_sizes spec-decode filter) opt-ins should mitigate issue #40880 (degenerate output on hybrid + cudagraph + MTP+TurboQuant). If output is corrupted, downgrade to v2.0.3 which has the same flags minus MTP.
+    Target: ~80-90 t/s @ 128K context (vs 40 t/s in v2.0.3 without MTP). Best of both worlds: hybrid TurboQuant unblocked + MTP speedup retained.
+    v2.0.3: perf tuning. Add Sandermage-validated flags: `--performance-mode interactivity`, `--async-scheduling`, `--no-scheduler-reserve-full-isl`, `--prefix-caching-hash-algo xxhash`, `--attention-config.flash_attn_version 2`. Plus Genesis env: GENESIS_ENABLE_P5B_KV (pad-smaller-to-max KV strategy, ~34% per-block VRAM saving), GENESIS_ENABLE_P65 (TurboQuant spec-decode cudagraph downgrade), GENESIS_ENABLE_P66 (cudagraph_capture_sizes spec-decode filter). Target +20-40% over v2.0.2 baseline (~40 t/s → 50-60 t/s expected).
+    v2.0.2: bump `--max-num-batched-tokens` 2048 → 4096. Genesis P5 (KV cache page size unification) sets Mamba cache block_size=2080, and vLLM asserts `block_size <= max_num_batched_tokens`. Matches Sandermage's validated config.
+    v2.0.1: drop `--attention-backend flashinfer` — flashinfer doesn't support turboquant_k8v4 ("Selected backend AttentionBackendEnum.FLASHINFER is not valid for this configuration. Reason: ['kv_cache_dtype not supported']"). Let vLLM auto-pick (will fallback to flash_attn). Matches Sandermage validated stack.
+    v2.0.0: complete pivot. v1.0.x failed because vanilla TurboQuant rejects hybrid (attn + GDN/Mamba) models with NotImplementedError. Now uses Sandermage Genesis v7.51-stable-2026-04-27 patches (28 runtime monkey-patches) which fix hybrid layer geometry, max_num_kv_tokens accounting, and excluded layer routing. Tested by Sandermage on Qwen3-Next-35B-A3B-FP8 + TurboQuant K8V4 on Ampere — same patch surface applies on Blackwell.
+    KV cache: turboquant_k8v4 (FP8 keys + 4-bit values, 2.6x compression vs bf16) — Sandermage's validated path. Less compression than turboquant_4bit_nc (3.8x) but proven stable.
+    MTP disabled (issue #40880 — MTP × TurboQuant × cudagraph degenerate output on hybrid).
+    Target context 128K (vs 75K with fp8 KV).
+  fullDescription: |
+    Qwen3.6 27B dense served via vLLM 0.20 with Sandermage Genesis patches + TurboQuant K8V4 KV cache — optimized for Olares One.
+    RTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.
+    Model: Lorbus/Qwen3.6-27B-int4-AutoRound (~19GB, hybrid GDN + attention layers).
+    Custom vLLM cu130-nightly image (aamsellem/vllm-qwen36-blackwell:0.20.0-genesis) with:
+      - Sandermage Genesis v7.51-stable-2026-04-27: 28 runtime monkey-patches that unblock TurboQuant on hybrid models
+        - Hybrid layer geometry handling (key fix for Qwen3.5/3.6)
+        - max_num_kv_tokens accounting for Mamba state
+        - Excluded layer routing through TQ dispatch
+        - Performance: dual-stream GDN, Triton MoE configs
+      - patch_tolist_cudagraph.py: spec-decode + chunked-prefill warmup fix (idempotent)
+    KV cache: turboquant_k8v4 (FP8 keys + 4-bit values, 2.6x compression vs bf16) — validated by Sandermage on Qwen3-Next-35B-A3B + Ampere.
+    MTP disabled in v2.0.0 (issue #40880 — degenerate output on hybrid + cudagraph). May re-enable in v2.1.x once Genesis P40+ patches confirm hybrid MTP fix.
+    flashinfer attention, AutoRound quantization, prefix caching, chunked prefill, qwen3_coder tool parser, qwen3 reasoning parser.
+    128K context window target on 24GB VRAM.
+    Best-in-class coding agent benchmarks: SWE-bench Verified 77.2, Terminal-Bench 2.0 59.3, LiveCodeBench v6 83.9.
+    First launch downloads target (~20GB) from HuggingFace.
+    Exposes an OpenAI-compatible API on port 8000.
+
+  developer: aamsellem
+  website: https://github.com/aamsellem/olares-one-market
+  sourceCode: https://github.com/aamsellem/olares-one-market
+  submitter: aamsellem
+  locale:
+    - en-US
+  license:
+    - text: Apache-2.0
+      url: https://github.com/vllm-project/vllm/blob/main/LICENSE
+
+  envs:
+    - envName: OLARES_USER_HUGGINGFACE_TOKEN
+      required: false
+      applyOnChange: true
+      valueFrom:
+        envName: OLARES_USER_HUGGINGFACE_TOKEN
+
+  limitedCpu: 16
+  requiredCpu: 4
+  requiredDisk: 30Gi
+  limitedDisk: 50Gi
+  limitedMemory: 40Gi
+  requiredMemory: 20Gi
+  requiredGpu: 1Gi
+  limitedGpu: 24Gi
+
+  supportArch:
+    - amd64
+permission:
+  appData: true
+options:
+  apiTimeout: 0
+  dependencies:
+    - name: olares
+      version: '>=1.12.3-0'
+      type: system

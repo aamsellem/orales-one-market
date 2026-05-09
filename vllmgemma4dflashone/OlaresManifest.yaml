@@ -1,0 +1,78 @@
+---
+olaresManifest.version: '0.10.0'
+olaresManifest.type: app
+apiVersion: 'v2'
+metadata:
+  name: vllmgemma4dflashone
+  icon: https://orales-one-market.aamsellem.workers.dev/icons/vllmgemma4dflashone.png
+  description: "Gemma 4 26B-A4B + DFlash + AWQ via vLLM — Olares One (fastest Gemma 4 path)"
+  appid: vllmgemma4dflashone
+  title: Gemma 4 26B DFlash One
+  version: '1.0.0'
+  categories:
+    - AI
+entrances:
+  - name: vllmgemma4dflashone
+    port: 8000
+    host: vllmgemma4dflashone
+    title: Gemma 4 26B DFlash One
+    icon: https://orales-one-market.aamsellem.workers.dev/icons/vllmgemma4dflashone.png
+    openMethod: window
+    authLevel: internal
+spec:
+  versionName: '1.0.0'
+  upgradeDescription: |
+    v1.0.0: initial release. Gemma 4 26B-A4B (compressed-tensors WNA16-Marlin, ~17.5 GB VRAM) target + z-lab DFlash drafter (~0.8 GB) via vLLM tokenspeed-preview-x86_64 image (vLLM 0.20.2rc1.dev67, perf preview, 2026-05-06). Validated bench on Olares One 2026-05-09: **214 t/s steady state** (Space Invaders prompt, 2000 tokens, 3-run avg of runs 2-3, +53% over the llama.cpp + AtomicChat MTP baseline 140 t/s). First public DFlash Gemma 4 result on Blackwell consumer mobile. Drafter pos-0 acceptance ~28% (lower than DFlash typical 60%, target+drafter alignment limited on consumer 24 GB). Forced TRITON_ATTN backend (Gemma 4 head_dim 256/512 heterogeneous) is the main perf cap. Required: max-num-seqs=4 + max-num-batched-tokens=8192 to make num_speculative_tokens=13 schedulable, kv-cache-dtype=fp8, gpu-memory-utilization=0.92, CUDA_DEVICE_MEMORY_LIMIT_0=24400m for HAMi.
+  fullDescription: |
+    Google Gemma 4 26B-A4B (MoE, 3.8B active, 128 experts) with DFlash speculative decoding via vLLM, optimized for Olares One.
+    RTX 5090M Laptop (24 GB, sm_120 Blackwell) + 96 GB DDR5 + Core Ultra 9 275HX.
+    Stack:
+    - Target: cyankiwi/gemma-4-26B-A4B-it-AWQ-4bit (compressed-tensors WNA16, Marlin kernels, ~17.5 GB on GPU)
+    - Drafter: z-lab/gemma-4-26B-A4B-it-DFlash (859 MB safetensors BF16, EAGLE-style — shares target embeds + lm_head)
+    - Spec method: DFlash with num_speculative_tokens=13
+    - KV cache: FP8 (vLLM native)
+    - Image: vllm/vllm-openai:tokenspeed-preview-x86_64-ubuntu2404 (built 2026-05-06)
+    Validated bench on Olares One: 214 t/s steady state (Space Invaders, 2000 tokens, 3-run avg). +53% vs llama.cpp + MTP. First public DFlash Gemma 4 result on Blackwell consumer mobile.
+    For the MTP variant (140 t/s, llama.cpp + AtomicChat fork) see gemma426ba4bone.
+    Apache 2.0 license. OpenAI-compatible API on port 8000.
+
+  developer: aamsellem
+  website: https://github.com/aamsellem/olares-one-market
+  sourceCode: https://github.com/aamsellem/olares-one-market
+  submitter: aamsellem
+  locale:
+    - en-US
+  license:
+    - text: Apache 2.0
+      url: https://www.apache.org/licenses/LICENSE-2.0
+
+  limitedCpu: 16
+  requiredCpu: 4
+  requiredDisk: 30Gi
+  limitedDisk: 50Gi
+  limitedMemory: 40Gi
+  requiredMemory: 4Gi
+  requiredGpu: 1Gi
+  limitedGpu: 24Gi
+
+  supportArch:
+    - amd64
+permission:
+  appData: true
+options:
+  apiTimeout: 0
+  dependencies:
+    - name: olares
+      version: '>=1.12.3-0'
+      type: system
+envs:
+  - envName: OLARES_USER_HUGGINGFACE_SERVICE
+    required: false
+    applyOnChange: true
+    valueFrom:
+      envName: OLARES_USER_HUGGINGFACE_SERVICE
+  - envName: OLARES_USER_HUGGINGFACE_TOKEN
+    required: false
+    applyOnChange: true
+    valueFrom:
+      envName: OLARES_USER_HUGGINGFACE_TOKEN

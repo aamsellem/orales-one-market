@@ -3,7 +3,7 @@ metadata:
   title: Gemma 4 E4B Voice One
 spec:
   fullDescription: |
-    Google Gemma 4 E4B (8B params, 4.5B effective) with native audio + vision input — served via vLLM, optimized for Olares One.
+    Google Gemma 4 E4B (8B params, 4.5B effective) with native audio + vision input + MTP speculative decoding — served via vLLM, optimized for Olares One.
+    178 t/s avg with 77% draft acceptance via vLLM PR #41745 (centroids masking + CUDA graph capture). 32K context, BF16, ~10 GB VRAM.
     Native audio understanding and vision. OpenAI-compatible API with audio_url support.
-    ~10GB VRAM — designed to run alongside Voxtral TTS for a complete voice pipeline.
     Apache 2.0 license.

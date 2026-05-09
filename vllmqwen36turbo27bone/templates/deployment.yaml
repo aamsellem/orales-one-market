@@ -1,0 +1,183 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vllm-env
+  namespace: "{{ .Release.Namespace }}"
+data:
+  MODEL_NAME: "Lorbus/Qwen3.6-27B-int4-AutoRound"
+  MODEL_ALIAS: "qwen3.6-27b"
+  MAX_MODEL_LEN: "88000"
+  GPU_MEMORY_UTILIZATION: "0.97"
+  MAX_NUM_SEQS: "1"
+  MAX_NUM_BATCHED_TOKENS: "4096"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: vllmqwen36turbo27bone
+  name: vllmqwen36turbo27bone
+  namespace: "{{ .Release.Namespace }}"
+  annotations:
+    applications.app.bytetrade.io/gpu-inject: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: vllmqwen36turbo27bone
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.network/chrome-default: "true"
+        io.kompose.service: vllmqwen36turbo27bone
+    spec:
+      containers:
+        - name: vllm-server
+          image: "docker.io/aamsellem/vllm-qwen36-blackwell:0.20.0-genesis-v3"
+          command: ["/entrypoint.sh"]
+          args:
+            - "serve"
+            - "$(MODEL_NAME)"
+            - "--served-model-name"
+            - "$(MODEL_ALIAS)"
+            - "--host"
+            - "0.0.0.0"
+            - "--port"
+            - "8000"
+            - "--max-model-len"
+            - "$(MAX_MODEL_LEN)"
+            - "--gpu-memory-utilization"
+            - "$(GPU_MEMORY_UTILIZATION)"
+            - "--max-num-seqs"
+            - "$(MAX_NUM_SEQS)"
+            - "--max-num-batched-tokens"
+            - "$(MAX_NUM_BATCHED_TOKENS)"
+            - "--quantization"
+            - "auto_round"
+            - "--dtype"
+            - "float16"
+            - "--kv-cache-dtype"
+            - "turboquant_k8v4"
+            - "--language-model-only"
+            - "--trust-remote-code"
+            - "--download-dir"
+            - "/models"
+            - "--reasoning-parser"
+            - "qwen3"
+            - "--enable-prefix-caching"
+            - "--enable-chunked-prefill"
+            - "--enable-auto-tool-choice"
+            - "--tool-call-parser"
+            - "qwen3_coder"
+            - "--performance-mode"
+            - "interactivity"
+            - "--async-scheduling"
+            - "--no-scheduler-reserve-full-isl"
+            - "--attention-config.flash_attn_version"
+            - "2"
+            - "--speculative-config"
+            - '{"method":"mtp","num_speculative_tokens":3}'
+          envFrom:
+            - configMapRef:
+                name: vllm-env
+          env:
+            - name: HF_HOME
+              value: "/models/huggingface"
+            {{- if .Values.olaresEnv.OLARES_USER_HUGGINGFACE_TOKEN }}
+            - name: HF_TOKEN
+              value: "{{ .Values.olaresEnv.OLARES_USER_HUGGINGFACE_TOKEN }}"
+            {{- end }}
+            - name: VLLM_USE_FLASHINFER_SAMPLER
+              value: "1"
+            - name: VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS
+              value: "1"
+            - name: VLLM_ALLOW_LONG_MAX_MODEL_LEN
+              value: "1"
+            - name: VLLM_MARLIN_USE_ATOMIC_ADD
+              value: "1"
+            - name: VLLM_FLOAT32_MATMUL_PRECISION
+              value: "high"
+            - name: GENESIS_ENABLE_P65_TURBOQUANT_SPEC_CG_DOWNGRADE
+              value: "1"
+            - name: GENESIS_ENABLE_P66_CUDAGRAPH_SIZE_FILTER
+              value: "1"
+            - name: GENESIS_ENABLE_P64_QWEN3CODER_MTP_STREAMING
+              value: "1"
+            - name: GENESIS_ENABLE_P60_GDN_NGRAM_FIX
+              value: "1"
+            - name: GENESIS_ENABLE_P62_STRUCT_OUT_SPEC_TIMING
+              value: "1"
+            - name: VLLM_NO_USAGE_STATS
+              value: "1"
+            - name: VLLM_WORKER_MULTIPROC_METHOD
+              value: "spawn"
+            - name: PYTORCH_CUDA_ALLOC_CONF
+              value: "expandable_segments:True,max_split_size_mb:512"
+            - name: NCCL_CUMEM_ENABLE
+              value: "0"
+            - name: NCCL_P2P_DISABLE
+              value: "1"
+            - name: OMP_NUM_THREADS
+              value: "1"
+            - name: CUDA_DEVICE_MAX_CONNECTIONS
+              value: "8"
+            # HAMi-core "0m" parsing bug workaround: Olares sets CUDA_DEVICE_MEMORY_LIMIT_0=0m
+            # by default which HAMi parses as "0 bytes available" → all CUDA allocations crash.
+            # This affects the EagleProposer.__init__ → torch.zeros path under spec decoding.
+            # 24300m = ~24 GB (slightly under hardware 24463 MB cap) for safety margin.
+            - name: CUDA_DEVICE_MEMORY_LIMIT_0
+              value: "24300m"
+          ports:
+            - containerPort: 8000
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+              scheme: HTTP
+            initialDelaySeconds: 240
+            timeoutSeconds: 10
+            periodSeconds: 30
+            failureThreshold: 5
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 8000
+              scheme: HTTP
+            initialDelaySeconds: 120
+            timeoutSeconds: 10
+            periodSeconds: 15
+            failureThreshold: 240
+          resources:
+            limits:
+              cpu: "16"
+              memory: 40Gi
+            requests:
+              cpu: 4000m
+              memory: 24Gi
+          volumeMounts:
+            - mountPath: "/models"
+              name: models
+      volumes:
+        - name: models
+          hostPath:
+            path: "{{ .Values.userspace.appData }}/models"
+            type: DirectoryOrCreate
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: vllmqwen36turbo27bone
+  name: vllmqwen36turbo27bone
+  namespace: "{{ .Release.Namespace }}"
+spec:
+  ports:
+    - name: "vllm"
+      port: 8000
+      targetPort: 8000
+  selector:
+    io.kompose.service: vllmqwen36turbo27bone

@@ -119,6 +119,40 @@ Only Olares One optimized apps belong here. Generic apps stay in `orales-market`
 - CPU values in integer cores (e.g., `4`), NOT millicores (`4000m`)
 - Olares dependency: `>=1.12.3-0`
 
+### Olares Environment Variables (olaresEnv)
+
+Apps can request system-level environment variables via the `envs` section in OlaresManifest.yaml. These are injected into Helm values as `.Values.olaresEnv.<VAR_NAME>`.
+
+**Declaration in OlaresManifest.yaml:**
+```yaml
+envs:
+  - envName: OLARES_USER_HUGGINGFACE_SERVICE
+    required: true
+    applyOnChange: true
+    valueFrom:
+      envName: OLARES_USER_HUGGINGFACE_SERVICE
+  - envName: OLARES_USER_HUGGINGFACE_TOKEN
+    required: true
+    applyOnChange: true
+    valueFrom:
+      envName: OLARES_USER_HUGGINGFACE_TOKEN
+```
+
+**Usage in deployment templates:**
+```yaml
+env:
+  - name: HF_ENDPOINT
+    value: "{{ .Values.olaresEnv.OLARES_USER_HUGGINGFACE_SERVICE }}"
+  - name: HF_TOKEN
+    value: "{{ .Values.olaresEnv.OLARES_USER_HUGGINGFACE_TOKEN }}"
+```
+
+**Available variables:**
+- `OLARES_USER_HUGGINGFACE_SERVICE` — HuggingFace API endpoint (proxy)
+- `OLARES_USER_HUGGINGFACE_TOKEN` — User's HuggingFace token (for gated models)
+
+**Important:** Without the `envs` declaration, `.Values.olaresEnv` will be empty `{}`. The user must have configured their HF token in Olares settings.
+
 ## Key References
 
 - `beclab/market` (GitHub) — Go service running locally on Olares devices, syncs from market sources
@@ -292,6 +326,66 @@ Alternative backend for models not well-suited to GGUF quantization. Uses BF16 n
 | **Qwen3.5-35B-A3B** | llama.cpp | UD-Q4_K_XL | 22.2GB | **128.75 t/s** — best option |
 | Qwen3-30B-A3B | KTransformers | BF16 | ~60GB | Works, untested perf |
 | GPT-OSS 120B | — | — | — | NOT supported by any backend yet |
+
+## Non-llama.cpp Apps (PyTorch/Diffusers/etc.)
+
+Apps that aren't simple llama.cpp servers require extra validation. Lessons from ACE-Step XL (20+ failed iterations):
+
+### Mandatory Pre-Chart Validation
+
+**Before writing ANY chart**, SSH into the Olares One and explore the image live:
+
+```bash
+ssh olares@192.168.1.32
+kubectl run --rm -it debug --image=<image> -- bash
+
+# Inside the container, check:
+which python3                           # Python location
+python3 -c "import torch; print(torch.__version__)"  # Torch version
+find / -name "*.py" -path "*/acestep/*" | head  # Code location
+ls /app/ /opt/ /venv/                   # Working directory structure
+python3 -c "import torchaudio; torchaudio.save('/tmp/test.wav', torch.randn(1,16000), 16000); print('OK')"  # Test audio export end-to-end
+```
+
+### HuggingFace Repos
+
+ALWAYS verify repos exist before using them in download Jobs:
+```bash
+curl -s -o /dev/null -w "%{http_code}" "https://huggingface.co/api/models/<org>/<repo>/tree/main?recursive=1"
+# 200 = public, 401 = gated (needs token), 404 = doesn't exist
+```
+
+### Common Pitfalls
+
+- **torchcodec/torchaudio**: In torch 2.10+ nightly, `torchaudio.save()` depends on `torchcodec` which is often compiled against a different torch ABI. Fix: replace `import torchaudio` with a soundfile+ffmpeg shim (`torchaudio_shim.py`)
+- **Image structure varies wildly**: `harveyff` uses `/app/.venv/`, `vastai` uses `/venv/main/`, code can be at `/app/`, `/opt/workspace-internal/`, or pip-installed. Always check.
+- **Build our own image when deps are broken**: Don't waste iterations patching. One clean Dockerfile > 10 runtime monkey-patches.
+- **Volume mount paths must match app expectations**: The app writes to a specific path (e.g., `/app/checkpoints/`). Mount the persistent volume THERE, not somewhere else with symlinks.
+
+### Custom Docker Image Pattern
+
+When the community image has broken deps:
+
+```dockerfile
+FROM docker.io/<community-image>:<tag>
+# Update app code (e.g., add XL model support)
+RUN wget -q https://github.com/<repo>/archive/main.zip -O /tmp/code.zip && \
+    unzip -qo /tmp/code.zip -d /tmp/ && \
+    cp -r /tmp/<repo>-main/<module>/* /app/<module>/ && \
+    rm -rf /tmp/code.zip /tmp/<repo>-main
+# Fix broken deps with a shim instead of patching
+COPY torchaudio_shim.py /app/torchaudio_shim.py
+RUN sed -i 's/^import torchaudio$/import torchaudio_shim as torchaudio/' /app/<module>/audio_utils.py
+```
+
+Build for amd64 from Mac: `docker buildx build --platform linux/amd64 -t aamsellem/<name>:<tag> . --load`
+Push: `docker push aamsellem/<name>:<tag>`
+
+### Olares One SSH Access
+
+```bash
+ssh olares@192.168.1.32
+```
 
 ## TODO
 

@@ -7,8 +7,10 @@ metadata:
 data:
   MODEL_URL: "https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/resolve/main/gemma-4-E2B-it-Q8_0.gguf"
   MODEL_FILE: "gemma-4-E2B-it-Q8_0.gguf"
-  MODEL_ALIAS: "gemma-4-e2b"
-  CONTEXT_SIZE: "8192"
+  MTP_URL: "https://huggingface.co/AtomicChat/gemma-4-E2B-it-assistant-GGUF/resolve/main/gemma-4-E2B-it-assistant.Q4_K_M.gguf"
+  MTP_FILE: "gemma-4-E2B-it-assistant.Q4_K_M.gguf"
+  MODEL_ALIAS: "gemma-4-e2b-mtp"
+  CONTEXT_SIZE: "131072"
   N_GPU_LAYERS: "99"
   THREADS: "16"
 ---
@@ -43,14 +45,19 @@ spec:
             - |
               MODEL_PATH="/models/${MODEL_FILE}"
               if [ -f "$MODEL_PATH" ]; then
-                echo "Model already downloaded: $MODEL_PATH"
-                ls -lh "$MODEL_PATH"
+                echo "Target already downloaded: $MODEL_PATH"; ls -lh "$MODEL_PATH"
               else
-                echo "Downloading model from $MODEL_URL ..."
-                wget -O "$MODEL_PATH.tmp" "$MODEL_URL"
-                mv "$MODEL_PATH.tmp" "$MODEL_PATH"
-                echo "Download complete."
+                echo "Downloading target from $MODEL_URL ..."
+                wget -O "$MODEL_PATH.tmp" "$MODEL_URL" && mv "$MODEL_PATH.tmp" "$MODEL_PATH"
                 ls -lh "$MODEL_PATH"
+              fi
+              MTP_PATH="/models/${MTP_FILE}"
+              if [ -f "$MTP_PATH" ]; then
+                echo "MTP drafter already downloaded: $MTP_PATH"; ls -lh "$MTP_PATH"
+              else
+                echo "Downloading MTP drafter from $MTP_URL ..."
+                wget -O "$MTP_PATH.tmp" "$MTP_URL" && mv "$MTP_PATH.tmp" "$MTP_PATH"
+                ls -lh "$MTP_PATH"
               fi
           envFrom:
             - configMapRef:
@@ -67,8 +74,8 @@ spec:
               name: models
       containers:
         - name: llamacpp-server
-          image: "ghcr.io/ggml-org/llama.cpp:server-cuda13-b8740"
-          command: ["/app/llama-server"]
+          image: "docker.io/aamsellem/llamacpp-atomic-mtp:0.1.0"
+          command: ["llama-server"]
           args:
             - "--host"
             - "0.0.0.0"
@@ -76,18 +83,34 @@ spec:
             - "8080"
             - "--model"
             - "/models/$(MODEL_FILE)"
+            - "--mtp-head"
+            - "/models/$(MTP_FILE)"
+            - "--spec-type"
+            - "mtp"
+            - "--draft-block-size"
+            - "3"
+            - "--draft-max"
+            - "8"
+            - "--draft-min"
+            - "0"
             - "--alias"
             - "$(MODEL_ALIAS)"
             - "--ctx-size"
             - "$(CONTEXT_SIZE)"
-            - "--n-gpu-layers"
+            - "-ngl"
             - "$(N_GPU_LAYERS)"
+            - "-ngld"
+            - "99"
             - "--threads"
             - "$(THREADS)"
-            - "--cache-type-k"
-            - "q4_0"
-            - "--cache-type-v"
-            - "q4_0"
+            - "-ctk"
+            - "turbo3"
+            - "-ctv"
+            - "turbo3"
+            - "-ctkd"
+            - "turbo3"
+            - "-ctvd"
+            - "turbo3"
             - "--batch-size"
             - "512"
             - "--ubatch-size"
@@ -95,9 +118,8 @@ spec:
             - "--parallel"
             - "1"
             - "--mlock"
-            - "--flash-attn"
-            - "auto"
-            - "--op-offload"
+            - "-fa"
+            - "on"
             - "--jinja"
             - "--slot-save-path"
             - "/cache"

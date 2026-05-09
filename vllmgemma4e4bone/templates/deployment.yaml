@@ -6,10 +6,11 @@ metadata:
   namespace: "{{ .Release.Namespace }}"
 data:
   MODEL_NAME: "google/gemma-4-E4B-it"
-  MODEL_ALIAS: "gemma-4-e4b"
-  MAX_MODEL_LEN: "4096"
-  GPU_MEMORY_UTILIZATION: "0.75"
+  MODEL_ALIAS: "gemma-4-e4b-mtp"
+  MAX_MODEL_LEN: "32000"
+  GPU_MEMORY_UTILIZATION: "0.85"
   LIMIT_MM: '{"image": 1, "audio": 1}'
+  SPEC_CONFIG: '{"method":"mtp","model":"google/gemma-4-E4B-it-assistant","num_speculative_tokens":3}'
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -35,7 +36,7 @@ spec:
     spec:
       containers:
         - name: vllm-server
-          image: "vllm/vllm-openai:gemma4"
+          image: "vllm/vllm-openai:nightly-1acd67a795ebccdf9b9db7697ae9082058301657"
           command:
             - "sh"
             - "-c"
@@ -57,6 +58,8 @@ spec:
             - "$(GPU_MEMORY_UTILIZATION)"
             - "--limit-mm-per-prompt"
             - "$(LIMIT_MM)"
+            - "--speculative-config"
+            - "$(SPEC_CONFIG)"
             - "--dtype"
             - "auto"
             - "--trust-remote-code"

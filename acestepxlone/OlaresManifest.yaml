@@ -1,0 +1,78 @@
+---
+olaresManifest.version: '0.10.0'
+olaresManifest.type: app
+apiVersion: 'v2'
+metadata:
+  name: acestepxlone
+  icon: https://orales-one-market.aamsellem.workers.dev/icons/acestepxlone.png
+  description: "ACE-Step 1.5 XL — AI music generation (4B DiT, Turbo+SFT modes), optimized for Olares One"
+  appid: acestepxlone
+  title: ACE-Step XL One
+  version: '1.1.7'
+  categories:
+    - AI
+entrances:
+  - name: acestepxlone
+    port: 7860
+    host: acestepxlone
+    title: ACE-Step XL One
+    icon: https://orales-one-market.aamsellem.workers.dev/icons/acestepxlone.png
+    openMethod: window
+    authLevel: internal
+spec:
+  versionName: '1.0.1'
+  fullDescription: |
+    ACE-Step 1.5 XL Turbo — AI music generation foundation model, optimized for Olares One.
+    RTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.
+
+    4B-parameter DiT decoder (XL) + 0.6B Qwen3 language model planner.
+    Two modes: Turbo (8 steps, ~7s) for fast drafts, SFT (50 steps, ~40s) for best quality.
+    ~10GB VRAM total, no offloading needed on 24GB GPU.
+
+    Generate full songs (10s to 10min) from text prompts and lyrics.
+    Cover generation, repainting, vocal-to-BGM, Audio2Audio.
+    Japanese vocal support, LoRA fine-tuning compatible.
+
+    Downloads models on first launch (~38GB: Turbo + SFT + LM) and caches them.
+    Exposes a Gradio web UI with full music generation controls.
+
+  developer: aamsellem
+  website: https://github.com/ace-step/ACE-Step-1.5
+  sourceCode: https://github.com/ace-step/ACE-Step-1.5
+  submitter: aamsellem
+  locale:
+    - en-US
+  license:
+    - text: MIT
+      url: https://github.com/ace-step/ACE-Step-1.5/blob/main/LICENSE
+
+  limitedCpu: 16
+  requiredCpu: 4
+  requiredDisk: 80Gi
+  limitedDisk: 80Gi
+  limitedMemory: 32Gi
+  requiredMemory: 12Gi
+  requiredGpu: 12Gi
+  limitedGpu: 24Gi
+
+  supportArch:
+    - amd64
+permission:
+  appData: true
+envs:
+  - envName: OLARES_USER_HUGGINGFACE_SERVICE
+    required: true
+    applyOnChange: true
+    valueFrom:
+      envName: OLARES_USER_HUGGINGFACE_SERVICE
+  - envName: OLARES_USER_HUGGINGFACE_TOKEN
+    required: true
+    applyOnChange: true
+    valueFrom:
+      envName: OLARES_USER_HUGGINGFACE_TOKEN
+options:
+  apiTimeout: 0
+  dependencies:
+    - name: olares
+      version: '>=1.12.3-0'
+      type: system
