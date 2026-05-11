@@ -1,6 +1,6 @@
 apiVersion: v2
-appVersion: '1.1.0'
+appVersion: '1.1.1'
 description: OmniVoice TTS (646 languages, voice cloning, voice design) — optimized for Olares One
 name: omnivoiceone
 type: application
-version: '1.1.0'
+version: '1.1.1'

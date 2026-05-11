@@ -1,0 +1,9 @@
+metadata:
+  description: "Gemma 4 E4B with native audio input (USM Conformer) via llama.cpp PR #21421"
+  title: Gemma 4 Audio One
+spec:
+  fullDescription: |
+    Gemma 4 E4B with native audio input via USM Conformer encoder (llama.cpp PR #21421).
+    Target Q4_K_M + mmproj BF16 (~6 GB total VRAM).
+    Audio max 30s/input. Use cases: ASR, audio understanding, voice agent input.
+    OpenAI-compatible chat completions API on port 8080.

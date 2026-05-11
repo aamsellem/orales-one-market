@@ -1,5 +1,5 @@
 {
-  "hash": "68bc39de10bfdb073a3f3a2ef2353c59",
+  "hash": "a3372c54d1dc8f146da41a6c00009d4f",
   "summaries": {
     "33102786": {
       "id": "33102786",
@@ -12,7 +12,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.027Z"
+      "updated_at": "2026-05-10T23:27:19.347Z"
     },
     "e1311c4c": {
       "id": "e1311c4c",
@@ -25,7 +25,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.014Z"
+      "updated_at": "2026-05-10T23:27:19.341Z"
     },
     "f9902972": {
       "id": "f9902972",
@@ -38,7 +38,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.017Z"
+      "updated_at": "2026-05-10T23:27:19.343Z"
     },
     "8a7e4366": {
       "id": "8a7e4366",
@@ -51,7 +51,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.019Z"
+      "updated_at": "2026-05-10T23:27:19.344Z"
     },
     "cf587666": {
       "id": "cf587666",
@@ -64,7 +64,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.021Z"
+      "updated_at": "2026-05-10T23:27:19.344Z"
     },
     "a4f8515c": {
       "id": "a4f8515c",
@@ -77,7 +77,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.023Z"
+      "updated_at": "2026-05-10T23:27:19.345Z"
     },
     "65b82978": {
       "id": "65b82978",
@@ -90,7 +90,20 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.024Z"
+      "updated_at": "2026-05-10T23:27:19.345Z"
+    },
+    "8c6443a7": {
+      "id": "8c6443a7",
+      "name": "llamacppgemma4audione",
+      "version": "1.0.0",
+      "category": "AI",
+      "description": "Gemma 4 E4B with native audio input (USM Conformer encoder, llama.cpp PR #21421) — Olares One",
+      "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppgemma4audione.png",
+      "screenshots": null,
+      "tags": null,
+      "metadata": null,
+      "source": 1,
+      "updated_at": "2026-05-10T23:27:19.346Z"
     },
     "c1ca229f": {
       "id": "c1ca229f",
@@ -103,7 +116,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.025Z"
+      "updated_at": "2026-05-10T23:27:19.346Z"
     },
     "491be3cd": {
       "id": "491be3cd",
@@ -116,7 +129,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.026Z"
+      "updated_at": "2026-05-10T23:27:19.347Z"
     },
     "4ef430dd": {
       "id": "4ef430dd",
@@ -129,7 +142,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.026Z"
+      "updated_at": "2026-05-10T23:27:19.347Z"
     },
     "059cd05d": {
       "id": "059cd05d",
@@ -142,7 +155,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.028Z"
+      "updated_at": "2026-05-10T23:27:19.348Z"
     },
     "49ed4ea2": {
       "id": "49ed4ea2",
@@ -155,7 +168,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.028Z"
+      "updated_at": "2026-05-10T23:27:19.348Z"
     },
     "43e83ecd": {
       "id": "43e83ecd",
@@ -168,7 +181,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.029Z"
+      "updated_at": "2026-05-10T23:27:19.348Z"
     },
     "fa4ef911": {
       "id": "fa4ef911",
@@ -181,12 +194,12 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.029Z"
+      "updated_at": "2026-05-10T23:27:19.348Z"
     },
     "e74eca98": {
       "id": "e74eca98",
       "name": "omnivoiceone",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "category": "AI",
       "description": "OmniVoice TTS (646 languages, voice cloning, voice design, 0.6B) — optimized for Olares One",
       "icon": "https://orales-one-market.aamsellem.workers.dev/icons/omnivoiceone.png",
@@ -194,7 +207,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.030Z"
+      "updated_at": "2026-05-10T23:27:19.349Z"
     },
     "2c5c39c9": {
       "id": "2c5c39c9",
@@ -207,7 +220,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.030Z"
+      "updated_at": "2026-05-10T23:27:19.349Z"
     },
     "ed18683c": {
       "id": "ed18683c",
@@ -220,7 +233,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.031Z"
+      "updated_at": "2026-05-10T23:27:19.349Z"
     },
     "14fdab3c": {
       "id": "14fdab3c",
@@ -233,7 +246,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.032Z"
+      "updated_at": "2026-05-10T23:27:19.349Z"
     },
     "da30d532": {
       "id": "da30d532",
@@ -246,7 +259,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.033Z"
+      "updated_at": "2026-05-10T23:27:19.350Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -259,12 +272,12 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.033Z"
+      "updated_at": "2026-05-10T23:27:19.350Z"
     },
     "18a6f781": {
       "id": "18a6f781",
       "name": "vllmgemma4dflashone",
-      "version": "1.0.0",
+      "version": "1.0.4",
       "category": "AI",
       "description": "Gemma 4 26B-A4B + DFlash + AWQ via vLLM — Olares One (fastest Gemma 4 path)",
       "icon": "https://orales-one-market.aamsellem.workers.dev/icons/vllmgemma4dflashone.png",
@@ -272,7 +285,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.034Z"
+      "updated_at": "2026-05-10T23:27:19.350Z"
     },
     "be32d4df": {
       "id": "be32d4df",
@@ -285,7 +298,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.034Z"
+      "updated_at": "2026-05-10T23:27:19.350Z"
     },
     "285e9d99": {
       "id": "285e9d99",
@@ -298,7 +311,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.035Z"
+      "updated_at": "2026-05-10T23:27:19.351Z"
     },
     "901d20e0": {
       "id": "901d20e0",
@@ -311,7 +324,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.036Z"
+      "updated_at": "2026-05-10T23:27:19.351Z"
     },
     "af406293": {
       "id": "af406293",
@@ -324,7 +337,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.036Z"
+      "updated_at": "2026-05-10T23:27:19.351Z"
     },
     "13db403f": {
       "id": "13db403f",
@@ -337,7 +350,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.037Z"
+      "updated_at": "2026-05-10T23:27:19.352Z"
     },
     "efd72908": {
       "id": "efd72908",
@@ -350,7 +363,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-09T16:16:10.037Z"
+      "updated_at": "2026-05-10T23:27:19.352Z"
     }
   },
   "details": {
@@ -450,14 +463,14 @@
           "appName": "llamacppqwen35iq4one",
           "version": "1.0.7",
           "versionName": "1.0.6",
-          "mergedAt": "2026-05-09T16:16:10.027Z",
+          "mergedAt": "2026-05-10T23:27:19.347Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.027Z"
+      "updated_at": "2026-05-10T23:27:19.347Z"
     },
     "e1311c4c": {
       "id": "e1311c4c",
@@ -555,14 +568,14 @@
           "appName": "acestepxlone",
           "version": "1.1.7",
           "versionName": "1.1.7",
-          "mergedAt": "2026-05-09T16:16:10.015Z",
+          "mergedAt": "2026-05-10T23:27:19.342Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.015Z"
+      "updated_at": "2026-05-10T23:27:19.342Z"
     },
     "f9902972": {
       "id": "f9902972",
@@ -660,14 +673,14 @@
           "appName": "cascade230a3bone",
           "version": "1.0.6",
           "versionName": "1.0.5",
-          "mergedAt": "2026-05-09T16:16:10.017Z",
+          "mergedAt": "2026-05-10T23:27:19.343Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.017Z"
+      "updated_at": "2026-05-10T23:27:19.343Z"
     },
     "8a7e4366": {
       "id": "8a7e4366",
@@ -765,14 +778,14 @@
           "appName": "devstralsmallone",
           "version": "1.0.6",
           "versionName": "1.0.4",
-          "mergedAt": "2026-05-09T16:16:10.019Z",
+          "mergedAt": "2026-05-10T23:27:19.344Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.019Z"
+      "updated_at": "2026-05-10T23:27:19.344Z"
     },
     "cf587666": {
       "id": "cf587666",
@@ -870,14 +883,14 @@
           "appName": "exl3qwen35a3bone",
           "version": "1.0.15",
           "versionName": "1.0.15",
-          "mergedAt": "2026-05-09T16:16:10.021Z",
+          "mergedAt": "2026-05-10T23:27:19.344Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.021Z"
+      "updated_at": "2026-05-10T23:27:19.344Z"
     },
     "a4f8515c": {
       "id": "a4f8515c",
@@ -975,14 +988,14 @@
           "appName": "gemma426ba4bone",
           "version": "1.0.10",
           "versionName": "1.0.10",
-          "mergedAt": "2026-05-09T16:16:10.023Z",
+          "mergedAt": "2026-05-10T23:27:19.345Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.023Z"
+      "updated_at": "2026-05-10T23:27:19.345Z"
     },
     "65b82978": {
       "id": "65b82978",
@@ -1080,14 +1093,123 @@
           "appName": "gemma4e2bone",
           "version": "1.0.2",
           "versionName": "1.0.2",
-          "mergedAt": "2026-05-09T16:16:10.024Z",
+          "mergedAt": "2026-05-10T23:27:19.345Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.024Z"
+      "updated_at": "2026-05-10T23:27:19.345Z"
+    },
+    "8c6443a7": {
+      "id": "8c6443a7",
+      "name": "llamacppgemma4audione",
+      "cfgType": "app",
+      "chartName": "llamacppgemma4audione-1.0.0.tgz",
+      "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppgemma4audione.png",
+      "description": "Gemma 4 E4B with native audio input (USM Conformer encoder, llama.cpp PR #21421) — Olares One",
+      "appID": "8c6443a7",
+      "title": "Gemma 4 Audio One",
+      "version": "1.0.0",
+      "categories": [
+        "AI"
+      ],
+      "versionName": "1.0.0",
+      "fullDescription": "Google Gemma 4 E4B with audio input (ASR, audio understanding, voice agent input layer).\nRTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.\nTarget Q4_K_M ~3 GB + mmproj BF16 ~1 GB + KV ~2 GB = ~6 GB VRAM total.\n\n===== HOW TO USE =====\n\nBase URL inside cluster: http://llamacppgemma4audione:8080\n\nAudio input via OpenAI-compatible chat completions:\n\ncurl -X POST http://llamacppgemma4audione:8080/v1/chat/completions \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"model\": \"gemma-4-e4b-audio\",\n    \"messages\": [{\n      \"role\": \"user\",\n      \"content\": [\n        {\"type\": \"text\", \"text\": \"Transcribe this audio:\"},\n        {\"type\": \"input_audio\", \"input_audio\": {\"data\": \"<base64 wav>\", \"format\": \"wav\"}}\n      ]\n    }],\n    \"max_tokens\": 500\n  }'\n\nUse cases: ASR, audio understanding, voice agent input.\nAudio max 30 seconds per input.\nLicense: Gemma Terms of Use + Apache 2.0 (llama.cpp).\n",
+      "upgradeDescription": "v1.0.0: initial release. Gemma 4 E4B with native audio input via USM Conformer encoder (llama.cpp PR #21421 merged 2026-04-12, ships in b9101+). Target model unsloth/gemma-4-E4B-it-GGUF Q4_K_M (~3 GB) + audio mmproj BF16 (~0.5-1 GB). Image ghcr.io/ggml-org/llama.cpp:server-cuda13-b9101 (mainline). Audio max 30s/input, E2B/E4B only. F16/Q8_0 mmproj cause repetitive output — BF16 mandatory.\n",
+      "promoteImage": null,
+      "promoteVideo": "",
+      "subCategory": "",
+      "locale": [
+        "en-US"
+      ],
+      "developer": "aamsellem",
+      "requiredMemory": "4294967296",
+      "requiredDisk": "10737418240",
+      "supportClient": {},
+      "supportArch": [
+        "amd64"
+      ],
+      "requiredGPU": "1073741824",
+      "requiredCPU": "4",
+      "rating": 0,
+      "target": "",
+      "permission": {
+        "appData": true
+      },
+      "entrances": [
+        {
+          "name": "llamacppgemma4audione",
+          "host": "llamacppgemma4audione",
+          "port": 8080,
+          "title": "Gemma 4 Audio One",
+          "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppgemma4audione.png",
+          "authLevel": "internal",
+          "invisible": false,
+          "openMethod": "window",
+          "disablePreload": false
+        }
+      ],
+      "middleware": null,
+      "options": {
+        "apiTimeout": 0,
+        "dependencies": [
+          {
+            "name": "olares",
+            "version": ">=1.12.3-0",
+            "type": "system"
+          }
+        ]
+      },
+      "submitter": "aamsellem",
+      "doc": "",
+      "website": "https://github.com/ggml-org/llama.cpp/pull/21421",
+      "featuredImage": "",
+      "sourceCode": "https://github.com/aamsellem/olares-one-market",
+      "license": [
+        {
+          "text": "Gemma Terms of Use",
+          "url": "https://ai.google.dev/gemma/terms"
+        },
+        {
+          "text": "Apache 2.0",
+          "url": "https://www.apache.org/licenses/LICENSE-2.0"
+        }
+      ],
+      "legal": null,
+      "i18n": {
+        "en-US": {
+          "metadata": {
+            "title": "Gemma 4 Audio One",
+            "description": "Gemma 4 E4B with native audio input (USM Conformer) via llama.cpp PR #21421"
+          },
+          "entrances": null,
+          "spec": {
+            "fullDescription": "Gemma 4 E4B with native audio input via USM Conformer encoder (llama.cpp PR #21421).\nTarget Q4_K_M + mmproj BF16 (~6 GB total VRAM).\nAudio max 30s/input. Use cases: ASR, audio understanding, voice agent input.\nOpenAI-compatible chat completions API on port 8080.\n",
+            "upgradeDescription": ""
+          }
+        }
+      },
+      "namespace": "",
+      "onlyAdmin": false,
+      "lastCommitHash": "",
+      "createTime": 0,
+      "updateTime": 0,
+      "count": null,
+      "versionHistory": [
+        {
+          "appName": "llamacppgemma4audione",
+          "version": "1.0.0",
+          "versionName": "1.0.0",
+          "mergedAt": "2026-05-10T23:27:19.346Z",
+          "upgradeDescription": ""
+        }
+      ],
+      "screenshots": null,
+      "tags": null,
+      "metadata": null,
+      "updated_at": "2026-05-10T23:27:19.346Z"
     },
     "c1ca229f": {
       "id": "c1ca229f",
@@ -1185,14 +1307,14 @@
           "appName": "llamacppglm47flash",
           "version": "1.0.11",
           "versionName": "1.0.10",
-          "mergedAt": "2026-05-09T16:16:10.025Z",
+          "mergedAt": "2026-05-10T23:27:19.346Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.025Z"
+      "updated_at": "2026-05-10T23:27:19.346Z"
     },
     "491be3cd": {
       "id": "491be3cd",
@@ -1290,14 +1412,14 @@
           "appName": "llamacppnemotron30a3bone",
           "version": "1.0.10",
           "versionName": "1.0.9",
-          "mergedAt": "2026-05-09T16:16:10.026Z",
+          "mergedAt": "2026-05-10T23:27:19.347Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.026Z"
+      "updated_at": "2026-05-10T23:27:19.347Z"
     },
     "4ef430dd": {
       "id": "4ef430dd",
@@ -1395,14 +1517,14 @@
           "appName": "llamacppqwen35a3bone",
           "version": "1.0.29",
           "versionName": "1.0.28",
-          "mergedAt": "2026-05-09T16:16:10.026Z",
+          "mergedAt": "2026-05-10T23:27:19.347Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.026Z"
+      "updated_at": "2026-05-10T23:27:19.347Z"
     },
     "059cd05d": {
       "id": "059cd05d",
@@ -1500,14 +1622,14 @@
           "appName": "llamacppqwen36a3bone",
           "version": "1.0.0",
           "versionName": "1.0.0",
-          "mergedAt": "2026-05-09T16:16:10.028Z",
+          "mergedAt": "2026-05-10T23:27:19.348Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.028Z"
+      "updated_at": "2026-05-10T23:27:19.348Z"
     },
     "49ed4ea2": {
       "id": "49ed4ea2",
@@ -1605,14 +1727,14 @@
           "appName": "llamacppqwen36dflashone",
           "version": "1.0.1",
           "versionName": "1.0.1",
-          "mergedAt": "2026-05-09T16:16:10.028Z",
+          "mergedAt": "2026-05-10T23:27:19.348Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.028Z"
+      "updated_at": "2026-05-10T23:27:19.348Z"
     },
     "43e83ecd": {
       "id": "43e83ecd",
@@ -1710,14 +1832,14 @@
           "appName": "llamacppqwen36mtpone",
           "version": "1.0.5",
           "versionName": "1.0.5",
-          "mergedAt": "2026-05-09T16:16:10.029Z",
+          "mergedAt": "2026-05-10T23:27:19.348Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.029Z"
+      "updated_at": "2026-05-10T23:27:19.348Z"
     },
     "fa4ef911": {
       "id": "fa4ef911",
@@ -1815,31 +1937,31 @@
           "appName": "nemotron3nano4bone",
           "version": "1.0.5",
           "versionName": "1.0.3",
-          "mergedAt": "2026-05-09T16:16:10.029Z",
+          "mergedAt": "2026-05-10T23:27:19.348Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.029Z"
+      "updated_at": "2026-05-10T23:27:19.348Z"
     },
     "e74eca98": {
       "id": "e74eca98",
       "name": "omnivoiceone",
       "cfgType": "app",
-      "chartName": "omnivoiceone-1.1.0.tgz",
+      "chartName": "omnivoiceone-1.1.1.tgz",
       "icon": "https://orales-one-market.aamsellem.workers.dev/icons/omnivoiceone.png",
       "description": "OmniVoice TTS (646 languages, voice cloning, voice design, 0.6B) — optimized for Olares One",
       "appID": "e74eca98",
       "title": "OmniVoice TTS One",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "categories": [
         "AI"
       ],
-      "versionName": "1.1.0",
+      "versionName": "1.1.1",
       "fullDescription": "OmniVoice TTS by k2-fsa — 646 languages, zero-shot voice cloning + voice design, 0.6B params.\nRTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.\nOnly ~2-4 GB VRAM — runs alongside LLM and STT for a full voice pipeline.\n40x faster than real-time. Apache 2.0 license.\n\n===== HOW TO USE =====\n\nBase URL inside the cluster: http://omnivoiceone:8000\nExternally: https://omnivoiceone-<user>.<your-olares-domain>\n\n--- 1. Basic TTS (OpenAI-compatible) ---\n\ncurl -X POST http://omnivoiceone:8000/v1/audio/speech \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"input\": \"Hello world\", \"response_format\": \"wav\"}' \\\n  -o out.wav\n\n--- 2. Voice design (via `instruct` field) ---\n\nAttributes are free-text, comma-separated. Categories:\n  * gender:  male | female\n  * age:     child | teen | adult | elderly\n  * pitch:   very low | low | medium | high | very high\n  * style:   whisper\n  * accent:  american | british | (any)\n  * dialect: sichuan | shaanxi | (zh only)\n\ncurl -X POST http://omnivoiceone:8000/v1/audio/speech \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"input\": \"This is a British female with a low pitch.\",\n    \"instruct\": \"female, low pitch, british accent\",\n    \"language_id\": \"en\",\n    \"num_step\": 32,\n    \"speed\": 1.0\n  }' -o out.wav\n\n--- 3. Zero-shot voice cloning (multipart upload) ---\n\ncurl -X POST http://omnivoiceone:8000/v1/audio/clone \\\n  -F \"text=Bonjour, ceci est ma voix clonée.\" \\\n  -F \"ref_text=Voici une courte phrase de référence.\" \\\n  -F \"ref_audio=@./my_voice_sample.wav\" \\\n  -F \"language_id=fr\" \\\n  -F \"num_step=32\" \\\n  -o cloned.wav\n\n--- 4. Voice cloning (JSON, base64 ref audio) ---\n\ncurl -X POST http://omnivoiceone:8000/v1/audio/speech \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"input\": \"Cloned output\",\n    \"ref_text\": \"Reference transcription\",\n    \"ref_audio_b64\": \"UklGRi...<base64 WAV>...AAA=\"\n  }' -o out.wav\n\n--- 5. Other endpoints ---\n\nGET  /health              — liveness\nGET  /v1/models           — model list (OpenAI-compat)\nGET  /v1/languages        — list all 646 supported language IDs\n\n===== PARAMETERS =====\n\ninput / text       : text to synthesize (required)\ninstruct           : voice design attributes (string, optional)\nref_audio_b64      : base64-encoded WAV for voice cloning (optional)\nref_text           : transcription of the reference audio (required if ref_audio)\nlanguage_id        : ISO-like language code (\"en\", \"fr\", \"zh\", ...)\nnum_step           : diffusion steps (default 32; more = better quality, slower)\nspeed              : 0.5 .. 2.0 (default 1.0)\nduration           : max audio length in seconds (default 10.0)\nresponse_format    : \"wav\" (only format supported)\n\nDownloads model on first launch (~2GB) and caches it under /data/hf-cache.\n",
-      "upgradeDescription": "v1.1.0: expose full OmniVoice API — voice cloning (ref_audio), voice design (instruct: gender/age/pitch/accent/whisper), language_id, num_step, speed, duration. New endpoints /v1/audio/speech (JSON, OpenAI-compat extended) and /v1/audio/clone (multipart upload). See fullDescription for curl examples.\n",
+      "upgradeDescription": "v1.1.1: cache-bust republish to force market resync. No code changes from v1.1.0 (full OmniVoice API: voice cloning, voice design, language_id, num_step, speed, duration; endpoints /v1/audio/speech and /v1/audio/clone).\n",
       "promoteImage": null,
       "promoteVideo": "",
       "subCategory": "",
@@ -1918,16 +2040,16 @@
       "versionHistory": [
         {
           "appName": "omnivoiceone",
-          "version": "1.1.0",
-          "versionName": "1.1.0",
-          "mergedAt": "2026-05-09T16:16:10.030Z",
+          "version": "1.1.1",
+          "versionName": "1.1.1",
+          "mergedAt": "2026-05-10T23:27:19.349Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.030Z"
+      "updated_at": "2026-05-10T23:27:19.349Z"
     },
     "2c5c39c9": {
       "id": "2c5c39c9",
@@ -2025,14 +2147,14 @@
           "appName": "qwen35a3bvisionone",
           "version": "1.0.9",
           "versionName": "1.0.8",
-          "mergedAt": "2026-05-09T16:16:10.030Z",
+          "mergedAt": "2026-05-10T23:27:19.349Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.030Z"
+      "updated_at": "2026-05-10T23:27:19.349Z"
     },
     "ed18683c": {
       "id": "ed18683c",
@@ -2130,14 +2252,14 @@
           "appName": "qwen35iq4visionone",
           "version": "1.0.7",
           "versionName": "1.0.6",
-          "mergedAt": "2026-05-09T16:16:10.031Z",
+          "mergedAt": "2026-05-10T23:27:19.349Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.031Z"
+      "updated_at": "2026-05-10T23:27:19.349Z"
     },
     "14fdab3c": {
       "id": "14fdab3c",
@@ -2235,14 +2357,14 @@
           "appName": "qwen36a3bvisionone",
           "version": "1.0.2",
           "versionName": "1.0.2",
-          "mergedAt": "2026-05-09T16:16:10.032Z",
+          "mergedAt": "2026-05-10T23:27:19.349Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.032Z"
+      "updated_at": "2026-05-10T23:27:19.349Z"
     },
     "da30d532": {
       "id": "da30d532",
@@ -2340,14 +2462,14 @@
           "appName": "qwen3coder30a3bone",
           "version": "1.0.0",
           "versionName": "1.0.0",
-          "mergedAt": "2026-05-09T16:16:10.033Z",
+          "mergedAt": "2026-05-10T23:27:19.350Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.033Z"
+      "updated_at": "2026-05-10T23:27:19.350Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -2445,31 +2567,31 @@
           "appName": "qwen3ttstone",
           "version": "1.0.9",
           "versionName": "1.0.9",
-          "mergedAt": "2026-05-09T16:16:10.033Z",
+          "mergedAt": "2026-05-10T23:27:19.350Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.033Z"
+      "updated_at": "2026-05-10T23:27:19.350Z"
     },
     "18a6f781": {
       "id": "18a6f781",
       "name": "vllmgemma4dflashone",
       "cfgType": "app",
-      "chartName": "vllmgemma4dflashone-1.0.0.tgz",
+      "chartName": "vllmgemma4dflashone-1.0.4.tgz",
       "icon": "https://orales-one-market.aamsellem.workers.dev/icons/vllmgemma4dflashone.png",
       "description": "Gemma 4 26B-A4B + DFlash + AWQ via vLLM — Olares One (fastest Gemma 4 path)",
       "appID": "18a6f781",
       "title": "Gemma 4 26B DFlash One",
-      "version": "1.0.0",
+      "version": "1.0.4",
       "categories": [
         "AI"
       ],
-      "versionName": "1.0.0",
+      "versionName": "1.0.4",
       "fullDescription": "Google Gemma 4 26B-A4B (MoE, 3.8B active, 128 experts) with DFlash speculative decoding via vLLM, optimized for Olares One.\nRTX 5090M Laptop (24 GB, sm_120 Blackwell) + 96 GB DDR5 + Core Ultra 9 275HX.\nStack:\n- Target: cyankiwi/gemma-4-26B-A4B-it-AWQ-4bit (compressed-tensors WNA16, Marlin kernels, ~17.5 GB on GPU)\n- Drafter: z-lab/gemma-4-26B-A4B-it-DFlash (859 MB safetensors BF16, EAGLE-style — shares target embeds + lm_head)\n- Spec method: DFlash with num_speculative_tokens=13\n- KV cache: FP8 (vLLM native)\n- Image: vllm/vllm-openai:tokenspeed-preview-x86_64-ubuntu2404 (built 2026-05-06)\nValidated bench on Olares One: 214 t/s steady state (Space Invaders, 2000 tokens, 3-run avg). +53% vs llama.cpp + MTP. First public DFlash Gemma 4 result on Blackwell consumer mobile.\nFor the MTP variant (140 t/s, llama.cpp + AtomicChat fork) see gemma426ba4bone.\nApache 2.0 license. OpenAI-compatible API on port 8000.\n",
-      "upgradeDescription": "v1.0.0: initial release. Gemma 4 26B-A4B (compressed-tensors WNA16-Marlin, ~17.5 GB VRAM) target + z-lab DFlash drafter (~0.8 GB) via vLLM tokenspeed-preview-x86_64 image (vLLM 0.20.2rc1.dev67, perf preview, 2026-05-06). Validated bench on Olares One 2026-05-09: **214 t/s steady state** (Space Invaders prompt, 2000 tokens, 3-run avg of runs 2-3, +53% over the llama.cpp + AtomicChat MTP baseline 140 t/s). First public DFlash Gemma 4 result on Blackwell consumer mobile. Drafter pos-0 acceptance ~28% (lower than DFlash typical 60%, target+drafter alignment limited on consumer 24 GB). Forced TRITON_ATTN backend (Gemma 4 head_dim 256/512 heterogeneous) is the main perf cap. Required: max-num-seqs=4 + max-num-batched-tokens=8192 to make num_speculative_tokens=13 schedulable, kv-cache-dtype=fp8, gpu-memory-utilization=0.92, CUDA_DEVICE_MEMORY_LIMIT_0=24400m for HAMi.\n",
+      "upgradeDescription": "v1.0.4: night-bench n_spec sweep on 5090M mobile 24GB found optimum at n_spec=8 (vs v1.0.0 at n=13). Validated 2026-05-11 over 5 clean Space Invaders runs (max_tokens=2000): AVG 223.90 t/s, MIN 216.86, MAX 235.22 — +5% over v1.0.0 baseline (214 avg), +11% over v1.0.3 (201 avg). Full sweep n∈{6,8,10,11,12,13,15,17,20} shows peak at n=8 then linear regression at n≥10. Tech-Practice article's n=15 recommendation is desktop-only (5090 32GB, 1.79 TB/s bandwidth) — mobile 5090M (24GB, 896 GB/s = 50% bandwidth) needs shallower drafts because compute buffer per spec token consumes proportionally more VRAM. Other diffs from v1.0.0: explicit --attention-backend triton_attn (was implicit auto-select). KV cache fp8, max-num-batched-tokens 8192, max-num-seqs 4 unchanged.\nv1.0.3: fix v1.0.2 OOM. Bumping max-num-batched-tokens 8192→32768 with n_spec=15 blew the compute buffers — needed +352 MiB on a 23.42 GB GPU already at 23.18 GB. Revert batched-tokens to 8192 (v1.0.0 value). Only diff vs v1.0.0 now: num_speculative_tokens 13→15 + explicit --attention-backend triton_attn (previously implicit auto-select). Expected: marginal +2-5% over 214 t/s (deeper draft only, no scheduler bump). Bench result confirmed REGRESSION (-6% to 201 avg) — fixed by ship n_spec=8 in v1.0.4.\nv1.0.2: fix v1.0.1 crash. Gemma 4 multimodal tokens forbid flash_attn even for the drafter (\"partial multimodal token full attention not supported\"). Drop attention_backend:flash_attn from SPEC_CONFIG, keep --attention-backend triton_attn explicit for target. Remaining diffs vs v1.0.0: (1) num_speculative_tokens 13 → 15, (2) max-num-batched-tokens 8192 → 32768. CRASHED with OOM in cudagraph capture (23.18/23.42 GB used, +352 MiB needed) — fixed in v1.0.3 by reverting batched-tokens.\nv1.0.1: apply z-lab canonical DFlash config (per Tech-Practice RTX 5090 sweep, 2026-05-09). Three changes: (1) num_speculative_tokens 13 → 15 (deeper draft, accept tail), (2) explicit attention backend split — flash_attn inside speculative-config for drafter, --attention-backend triton_attn for target (Gemma 4 head_dim hetero requires triton for target), (3) max-num-batched-tokens 8192 → 32768. Same image (tokenspeed-preview), same model (cyankiwi AWQ), same fp8 KV. Expected: +5-10% vs 214 t/s baseline on 5090M mobile (50% bandwidth vs desktop 5090). CRASHED at boot due to flash_attn + multimodal incompat — fixed in v1.0.2. Rollback to v1.0.0 if regression.\nv1.0.0: initial release. Gemma 4 26B-A4B (compressed-tensors WNA16-Marlin, ~17.5 GB VRAM) target + z-lab DFlash drafter (~0.8 GB) via vLLM tokenspeed-preview-x86_64 image (vLLM 0.20.2rc1.dev67, perf preview, 2026-05-06). Validated bench on Olares One 2026-05-09: **214 t/s steady state** (Space Invaders prompt, 2000 tokens, 3-run avg of runs 2-3, +53% over the llama.cpp + AtomicChat MTP baseline 140 t/s). First public DFlash Gemma 4 result on Blackwell consumer mobile. Drafter pos-0 acceptance ~28% (lower than DFlash typical 60%, target+drafter alignment limited on consumer 24 GB). Forced TRITON_ATTN backend (Gemma 4 head_dim 256/512 heterogeneous) is the main perf cap. Required: max-num-seqs=4 + max-num-batched-tokens=8192 to make num_speculative_tokens=13 schedulable, kv-cache-dtype=fp8, gpu-memory-utilization=0.92, CUDA_DEVICE_MEMORY_LIMIT_0=24400m for HAMi.\n",
       "promoteImage": null,
       "promoteVideo": "",
       "subCategory": "",
@@ -2548,16 +2670,16 @@
       "versionHistory": [
         {
           "appName": "vllmgemma4dflashone",
-          "version": "1.0.0",
-          "versionName": "1.0.0",
-          "mergedAt": "2026-05-09T16:16:10.034Z",
+          "version": "1.0.4",
+          "versionName": "1.0.4",
+          "mergedAt": "2026-05-10T23:27:19.350Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.034Z"
+      "updated_at": "2026-05-10T23:27:19.350Z"
     },
     "be32d4df": {
       "id": "be32d4df",
@@ -2655,14 +2777,14 @@
           "appName": "vllmgemma4e4bone",
           "version": "1.0.12",
           "versionName": "1.0.12",
-          "mergedAt": "2026-05-09T16:16:10.034Z",
+          "mergedAt": "2026-05-10T23:27:19.351Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.034Z"
+      "updated_at": "2026-05-10T23:27:19.351Z"
     },
     "285e9d99": {
       "id": "285e9d99",
@@ -2760,14 +2882,14 @@
           "appName": "vllmqwen3527bone",
           "version": "1.0.3",
           "versionName": "1.0.3",
-          "mergedAt": "2026-05-09T16:16:10.035Z",
+          "mergedAt": "2026-05-10T23:27:19.351Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.035Z"
+      "updated_at": "2026-05-10T23:27:19.351Z"
     },
     "901d20e0": {
       "id": "901d20e0",
@@ -2865,14 +2987,14 @@
           "appName": "vllmqwen36turbo27bone",
           "version": "2.5.7",
           "versionName": "2.5.7",
-          "mergedAt": "2026-05-09T16:16:10.036Z",
+          "mergedAt": "2026-05-10T23:27:19.351Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.036Z"
+      "updated_at": "2026-05-10T23:27:19.351Z"
     },
     "af406293": {
       "id": "af406293",
@@ -2970,14 +3092,14 @@
           "appName": "vllmvoxtral3bone",
           "version": "1.0.8",
           "versionName": "1.0.7",
-          "mergedAt": "2026-05-09T16:16:10.036Z",
+          "mergedAt": "2026-05-10T23:27:19.351Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.036Z"
+      "updated_at": "2026-05-10T23:27:19.351Z"
     },
     "13db403f": {
       "id": "13db403f",
@@ -3075,14 +3197,14 @@
           "appName": "vllmvoxtralrt4bone",
           "version": "1.0.9",
           "versionName": "1.0.8",
-          "mergedAt": "2026-05-09T16:16:10.037Z",
+          "mergedAt": "2026-05-10T23:27:19.352Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.037Z"
+      "updated_at": "2026-05-10T23:27:19.352Z"
     },
     "efd72908": {
       "id": "efd72908",
@@ -3180,24 +3302,25 @@
           "appName": "vllmvoxtraltts4bone",
           "version": "1.0.13",
           "versionName": "1.0.12",
-          "mergedAt": "2026-05-09T16:16:10.037Z",
+          "mergedAt": "2026-05-10T23:27:19.352Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-09T16:16:10.037Z"
+      "updated_at": "2026-05-10T23:27:19.352Z"
     }
   },
   "latest": [
+    "llamacppgemma4audione",
     "llamacppqwen36a3bone",
     "qwen3coder30a3bone",
-    "vllmgemma4dflashone",
     "llamacppqwen36dflashone",
     "gemma4e2bone",
     "qwen36a3bvisionone",
     "vllmqwen3527bone",
+    "vllmgemma4dflashone",
     "llamacppqwen36mtpone",
     "nemotron3nano4bone",
     "cascade230a3bone",

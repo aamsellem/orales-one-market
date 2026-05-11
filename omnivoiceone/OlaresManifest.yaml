@@ -8,7 +8,7 @@ metadata:
   description: "OmniVoice TTS (646 languages, voice cloning, voice design, 0.6B) — optimized for Olares One"
   appid: omnivoiceone
   title: OmniVoice TTS One
-  version: '1.1.0'
+  version: '1.1.1'
   categories:
     - AI
 entrances:
@@ -20,9 +20,9 @@ entrances:
     openMethod: window
     authLevel: internal
 spec:
-  versionName: '1.1.0'
+  versionName: '1.1.1'
   upgradeDescription: |
-    v1.1.0: expose full OmniVoice API — voice cloning (ref_audio), voice design (instruct: gender/age/pitch/accent/whisper), language_id, num_step, speed, duration. New endpoints /v1/audio/speech (JSON, OpenAI-compat extended) and /v1/audio/clone (multipart upload). See fullDescription for curl examples.
+    v1.1.1: cache-bust republish to force market resync. No code changes from v1.1.0 (full OmniVoice API: voice cloning, voice design, language_id, num_step, speed, duration; endpoints /v1/audio/speech and /v1/audio/clone).
   fullDescription: |
     OmniVoice TTS by k2-fsa — 646 languages, zero-shot voice cloning + voice design, 0.6B params.
     RTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.

@@ -1,0 +1,85 @@
+---
+olaresManifest.version: '0.10.0'
+olaresManifest.type: app
+apiVersion: 'v2'
+metadata:
+  name: llamacppgemma4audione
+  icon: https://orales-one-market.aamsellem.workers.dev/icons/llamacppgemma4audione.png
+  description: "Gemma 4 E4B with native audio input (USM Conformer encoder, llama.cpp PR #21421) — Olares One"
+  appid: llamacppgemma4audione
+  title: Gemma 4 Audio One
+  version: '1.0.0'
+  categories:
+    - AI
+entrances:
+  - name: llamacppgemma4audione
+    port: 8080
+    host: llamacppgemma4audione
+    title: Gemma 4 Audio One
+    icon: https://orales-one-market.aamsellem.workers.dev/icons/llamacppgemma4audione.png
+    openMethod: window
+    authLevel: internal
+spec:
+  versionName: '1.0.0'
+  upgradeDescription: |
+    v1.0.0: initial release. Gemma 4 E4B with native audio input via USM Conformer encoder (llama.cpp PR #21421 merged 2026-04-12, ships in b9101+). Target model unsloth/gemma-4-E4B-it-GGUF Q4_K_M (~3 GB) + audio mmproj BF16 (~0.5-1 GB). Image ghcr.io/ggml-org/llama.cpp:server-cuda13-b9101 (mainline). Audio max 30s/input, E2B/E4B only. F16/Q8_0 mmproj cause repetitive output — BF16 mandatory.
+  fullDescription: |
+    Google Gemma 4 E4B with audio input (ASR, audio understanding, voice agent input layer).
+    RTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.
+    Target Q4_K_M ~3 GB + mmproj BF16 ~1 GB + KV ~2 GB = ~6 GB VRAM total.
+
+    ===== HOW TO USE =====
+
+    Base URL inside cluster: http://llamacppgemma4audione:8080
+
+    Audio input via OpenAI-compatible chat completions:
+
+    curl -X POST http://llamacppgemma4audione:8080/v1/chat/completions \
+      -H "Content-Type: application/json" \
+      -d '{
+        "model": "gemma-4-e4b-audio",
+        "messages": [{
+          "role": "user",
+          "content": [
+            {"type": "text", "text": "Transcribe this audio:"},
+            {"type": "input_audio", "input_audio": {"data": "<base64 wav>", "format": "wav"}}
+          ]
+        }],
+        "max_tokens": 500
+      }'
+
+    Use cases: ASR, audio understanding, voice agent input.
+    Audio max 30 seconds per input.
+    License: Gemma Terms of Use + Apache 2.0 (llama.cpp).
+
+  developer: aamsellem
+  website: https://github.com/ggml-org/llama.cpp/pull/21421
+  sourceCode: https://github.com/aamsellem/olares-one-market
+  submitter: aamsellem
+  locale:
+    - en-US
+  license:
+    - text: Gemma Terms of Use
+      url: https://ai.google.dev/gemma/terms
+    - text: Apache 2.0
+      url: https://www.apache.org/licenses/LICENSE-2.0
+
+  limitedCpu: 16
+  requiredCpu: 4
+  requiredDisk: 10Gi
+  limitedDisk: 15Gi
+  limitedMemory: 16Gi
+  requiredMemory: 4Gi
+  requiredGpu: 1Gi
+  limitedGpu: 8Gi
+
+  supportArch:
+    - amd64
+permission:
+  appData: true
+options:
+  apiTimeout: 0
+  dependencies:
+    - name: olares
+      version: '>=1.12.3-0'
+      type: system

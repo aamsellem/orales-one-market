@@ -9,7 +9,7 @@ data:
   MODEL_ALIAS: "gemma-4-26b-a4b-dflash"
   MAX_MODEL_LEN: "16384"
   GPU_MEMORY_UTILIZATION: "0.92"
-  SPEC_CONFIG: '{"method":"dflash","model":"z-lab/gemma-4-26B-A4B-it-DFlash","num_speculative_tokens":13}'
+  SPEC_CONFIG: '{"method":"dflash","model":"z-lab/gemma-4-26B-A4B-it-DFlash","num_speculative_tokens":8}'
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -55,6 +55,8 @@ spec:
             - "4"
             - "--max-num-batched-tokens"
             - "8192"
+            - "--attention-backend"
+            - "triton_attn"
             - "--speculative-config"
             - "$(SPEC_CONFIG)"
             - "--kv-cache-dtype"

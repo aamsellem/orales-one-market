@@ -8,7 +8,7 @@ metadata:
   description: "Gemma 4 26B-A4B + DFlash + AWQ via vLLM — Olares One (fastest Gemma 4 path)"
   appid: vllmgemma4dflashone
   title: Gemma 4 26B DFlash One
-  version: '1.0.0'
+  version: '1.0.4'
   categories:
     - AI
 entrances:
@@ -20,8 +20,12 @@ entrances:
     openMethod: window
     authLevel: internal
 spec:
-  versionName: '1.0.0'
+  versionName: '1.0.4'
   upgradeDescription: |
+    v1.0.4: night-bench n_spec sweep on 5090M mobile 24GB found optimum at n_spec=8 (vs v1.0.0 at n=13). Validated 2026-05-11 over 5 clean Space Invaders runs (max_tokens=2000): AVG 223.90 t/s, MIN 216.86, MAX 235.22 — +5% over v1.0.0 baseline (214 avg), +11% over v1.0.3 (201 avg). Full sweep n∈{6,8,10,11,12,13,15,17,20} shows peak at n=8 then linear regression at n≥10. Tech-Practice article's n=15 recommendation is desktop-only (5090 32GB, 1.79 TB/s bandwidth) — mobile 5090M (24GB, 896 GB/s = 50% bandwidth) needs shallower drafts because compute buffer per spec token consumes proportionally more VRAM. Other diffs from v1.0.0: explicit --attention-backend triton_attn (was implicit auto-select). KV cache fp8, max-num-batched-tokens 8192, max-num-seqs 4 unchanged.
+    v1.0.3: fix v1.0.2 OOM. Bumping max-num-batched-tokens 8192→32768 with n_spec=15 blew the compute buffers — needed +352 MiB on a 23.42 GB GPU already at 23.18 GB. Revert batched-tokens to 8192 (v1.0.0 value). Only diff vs v1.0.0 now: num_speculative_tokens 13→15 + explicit --attention-backend triton_attn (previously implicit auto-select). Expected: marginal +2-5% over 214 t/s (deeper draft only, no scheduler bump). Bench result confirmed REGRESSION (-6% to 201 avg) — fixed by ship n_spec=8 in v1.0.4.
+    v1.0.2: fix v1.0.1 crash. Gemma 4 multimodal tokens forbid flash_attn even for the drafter ("partial multimodal token full attention not supported"). Drop attention_backend:flash_attn from SPEC_CONFIG, keep --attention-backend triton_attn explicit for target. Remaining diffs vs v1.0.0: (1) num_speculative_tokens 13 → 15, (2) max-num-batched-tokens 8192 → 32768. CRASHED with OOM in cudagraph capture (23.18/23.42 GB used, +352 MiB needed) — fixed in v1.0.3 by reverting batched-tokens.
+    v1.0.1: apply z-lab canonical DFlash config (per Tech-Practice RTX 5090 sweep, 2026-05-09). Three changes: (1) num_speculative_tokens 13 → 15 (deeper draft, accept tail), (2) explicit attention backend split — flash_attn inside speculative-config for drafter, --attention-backend triton_attn for target (Gemma 4 head_dim hetero requires triton for target), (3) max-num-batched-tokens 8192 → 32768. Same image (tokenspeed-preview), same model (cyankiwi AWQ), same fp8 KV. Expected: +5-10% vs 214 t/s baseline on 5090M mobile (50% bandwidth vs desktop 5090). CRASHED at boot due to flash_attn + multimodal incompat — fixed in v1.0.2. Rollback to v1.0.0 if regression.
     v1.0.0: initial release. Gemma 4 26B-A4B (compressed-tensors WNA16-Marlin, ~17.5 GB VRAM) target + z-lab DFlash drafter (~0.8 GB) via vLLM tokenspeed-preview-x86_64 image (vLLM 0.20.2rc1.dev67, perf preview, 2026-05-06). Validated bench on Olares One 2026-05-09: **214 t/s steady state** (Space Invaders prompt, 2000 tokens, 3-run avg of runs 2-3, +53% over the llama.cpp + AtomicChat MTP baseline 140 t/s). First public DFlash Gemma 4 result on Blackwell consumer mobile. Drafter pos-0 acceptance ~28% (lower than DFlash typical 60%, target+drafter alignment limited on consumer 24 GB). Forced TRITON_ATTN backend (Gemma 4 head_dim 256/512 heterogeneous) is the main perf cap. Required: max-num-seqs=4 + max-num-batched-tokens=8192 to make num_speculative_tokens=13 schedulable, kv-cache-dtype=fp8, gpu-memory-utilization=0.92, CUDA_DEVICE_MEMORY_LIMIT_0=24400m for HAMi.
   fullDescription: |
     Google Gemma 4 26B-A4B (MoE, 3.8B active, 128 experts) with DFlash speculative decoding via vLLM, optimized for Olares One.
