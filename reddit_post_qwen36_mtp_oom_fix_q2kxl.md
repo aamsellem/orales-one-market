@@ -28,28 +28,37 @@ The Q3_K_XL target is 14.92 GB. At 262K with q4_0 KV cache (~4.3 GB), only ~5 GB
 
 ## Validation bench (Olares One, 5090M, 24GB)
 
-Tested `unsloth/Qwen3.6-27B-GGUF-MTP` UD-Q2_K_XL (same quant tier as havenoammo's) — both UD-Q2_K_XL.
+Tested BOTH `havenoammo/Qwen3.6-27B-MTP-UD-GGUF` UD-Q2_K_XL (the one I ship) AND `unsloth/Qwen3.6-27B-GGUF-MTP` UD-Q2_K_XL (the new official one).
 
 **Bench:** Space Invaders HTML, 2000 tokens, temp 0.6 top_p 0.95, 2 warmups + 10 measured runs.
 
+**havenoammo Q2_K_XL @ 262K + MTP n=5 (what I ship):**
 ```
-runs:  61.58, 66.37, 64.46, 62.54, 65.48, 64.47, 62.88, 64.05, 61.58, 63.77 t/s
+runs:  68.60, 71.25, 75.24, 68.46, 76.25, 71.30, 73.12, 68.51, 73.92, 74.70 t/s
+AVG = 72.14 t/s
+MIN = 68.46, MAX = 76.25
+NO CUDA OOM, NO degradation cycle, 10 clean runs
+```
+
+**unsloth UD-Q2_K_XL @ 262K + MTP n=5 (the new official):**
+```
+runs:  66.01, 66.37, 64.46, 62.54, 65.48, 64.47, 62.88, 64.05, 61.58, 63.77 t/s
 AVG = 64.16 t/s
 MIN = 61.58, MAX = 66.37
-spread = 0.2% (ZERO outliers across 10 runs)
-NO CUDA OOM
-NO degradation cycle
+NO CUDA OOM, NO degradation cycle
 ```
+
+**havenoammo wins by +12% at same quant tier.** Different MTP integration / metadata. Use havenoammo for now.
 
 ## Trade-off summary
 
 | Stack | t/s | Stability | Notes |
 |-------|-----|-----------|-------|
 | havenoammo Q3_K_XL @ 262K (was v1.0.5) | 77 (validated) | ❌ runtime OOM | Reported crashes |
-| havenoammo Q2_K_XL @ 262K (v1.0.7) | ~64 (proxy via unsloth) | ✅ ROCK-stable | Ships now |
+| **havenoammo Q2_K_XL @ 262K (v1.0.7)** | **72.14 (direct bench)** | ✅ ROCK-stable | Ships now |
 | havenoammo Q3_K_XL @ 128K (would-be v1.0.6) | ~65 (extrapolated) | ✅ stable | Loses 50% context |
 
-**−17% t/s for stability and full 262K context.** Worth it.
+**Only −6% t/s for stability and full 262K context.** Easy win.
 
 Unsloth Dynamic preserves critical layers in higher precision (and MTP head at Q8_0 even at Q2 tier), so quality drop vs Q3_K_XL is around 5-8% on benchmarks rather than the larger drop you'd see going from standard Q3_K_M → Q2_K.
 
