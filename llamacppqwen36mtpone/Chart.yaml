@@ -1,6 +1,6 @@
 apiVersion: v2
-appVersion: '1.0.5'
-description: Qwen3.6 27B longest context — 77 t/s @ 262K (full native context, havenoammo Q3_K_XL + MTP)
+appVersion: '1.0.7'
+description: Qwen3.6 27B long context — 262K + MTP via Q2_K_XL (frees buffer headroom; quality trade-off)
 name: llamacppqwen36mtpone
 type: application
-version: '1.0.5'
+version: '1.0.7'
