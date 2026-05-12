@@ -23,19 +23,22 @@ Three configs of the same model, each tuned for a different trade-off. Pick the 
 | App | Speed | Context | Stack |
 |-----|-------|---------|-------|
 | **vllmqwen36turbo27bone** | **88 t/s** | 88K | vLLM + Genesis 28-patch + TurboQuant K8V4 + MTP n=3 |
-| **llamacppqwen36mtpone** | 77 t/s | **262K** | llama.cpp am17an MTP branch + havenoammo UD-Q3_K_XL |
+| **llamacppqwen36mtpone** v1.0.8 | **72.75 t/s stable** | **262K** | llama.cpp am17an MTP branch + unsloth UD-Q3_K_XL + MTP n=5 |
 | **llamacppqwen36dflashone** | 76 t/s | 96K | buun-llama-cpp + spiritbuun DFlash drafter + turbo3 KV |
 
-For chat and quick coding the Turbo Fast app wins. For long-context work (codebase analysis, doc Q&A) the Long Context app holds the full 262K native window with 75–80% draft acceptance — first config validated to do that on a single 24 GB consumer GPU.
+For chat and quick coding the Turbo Fast app wins. For long-context work (codebase analysis, doc Q&A) the Long Context app holds the full 262K native window with **zero CUDA OOM** — runtime-stable validated 2026-05-12, 10 clean runs. v1.0.5 (havenoammo Q3) had reproducible runtime OOM in MTP draft; v1.0.7 (havenoammo Q2) fixed it at -8% quality; v1.0.8 (unsloth Q3) restores Q3 quality without OOM.
 
 ## Gemma 4 — fastest path
 
 | App | Speed | Notes |
 |-----|-------|-------|
-| **vllmgemma4dflashone** | **214 t/s** | vLLM tokenspeed-preview + cyankiwi AWQ + z-lab DFlash, n_spec=13 |
+| **vllmgemma4dflashone** v1.0.4 | **224 t/s avg / 235 peak** | vLLM tokenspeed-preview + cyankiwi AWQ + z-lab DFlash, **n_spec=8** (mobile-tuned, not the desktop n=15) |
 | **vllmgemma4e4bone** | — | E4B with vision + audio + MTP centroids masking |
 | **gemma426ba4bone** | 119 t/s | Atomic Chat llama.cpp fork with MTP, native vision |
 | **gemma4e2bone** | — | E2B 2.3B for voice-pipeline use |
+| **llamacppgemma4audione** v1.0.0 | — | E4B + native audio input (USM Conformer, llama.cpp PR #21421 mainline b9101) |
+
+The DFlash app has a known **5-fast/4-slow degradation cycle** every ~10 requests, currently traced to drafter alignment (low-yield spec fallback pattern). Peak phases hit 220-235 t/s, slow phases drop to ~60 t/s. Long-session AVG ≈ 161 t/s.
 
 ## Other LLMs
 
