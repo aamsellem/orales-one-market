@@ -1,5 +1,5 @@
 {
-  "hash": "79323285c65cc538ad245ee13a4f42dd",
+  "hash": "86b43c90a4df7c61db3b3303c87b7834",
   "summaries": {
     "33102786": {
       "id": "33102786",
@@ -12,7 +12,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.196Z"
+      "updated_at": "2026-05-12T07:03:17.526Z"
     },
     "e1311c4c": {
       "id": "e1311c4c",
@@ -25,7 +25,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.168Z"
+      "updated_at": "2026-05-12T07:03:17.516Z"
     },
     "f9902972": {
       "id": "f9902972",
@@ -38,7 +38,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.177Z"
+      "updated_at": "2026-05-12T07:03:17.519Z"
     },
     "8a7e4366": {
       "id": "8a7e4366",
@@ -51,7 +51,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.182Z"
+      "updated_at": "2026-05-12T07:03:17.520Z"
     },
     "cf587666": {
       "id": "cf587666",
@@ -64,7 +64,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.184Z"
+      "updated_at": "2026-05-12T07:03:17.521Z"
     },
     "a4f8515c": {
       "id": "a4f8515c",
@@ -77,7 +77,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.186Z"
+      "updated_at": "2026-05-12T07:03:17.522Z"
     },
     "65b82978": {
       "id": "65b82978",
@@ -90,7 +90,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.188Z"
+      "updated_at": "2026-05-12T07:03:17.522Z"
     },
     "8c6443a7": {
       "id": "8c6443a7",
@@ -103,7 +103,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.190Z"
+      "updated_at": "2026-05-12T07:03:17.523Z"
     },
     "c1ca229f": {
       "id": "c1ca229f",
@@ -116,7 +116,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.192Z"
+      "updated_at": "2026-05-12T07:03:17.524Z"
     },
     "491be3cd": {
       "id": "491be3cd",
@@ -129,7 +129,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.193Z"
+      "updated_at": "2026-05-12T07:03:17.525Z"
     },
     "4ef430dd": {
       "id": "4ef430dd",
@@ -142,7 +142,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.194Z"
+      "updated_at": "2026-05-12T07:03:17.525Z"
     },
     "059cd05d": {
       "id": "059cd05d",
@@ -155,7 +155,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.197Z"
+      "updated_at": "2026-05-12T07:03:17.526Z"
     },
     "49ed4ea2": {
       "id": "49ed4ea2",
@@ -168,12 +168,12 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.198Z"
+      "updated_at": "2026-05-12T07:03:17.527Z"
     },
     "43e83ecd": {
       "id": "43e83ecd",
       "name": "llamacppqwen36mtpone",
-      "version": "1.0.7",
+      "version": "1.0.8",
       "category": "AI",
       "description": "Qwen3.6 27B longest context — 77 t/s @ full 262K (havenoammo UD-Q3_K_XL + MTP)",
       "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen36mtpone.png",
@@ -181,7 +181,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.200Z"
+      "updated_at": "2026-05-12T07:03:17.528Z"
     },
     "fa4ef911": {
       "id": "fa4ef911",
@@ -194,7 +194,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.201Z"
+      "updated_at": "2026-05-12T07:03:17.528Z"
     },
     "e74eca98": {
       "id": "e74eca98",
@@ -207,7 +207,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.202Z"
+      "updated_at": "2026-05-12T07:03:17.529Z"
     },
     "2c5c39c9": {
       "id": "2c5c39c9",
@@ -220,7 +220,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.203Z"
+      "updated_at": "2026-05-12T07:03:17.530Z"
     },
     "ed18683c": {
       "id": "ed18683c",
@@ -233,7 +233,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.204Z"
+      "updated_at": "2026-05-12T07:03:17.530Z"
     },
     "14fdab3c": {
       "id": "14fdab3c",
@@ -246,7 +246,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.205Z"
+      "updated_at": "2026-05-12T07:03:17.531Z"
     },
     "da30d532": {
       "id": "da30d532",
@@ -259,7 +259,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.206Z"
+      "updated_at": "2026-05-12T07:03:17.532Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -272,7 +272,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.207Z"
+      "updated_at": "2026-05-12T07:03:17.532Z"
     },
     "18a6f781": {
       "id": "18a6f781",
@@ -285,7 +285,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.208Z"
+      "updated_at": "2026-05-12T07:03:17.533Z"
     },
     "be32d4df": {
       "id": "be32d4df",
@@ -298,7 +298,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.209Z"
+      "updated_at": "2026-05-12T07:03:17.534Z"
     },
     "285e9d99": {
       "id": "285e9d99",
@@ -311,7 +311,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.210Z"
+      "updated_at": "2026-05-12T07:03:17.534Z"
     },
     "901d20e0": {
       "id": "901d20e0",
@@ -324,7 +324,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.212Z"
+      "updated_at": "2026-05-12T07:03:17.535Z"
     },
     "af406293": {
       "id": "af406293",
@@ -337,7 +337,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.213Z"
+      "updated_at": "2026-05-12T07:03:17.535Z"
     },
     "13db403f": {
       "id": "13db403f",
@@ -350,7 +350,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.215Z"
+      "updated_at": "2026-05-12T07:03:17.536Z"
     },
     "efd72908": {
       "id": "efd72908",
@@ -363,7 +363,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-11T11:26:49.216Z"
+      "updated_at": "2026-05-12T07:03:17.537Z"
     }
   },
   "details": {
@@ -463,14 +463,14 @@
           "appName": "llamacppqwen35iq4one",
           "version": "1.0.7",
           "versionName": "1.0.6",
-          "mergedAt": "2026-05-11T11:26:49.196Z",
+          "mergedAt": "2026-05-12T07:03:17.526Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.196Z"
+      "updated_at": "2026-05-12T07:03:17.526Z"
     },
     "e1311c4c": {
       "id": "e1311c4c",
@@ -568,14 +568,14 @@
           "appName": "acestepxlone",
           "version": "1.1.7",
           "versionName": "1.1.7",
-          "mergedAt": "2026-05-11T11:26:49.174Z",
+          "mergedAt": "2026-05-12T07:03:17.518Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.174Z"
+      "updated_at": "2026-05-12T07:03:17.518Z"
     },
     "f9902972": {
       "id": "f9902972",
@@ -673,14 +673,14 @@
           "appName": "cascade230a3bone",
           "version": "1.0.6",
           "versionName": "1.0.5",
-          "mergedAt": "2026-05-11T11:26:49.177Z",
+          "mergedAt": "2026-05-12T07:03:17.519Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.177Z"
+      "updated_at": "2026-05-12T07:03:17.519Z"
     },
     "8a7e4366": {
       "id": "8a7e4366",
@@ -778,14 +778,14 @@
           "appName": "devstralsmallone",
           "version": "1.0.6",
           "versionName": "1.0.4",
-          "mergedAt": "2026-05-11T11:26:49.182Z",
+          "mergedAt": "2026-05-12T07:03:17.520Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.182Z"
+      "updated_at": "2026-05-12T07:03:17.520Z"
     },
     "cf587666": {
       "id": "cf587666",
@@ -883,14 +883,14 @@
           "appName": "exl3qwen35a3bone",
           "version": "1.0.15",
           "versionName": "1.0.15",
-          "mergedAt": "2026-05-11T11:26:49.184Z",
+          "mergedAt": "2026-05-12T07:03:17.521Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.184Z"
+      "updated_at": "2026-05-12T07:03:17.521Z"
     },
     "a4f8515c": {
       "id": "a4f8515c",
@@ -988,14 +988,14 @@
           "appName": "gemma426ba4bone",
           "version": "1.0.10",
           "versionName": "1.0.10",
-          "mergedAt": "2026-05-11T11:26:49.186Z",
+          "mergedAt": "2026-05-12T07:03:17.522Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.186Z"
+      "updated_at": "2026-05-12T07:03:17.522Z"
     },
     "65b82978": {
       "id": "65b82978",
@@ -1093,14 +1093,14 @@
           "appName": "gemma4e2bone",
           "version": "1.0.2",
           "versionName": "1.0.2",
-          "mergedAt": "2026-05-11T11:26:49.188Z",
+          "mergedAt": "2026-05-12T07:03:17.522Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.188Z"
+      "updated_at": "2026-05-12T07:03:17.522Z"
     },
     "8c6443a7": {
       "id": "8c6443a7",
@@ -1202,14 +1202,14 @@
           "appName": "llamacppgemma4audione",
           "version": "1.0.0",
           "versionName": "1.0.0",
-          "mergedAt": "2026-05-11T11:26:49.190Z",
+          "mergedAt": "2026-05-12T07:03:17.523Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.190Z"
+      "updated_at": "2026-05-12T07:03:17.523Z"
     },
     "c1ca229f": {
       "id": "c1ca229f",
@@ -1307,14 +1307,14 @@
           "appName": "llamacppglm47flash",
           "version": "1.0.11",
           "versionName": "1.0.10",
-          "mergedAt": "2026-05-11T11:26:49.192Z",
+          "mergedAt": "2026-05-12T07:03:17.524Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.192Z"
+      "updated_at": "2026-05-12T07:03:17.524Z"
     },
     "491be3cd": {
       "id": "491be3cd",
@@ -1412,14 +1412,14 @@
           "appName": "llamacppnemotron30a3bone",
           "version": "1.0.10",
           "versionName": "1.0.9",
-          "mergedAt": "2026-05-11T11:26:49.193Z",
+          "mergedAt": "2026-05-12T07:03:17.525Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.193Z"
+      "updated_at": "2026-05-12T07:03:17.525Z"
     },
     "4ef430dd": {
       "id": "4ef430dd",
@@ -1517,14 +1517,14 @@
           "appName": "llamacppqwen35a3bone",
           "version": "1.0.29",
           "versionName": "1.0.28",
-          "mergedAt": "2026-05-11T11:26:49.194Z",
+          "mergedAt": "2026-05-12T07:03:17.525Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.194Z"
+      "updated_at": "2026-05-12T07:03:17.525Z"
     },
     "059cd05d": {
       "id": "059cd05d",
@@ -1622,14 +1622,14 @@
           "appName": "llamacppqwen36a3bone",
           "version": "1.0.0",
           "versionName": "1.0.0",
-          "mergedAt": "2026-05-11T11:26:49.197Z",
+          "mergedAt": "2026-05-12T07:03:17.526Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.197Z"
+      "updated_at": "2026-05-12T07:03:17.526Z"
     },
     "49ed4ea2": {
       "id": "49ed4ea2",
@@ -1727,31 +1727,31 @@
           "appName": "llamacppqwen36dflashone",
           "version": "1.0.1",
           "versionName": "1.0.1",
-          "mergedAt": "2026-05-11T11:26:49.198Z",
+          "mergedAt": "2026-05-12T07:03:17.527Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.198Z"
+      "updated_at": "2026-05-12T07:03:17.527Z"
     },
     "43e83ecd": {
       "id": "43e83ecd",
       "name": "llamacppqwen36mtpone",
       "cfgType": "app",
-      "chartName": "llamacppqwen36mtpone-1.0.7.tgz",
+      "chartName": "llamacppqwen36mtpone-1.0.8.tgz",
       "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen36mtpone.png",
       "description": "Qwen3.6 27B longest context — 77 t/s @ full 262K (havenoammo UD-Q3_K_XL + MTP)",
       "appID": "43e83ecd",
       "title": "Qwen36 27B Long Context",
-      "version": "1.0.7",
+      "version": "1.0.8",
       "categories": [
         "AI"
       ],
-      "versionName": "1.0.7",
+      "versionName": "1.0.8",
       "fullDescription": "Qwen3.6 27B with Multi-Token Prediction (MTP) speculative decoding — first reproducible MTP-on-llama.cpp build for Olares One.\nRTX 5090M (24GB) + 96GB DDR5 + Core Ultra 9 275HX.\n\nStack:\n  - llama.cpp am17an/mtp-clean branch (PR #22673, 5 commits)\n  - --spec-type mtp + --spec-draft-n-max 5 + --cache-type-k/v q4_0 + 262K context\n  - Target model: froggeric/Qwen3.6-27B-Q4_K_M-mtp.gguf (16.81 GB, MTP head preserved + 7-fix chat template baked in)\n  - No separate drafter — MTP head is integrated in the GGUF\n  - Custom Docker image: aamsellem/llamacpp-mtp:0.1.0\n\nPerformance on Olares One (validated 2026-05-04):\n  - 78.1 t/s avg, range 74.9-80.6 t/s\n  - +123% vs llama.cpp standard (35 t/s baseline)\n  - Same league as vLLM Turbo (88 t/s) and Lucebox DFlash (88.5 t/s) but ZERO custom patches\n\nWhy this matters:\n  - Reproducible: one docker pull + one huggingface-cli download\n  - Maintainable: switches to upstream llama.cpp the day PR #22673 merges\n  - LM Studio / Open WebUI / Ollama compatible (OpenAI-style API on 8000)\n\nFirst launch downloads the 16.81 GB GGUF from HuggingFace — needs HF token configured in Olares user env.\nExposes an OpenAI-compatible API on port 8000.\n",
-      "upgradeDescription": "v1.0.7: get 262K back with MTP active. v1.0.6 was the safe-stable 128K fallback after v1.0.5's MTP CUDA OOM at 262K — but real users want both context AND MTP speed. Solution: swap havenoammo target Q3_K_XL (14.9 GB) → Q2_K_XL (12.3 GB), freeing 2.6 GB on top of the 1.9 GB Q3_K_XL already won over Q4_K_M. Total ~4.5 GB headroom recovered for MTP draft compute buffer — comfortably exceeds the ~2.5 GB gap that triggered `ggml_cuda_graph_evaluate_and_capture` exit-139 OOMs during `common_speculative_state_mtp::draft`. Restore CTX_SIZE → 262144, SPEC_DRAFT_N_MAX → 5 (community-recommended sweet spot). Trade-off: Q2_K_XL is a more aggressive Unsloth Dynamic quant (~5-8% quality drop on benchmarks vs Q3_K_XL; MTP head still preserved at Q8_0 by havenoammo's UD recipe). If you saw stable 65 t/s on v1.0.6 at 128K and prefer that quality, stay on v1.0.6 — it's still in the worker's chart cache. v1.0.7 is the \"max context + max speed\" tier. Expected: 70-77 t/s @ FULL 262K context with MTP active and NO CUDA OOM.\nv1.0.6: stability fix. v1.0.5's 262K context was boot-stable on our short-prompt validation bench (77 t/s @ 262K confirmed 2026-05-09) but at-runtime users hit CUDA OOM during MTP drafting: `ggml_cuda_graph_evaluate_and_capture` exit 139 inside `common_speculative_state_mtp::draft`. Cause is the same problem documented in v1.0.2: the MTP draft compute buffer grows with the cudagraph capture shapes the prompt actually exercises — boot's static allocator estimate isn't enough headroom even with Q3_K_XL's ~1.9 GB savings vs Q4_K_M. Reduce CTX_SIZE 262144 → 131072 (proven stable in v1.0.3, also a \"long context\" tier vs the fast 88 t/s vllmqwen36turbo27bone option) and SPEC_DRAFT_N_MAX 5 → 4 (one less draft frees a few hundred MB of compute buffer). Target stays havenoammo UD-Q3_K_XL — no rebuild. Users who really want 262K and accept occasional MTP crashes can override CTX_SIZE in their values. Expected: same 65-77 t/s range from v1.0.3/1.0.5, but rock-stable. SUPERSEDED by v1.0.7 (Q2_K_XL frees enough headroom to bring back 262K + MTP).\nv1.0.5: target swap froggeric Q4_K_M-mtp (16.81 GB) → havenoammo UD-Q3_K_XL (14.92 GB, Unsloth Dynamic). Validated 2026-05-09 on Olares One: 77 t/s steady @ FULL 262K context with 75-80% draft acceptance (vs prior 65 t/s @ 128K, 64% accept). +18% speed +105% context +12 pts acceptance — single GGUF swap unlocks the Reddit-reported 80 t/s @ 262K recipe without any image rebuild. Q3_K_XL Unsloth Dynamic preserves critical layers in 6/8-bit while quantizing rest to 3-bit, giving better drafter alignment than standard Q4_K_M. The 1.9 GB target savings free up KV headroom for full 262K native context. Image still aamsellem/llamacpp-mtp:0.1.0 (am17an/mtp-clean), config flags unchanged. WARNING: runtime MTP CUDA OOM reported — fixed in v1.0.6 by reducing context to 128K.\nv1.0.4: rename + description rework — this app is now positioned as the \"long context\" Qwen3.6 27B option (vs `vllmqwen36turbo27bone` \"fast 88 t/s\"). Title: \"Qwen36 27B Long Context\". Add HAMi-core `0m` parsing bug workaround (`CUDA_DEVICE_MEMORY_LIMIT_0=24300m`) as precaution (the llama.cpp MTP path didn't trigger the bug in our tests but the override is harmless). 4 redundant Qwen3.6 27B apps removed from the market in same release: dflashqwen36one, lucedflashqwen36one, vllmqwen36dense27bone, llamacppqwen36dense27bone.\nv1.0.3: bump CTX_SIZE 32000 → 128000 (sweet spot between v1.0.1's failed 262K and v1.0.2's safe 32K). Estimation: KV q4_0 on 16 full-attention layers ≈ 16KB/token → 128K ctx = ~2 GB KV (vs ~4.3 GB at 262K). Leaves ~4 GB free for MTP draft compute buffers (proven 32K worked with ~5.6 GB free at 78 t/s). 4× more context than v1.0.2 for agentic/long-context workflows. If OOM, fall back to v1.0.2 (32K) or move to IQ4_XS quant for more VRAM headroom at full context.\nv1.0.2: revert CTX_SIZE 262144 → 32000. v1.0.1's 262K context made the MTP context allocation OOM at compute buffer stage (`graph_reserve: failed to allocate compute buffers / failed to create MTP context`). After model + KV q4_0 only ~1.8 GiB free, not enough for MTP draft head compute buffers. Pod fell back to non-MTP mode → 37 t/s baseline (vs expected 78 t/s). 32K context proven to fit on 24 GB with MTP active. froggeric's table claim \"24 GB Q4_K_M q4_0 262K = 22.8 GB\" doesn't account for MTP draft compute buffer overhead. Other v1.0.1 changes kept (q4_0 KV cache, spec-draft-n-max 5, batch/ubatch 512, model still froggeric/Qwen3.6-27B-Q4_K_M-mtp.gguf with 7-fix chat template baked in). Future direction: try IQ3_M or IQ4_XS to free more VRAM for higher context.\nv1.0.1: switch to froggeric/Qwen3.6-27B-MTP-GGUF (community-recommended quants per ex-arman68's r/LocalLLaMA post 2026-05-06, 678 upvotes). Uses Qwen3.6-27B-Q4_K_M-mtp.gguf (16.81 GB) with froggeric's 7-fix chat template baked in. Bumps CTX_SIZE 32000 → 262144 (full native 262K context, 8.2× larger), adds q4_0 KV cache (4-bit, quarter the KV memory at minor quality cost), bumps spec-draft-n-max 4 → 5 (community-recommended sweet spot for Qwen3.6 MTP), bumps batch/ubatch 256/64 → 512/512 (better prompt processing). Total VRAM ~22.8 GB at 262K — fits comfortably in 24 GB. Vision NOT enabled (currently crashes llama.cpp when used alongside MTP per upstream report 2026-05-06). Image still aamsellem/llamacpp-mtp:0.1.0 from am17an/mtp-clean PR #22673 branch.\nv1.0.0: initial release. Qwen3.6 27B served via llama.cpp PR #22673 (am17an/mtp-clean, OPEN BLOCKED but tested 2026-05-04). Custom image aamsellem/llamacpp-mtp:0.1.0 built from am17an/mtp-clean branch (5 commits including MTP support + qwen35moe_mtp model wiring + GDN partial seq_rm). Target model RDson/Qwen3.6-27B-MTP-Q4_K_M-GGUF (16.49 GB Q4_K_M with MTP head — standard unsloth quants strip the head, RDson preserved it). Validated 2026-05-04 on Olares One: 78.1 t/s avg over 3 Space Invaders prompts (Run1=74.91, Run2=80.60, Run3=78.78), +123% vs llama.cpp standard baseline (35 t/s). Stack is upstream-pure (one open PR + one HF GGUF) — once PR #22673 merges into ggml-org/llama.cpp master, this app will switch to ghcr.io/ggml-org/llama.cpp:server-cuda13-bNNNN with same flags.\n",
+      "upgradeDescription": "v1.0.8: switch havenoammo Q2_K_XL → unsloth UD-Q3_K_XL. Validated 2026-05-12 on Olares One: 72.75 t/s AVG (10 runs, range 69.30-75.95), ZERO CUDA OOM at FULL 262K context with MTP n=5. Same speed as v1.0.7 (havenoammo Q2 was 72.14 t/s) BUT with Q3 quality tier (+5-8% vs Q2 on benchmarks). Surprising finding: havenoammo's Q3_K_XL (14.92 GB) hit runtime OOM at 262K (v1.0.5 bug), but unsloth's UD-Q3_K_XL (14.8 GB, ~120 MB smaller) is rock-stable at the same context + spec config. Different MTP integration metadata / memory layout. Strict upgrade vs v1.0.7: same context, same speed, better quality. Image still aamsellem/llamacpp-mtp:0.1.0 — will swap to ghcr.io/ggml-org/llama.cpp:server-cuda13-bNNNN once am17an's MTP PR #22673 merges upstream.\nv1.0.7: get 262K back with MTP active. v1.0.6 was the safe-stable 128K fallback after v1.0.5's MTP CUDA OOM at 262K — but real users want both context AND MTP speed. Solution: swap havenoammo target Q3_K_XL (14.9 GB) → Q2_K_XL (12.3 GB), freeing 2.6 GB on top of the 1.9 GB Q3_K_XL already won over Q4_K_M. Total ~4.5 GB headroom recovered for MTP draft compute buffer — comfortably exceeds the ~2.5 GB gap that triggered `ggml_cuda_graph_evaluate_and_capture` exit-139 OOMs during `common_speculative_state_mtp::draft`. Restore CTX_SIZE → 262144, SPEC_DRAFT_N_MAX → 5. Trade-off: Q2_K_XL is a more aggressive Unsloth Dynamic quant (~5-8% quality drop on benchmarks vs Q3_K_XL). Direct bench validated 72.14 t/s STABLE. SUPERSEDED by v1.0.8 (unsloth UD-Q3_K_XL — same stability + Q3 quality).\nv1.0.6: stability fix. v1.0.5's 262K context was boot-stable on our short-prompt validation bench (77 t/s @ 262K confirmed 2026-05-09) but at-runtime users hit CUDA OOM during MTP drafting: `ggml_cuda_graph_evaluate_and_capture` exit 139 inside `common_speculative_state_mtp::draft`. Cause is the same problem documented in v1.0.2: the MTP draft compute buffer grows with the cudagraph capture shapes the prompt actually exercises — boot's static allocator estimate isn't enough headroom even with Q3_K_XL's ~1.9 GB savings vs Q4_K_M. Reduce CTX_SIZE 262144 → 131072 (proven stable in v1.0.3, also a \"long context\" tier vs the fast 88 t/s vllmqwen36turbo27bone option) and SPEC_DRAFT_N_MAX 5 → 4 (one less draft frees a few hundred MB of compute buffer). Target stays havenoammo UD-Q3_K_XL — no rebuild. Users who really want 262K and accept occasional MTP crashes can override CTX_SIZE in their values. Expected: same 65-77 t/s range from v1.0.3/1.0.5, but rock-stable. SUPERSEDED by v1.0.7 (Q2_K_XL frees enough headroom to bring back 262K + MTP).\nv1.0.5: target swap froggeric Q4_K_M-mtp (16.81 GB) → havenoammo UD-Q3_K_XL (14.92 GB, Unsloth Dynamic). Validated 2026-05-09 on Olares One: 77 t/s steady @ FULL 262K context with 75-80% draft acceptance (vs prior 65 t/s @ 128K, 64% accept). +18% speed +105% context +12 pts acceptance — single GGUF swap unlocks the Reddit-reported 80 t/s @ 262K recipe without any image rebuild. Q3_K_XL Unsloth Dynamic preserves critical layers in 6/8-bit while quantizing rest to 3-bit, giving better drafter alignment than standard Q4_K_M. The 1.9 GB target savings free up KV headroom for full 262K native context. Image still aamsellem/llamacpp-mtp:0.1.0 (am17an/mtp-clean), config flags unchanged. WARNING: runtime MTP CUDA OOM reported — fixed in v1.0.6 by reducing context to 128K.\nv1.0.4: rename + description rework — this app is now positioned as the \"long context\" Qwen3.6 27B option (vs `vllmqwen36turbo27bone` \"fast 88 t/s\"). Title: \"Qwen36 27B Long Context\". Add HAMi-core `0m` parsing bug workaround (`CUDA_DEVICE_MEMORY_LIMIT_0=24300m`) as precaution (the llama.cpp MTP path didn't trigger the bug in our tests but the override is harmless). 4 redundant Qwen3.6 27B apps removed from the market in same release: dflashqwen36one, lucedflashqwen36one, vllmqwen36dense27bone, llamacppqwen36dense27bone.\nv1.0.3: bump CTX_SIZE 32000 → 128000 (sweet spot between v1.0.1's failed 262K and v1.0.2's safe 32K). Estimation: KV q4_0 on 16 full-attention layers ≈ 16KB/token → 128K ctx = ~2 GB KV (vs ~4.3 GB at 262K). Leaves ~4 GB free for MTP draft compute buffers (proven 32K worked with ~5.6 GB free at 78 t/s). 4× more context than v1.0.2 for agentic/long-context workflows. If OOM, fall back to v1.0.2 (32K) or move to IQ4_XS quant for more VRAM headroom at full context.\nv1.0.2: revert CTX_SIZE 262144 → 32000. v1.0.1's 262K context made the MTP context allocation OOM at compute buffer stage (`graph_reserve: failed to allocate compute buffers / failed to create MTP context`). After model + KV q4_0 only ~1.8 GiB free, not enough for MTP draft head compute buffers. Pod fell back to non-MTP mode → 37 t/s baseline (vs expected 78 t/s). 32K context proven to fit on 24 GB with MTP active. froggeric's table claim \"24 GB Q4_K_M q4_0 262K = 22.8 GB\" doesn't account for MTP draft compute buffer overhead. Other v1.0.1 changes kept (q4_0 KV cache, spec-draft-n-max 5, batch/ubatch 512, model still froggeric/Qwen3.6-27B-Q4_K_M-mtp.gguf with 7-fix chat template baked in). Future direction: try IQ3_M or IQ4_XS to free more VRAM for higher context.\nv1.0.1: switch to froggeric/Qwen3.6-27B-MTP-GGUF (community-recommended quants per ex-arman68's r/LocalLLaMA post 2026-05-06, 678 upvotes). Uses Qwen3.6-27B-Q4_K_M-mtp.gguf (16.81 GB) with froggeric's 7-fix chat template baked in. Bumps CTX_SIZE 32000 → 262144 (full native 262K context, 8.2× larger), adds q4_0 KV cache (4-bit, quarter the KV memory at minor quality cost), bumps spec-draft-n-max 4 → 5 (community-recommended sweet spot for Qwen3.6 MTP), bumps batch/ubatch 256/64 → 512/512 (better prompt processing). Total VRAM ~22.8 GB at 262K — fits comfortably in 24 GB. Vision NOT enabled (currently crashes llama.cpp when used alongside MTP per upstream report 2026-05-06). Image still aamsellem/llamacpp-mtp:0.1.0 from am17an/mtp-clean PR #22673 branch.\nv1.0.0: initial release. Qwen3.6 27B served via llama.cpp PR #22673 (am17an/mtp-clean, OPEN BLOCKED but tested 2026-05-04). Custom image aamsellem/llamacpp-mtp:0.1.0 built from am17an/mtp-clean branch (5 commits including MTP support + qwen35moe_mtp model wiring + GDN partial seq_rm). Target model RDson/Qwen3.6-27B-MTP-Q4_K_M-GGUF (16.49 GB Q4_K_M with MTP head — standard unsloth quants strip the head, RDson preserved it). Validated 2026-05-04 on Olares One: 78.1 t/s avg over 3 Space Invaders prompts (Run1=74.91, Run2=80.60, Run3=78.78), +123% vs llama.cpp standard baseline (35 t/s). Stack is upstream-pure (one open PR + one HF GGUF) — once PR #22673 merges into ggml-org/llama.cpp master, this app will switch to ghcr.io/ggml-org/llama.cpp:server-cuda13-bNNNN with same flags.\n",
       "promoteImage": null,
       "promoteVideo": "",
       "subCategory": "",
@@ -1830,16 +1830,16 @@
       "versionHistory": [
         {
           "appName": "llamacppqwen36mtpone",
-          "version": "1.0.7",
-          "versionName": "1.0.7",
-          "mergedAt": "2026-05-11T11:26:49.200Z",
+          "version": "1.0.8",
+          "versionName": "1.0.8",
+          "mergedAt": "2026-05-12T07:03:17.528Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.200Z"
+      "updated_at": "2026-05-12T07:03:17.528Z"
     },
     "fa4ef911": {
       "id": "fa4ef911",
@@ -1937,14 +1937,14 @@
           "appName": "nemotron3nano4bone",
           "version": "1.0.5",
           "versionName": "1.0.3",
-          "mergedAt": "2026-05-11T11:26:49.201Z",
+          "mergedAt": "2026-05-12T07:03:17.528Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.201Z"
+      "updated_at": "2026-05-12T07:03:17.528Z"
     },
     "e74eca98": {
       "id": "e74eca98",
@@ -2042,14 +2042,14 @@
           "appName": "omnivoiceone",
           "version": "1.1.1",
           "versionName": "1.1.1",
-          "mergedAt": "2026-05-11T11:26:49.202Z",
+          "mergedAt": "2026-05-12T07:03:17.529Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.202Z"
+      "updated_at": "2026-05-12T07:03:17.529Z"
     },
     "2c5c39c9": {
       "id": "2c5c39c9",
@@ -2147,14 +2147,14 @@
           "appName": "qwen35a3bvisionone",
           "version": "1.0.9",
           "versionName": "1.0.8",
-          "mergedAt": "2026-05-11T11:26:49.203Z",
+          "mergedAt": "2026-05-12T07:03:17.530Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.203Z"
+      "updated_at": "2026-05-12T07:03:17.530Z"
     },
     "ed18683c": {
       "id": "ed18683c",
@@ -2252,14 +2252,14 @@
           "appName": "qwen35iq4visionone",
           "version": "1.0.7",
           "versionName": "1.0.6",
-          "mergedAt": "2026-05-11T11:26:49.204Z",
+          "mergedAt": "2026-05-12T07:03:17.530Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.204Z"
+      "updated_at": "2026-05-12T07:03:17.530Z"
     },
     "14fdab3c": {
       "id": "14fdab3c",
@@ -2357,14 +2357,14 @@
           "appName": "qwen36a3bvisionone",
           "version": "1.0.2",
           "versionName": "1.0.2",
-          "mergedAt": "2026-05-11T11:26:49.205Z",
+          "mergedAt": "2026-05-12T07:03:17.531Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.205Z"
+      "updated_at": "2026-05-12T07:03:17.531Z"
     },
     "da30d532": {
       "id": "da30d532",
@@ -2462,14 +2462,14 @@
           "appName": "qwen3coder30a3bone",
           "version": "1.0.0",
           "versionName": "1.0.0",
-          "mergedAt": "2026-05-11T11:26:49.206Z",
+          "mergedAt": "2026-05-12T07:03:17.532Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.206Z"
+      "updated_at": "2026-05-12T07:03:17.532Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -2567,14 +2567,14 @@
           "appName": "qwen3ttstone",
           "version": "1.0.9",
           "versionName": "1.0.9",
-          "mergedAt": "2026-05-11T11:26:49.207Z",
+          "mergedAt": "2026-05-12T07:03:17.532Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.207Z"
+      "updated_at": "2026-05-12T07:03:17.532Z"
     },
     "18a6f781": {
       "id": "18a6f781",
@@ -2672,14 +2672,14 @@
           "appName": "vllmgemma4dflashone",
           "version": "1.0.4",
           "versionName": "1.0.4",
-          "mergedAt": "2026-05-11T11:26:49.208Z",
+          "mergedAt": "2026-05-12T07:03:17.533Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.208Z"
+      "updated_at": "2026-05-12T07:03:17.533Z"
     },
     "be32d4df": {
       "id": "be32d4df",
@@ -2777,14 +2777,14 @@
           "appName": "vllmgemma4e4bone",
           "version": "1.0.12",
           "versionName": "1.0.12",
-          "mergedAt": "2026-05-11T11:26:49.209Z",
+          "mergedAt": "2026-05-12T07:03:17.534Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.209Z"
+      "updated_at": "2026-05-12T07:03:17.534Z"
     },
     "285e9d99": {
       "id": "285e9d99",
@@ -2882,14 +2882,14 @@
           "appName": "vllmqwen3527bone",
           "version": "1.0.3",
           "versionName": "1.0.3",
-          "mergedAt": "2026-05-11T11:26:49.210Z",
+          "mergedAt": "2026-05-12T07:03:17.534Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.210Z"
+      "updated_at": "2026-05-12T07:03:17.534Z"
     },
     "901d20e0": {
       "id": "901d20e0",
@@ -2987,14 +2987,14 @@
           "appName": "vllmqwen36turbo27bone",
           "version": "2.5.7",
           "versionName": "2.5.7",
-          "mergedAt": "2026-05-11T11:26:49.212Z",
+          "mergedAt": "2026-05-12T07:03:17.535Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.212Z"
+      "updated_at": "2026-05-12T07:03:17.535Z"
     },
     "af406293": {
       "id": "af406293",
@@ -3092,14 +3092,14 @@
           "appName": "vllmvoxtral3bone",
           "version": "1.0.8",
           "versionName": "1.0.7",
-          "mergedAt": "2026-05-11T11:26:49.213Z",
+          "mergedAt": "2026-05-12T07:03:17.535Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.213Z"
+      "updated_at": "2026-05-12T07:03:17.535Z"
     },
     "13db403f": {
       "id": "13db403f",
@@ -3197,14 +3197,14 @@
           "appName": "vllmvoxtralrt4bone",
           "version": "1.0.9",
           "versionName": "1.0.8",
-          "mergedAt": "2026-05-11T11:26:49.215Z",
+          "mergedAt": "2026-05-12T07:03:17.536Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.215Z"
+      "updated_at": "2026-05-12T07:03:17.536Z"
     },
     "efd72908": {
       "id": "efd72908",
@@ -3302,14 +3302,14 @@
           "appName": "vllmvoxtraltts4bone",
           "version": "1.0.13",
           "versionName": "1.0.12",
-          "mergedAt": "2026-05-11T11:26:49.216Z",
+          "mergedAt": "2026-05-12T07:03:17.537Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-11T11:26:49.216Z"
+      "updated_at": "2026-05-12T07:03:17.537Z"
     }
   },
   "latest": [
@@ -3325,8 +3325,8 @@
     "cascade230a3bone",
     "devstralsmallone",
     "llamacppqwen35iq4one",
-    "llamacppqwen36mtpone",
     "qwen35iq4visionone",
+    "llamacppqwen36mtpone",
     "vllmvoxtral3bone",
     "qwen35a3bvisionone",
     "qwen3ttstone",

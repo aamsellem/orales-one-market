@@ -5,8 +5,8 @@ metadata:
   name: llamacpp-mtp-env
   namespace: "{{ .Release.Namespace }}"
 data:
-  TARGET_MODEL: "havenoammo/Qwen3.6-27B-MTP-UD-GGUF"
-  TARGET_FILE: "Qwen3.6-27B-MTP-UD-Q2_K_XL.gguf"
+  TARGET_MODEL: "unsloth/Qwen3.6-27B-GGUF-MTP"
+  TARGET_FILE: "Qwen3.6-27B-UD-Q3_K_XL.gguf"
   MODEL_ALIAS: "qwen3.6-27b-mtp"
   CTX_SIZE: "262144"
   THREADS: "16"
