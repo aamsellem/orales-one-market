@@ -10,7 +10,7 @@ data:
   DRAFT_URL: "https://huggingface.co/spiritbuun/Qwen3.6-27B-DFlash-GGUF/resolve/main/dflash-draft-3.6-q8_0.gguf"
   DRAFT_FILE: "dflash-draft-3.6-q8_0.gguf"
   MODEL_ALIAS: "qwen3.6-27b-beellama"
-  CTX_SIZE: "96000"
+  CTX_SIZE: "262144"
   THREADS: "16"
 ---
 apiVersion: apps/v1
