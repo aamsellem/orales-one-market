@@ -1,0 +1,98 @@
+---
+olaresManifest.version: '0.10.0'
+olaresManifest.type: app
+apiVersion: 'v2'
+metadata:
+  name: llamacppqwen36beellamaone
+  icon: https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen36beellamaone.png
+  description: "Qwen3.6 27B fastest local — 107 t/s @ 96K via BeeLlama.cpp + DFlash drafter + TurboQuant turbo3 KV"
+  appid: llamacppqwen36beellamaone
+  title: Qwen36 27B BeeLlama One
+  version: '1.0.0'
+  categories:
+    - AI
+entrances:
+  - name: llamacppqwen36beellamaone
+    port: 8000
+    host: llamacppqwen36beellamaone
+    title: Qwen36 27B BeeLlama
+    icon: https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen36beellamaone.png
+    openMethod: window
+    authLevel: internal
+spec:
+  versionName: '1.0.0'
+  upgradeDescription: |
+    v1.0.0: initial release. Qwen3.6 27B served via Anbeeld/beellama.cpp v0.1.1 fork (built from spiritbuun/buun-llama-cpp + MTP + CopySpec + reasoning-loop protection + TurboQuant turbo3 KV). First public bench on RTX 5090M Blackwell consumer mobile sm_120 — **107 t/s AVG (10 clean runs, range 98-115)** @ 96K context. Stack: unsloth/Qwen3.6-27B-GGUF Q3_K_XL (14.5 GB) + spiritbuun/Qwen3.6-27B-DFlash-GGUF dflash-draft-3.6-q8_0 (1.85 GB) + turbo3 KV (3-bit Walsh-Hadamard) + DFlash spec + batch 2048/ubatch 256 + flash-attn. Custom Docker image aamsellem/beellama-cpp:0.1.1 (build from v0.1.1 source for amd64+CUDA 13+sm_120). +40% vs llamacppqwen36dflashone (76 t/s @ 96K), +27% vs vllmqwen36turbo27bone (88 t/s @ 88K). No degradation cycle, no CUDA OOM, no Genesis patches needed. Best single-GPU Qwen3.6 27B path on Olares One today.
+  fullDescription: |
+    Qwen3.6 27B fastest local inference path on Olares One — 107 t/s AVG, peak 133 t/s.
+    RTX 5090M (24 GB GDDR7, sm_120 Blackwell mobile) + 96 GB DDR5 + Core Ultra 9 275HX.
+
+    Stack:
+      - Image: aamsellem/beellama-cpp:0.1.1 (custom build of Anbeeld/beellama.cpp v0.1.1 for amd64+CUDA 13.0+sm_120)
+      - Target: unsloth/Qwen3.6-27B-GGUF UD-Q3_K_XL (14.5 GB, NOT the MTP variant — BeeLlama uses DFlash spec, not MTP)
+      - Drafter: spiritbuun/Qwen3.6-27B-DFlash-GGUF dflash-draft-3.6-q8_0 (1.85 GB)
+      - Spec method: --spec-type dflash with --spec-dflash-cross-ctx 1024
+      - KV cache: turbo3 (3-bit Walsh-Hadamard rotated, ~25% smaller than q4_0)
+      - Context: 96K (per-seq with DFlash dual-buffer)
+      - batch-size 2048, ubatch-size 256, flash-attn on, mlock, no-mmap
+
+    BeeLlama.cpp adds over upstream / spiritbuun fork:
+      - DFlash spec decoding (inherited)
+      - TurboQuant turbo2/3/4 KV cache types (inherited from TheTom fork)
+      - CopySpec: model-free speculation via rolling-hash suffix matching
+      - Reasoning-loop protection (Qwen think-loop guard)
+
+    Performance on Olares One (validated 2026-05-14 night-bench):
+      - **107 t/s AVG** (10 clean runs, range 97.84-115.36 t/s)
+      - Peak 133 t/s on single fast run (5-run subset)
+      - ZERO CUDA OOM, NO degradation cycle
+      - +40% vs llamacppqwen36dflashone (76 t/s same drafter, different image)
+      - +27% vs vllmqwen36turbo27bone (88 t/s vLLM Genesis MTP)
+      - +47% vs llamacppqwen36mtpone (72.75 t/s MTP 262K)
+
+    When to use this app:
+      - You want max speed on Qwen3.6 27B and 96K context is enough
+      - You don't need 262K long context (use llamacppqwen36mtpone for that)
+      - You prefer single binary path over vLLM Genesis 28-patch maintenance burden
+
+    First launch downloads ~16 GB target + ~2 GB drafter from HuggingFace.
+    Exposes an OpenAI-compatible API on port 8000.
+
+    Custom image source: https://github.com/Anbeeld/beellama.cpp v0.1.1 (commit 2026-05-11)
+    BeeLlama is fork chain: ggml-org/llama.cpp → TheTom/llama-cpp-turboquant → spiritbuun/buun-llama-cpp → Anbeeld/beellama.cpp
+
+  developer: aamsellem
+  website: https://github.com/Anbeeld/beellama.cpp
+  sourceCode: https://github.com/aamsellem/olares-one-market
+  submitter: aamsellem
+  locale:
+    - en-US
+  license:
+    - text: MIT
+      url: https://github.com/ggml-org/llama.cpp/blob/master/LICENSE
+
+  limitedCpu: 16
+  requiredCpu: 4
+  requiredDisk: 25Gi
+  limitedDisk: 40Gi
+  limitedMemory: 40Gi
+  requiredMemory: 20Gi
+  requiredGpu: 1Gi
+  limitedGpu: 24Gi
+
+  supportArch:
+    - amd64
+permission:
+  appData: true
+options:
+  apiTimeout: 0
+  dependencies:
+    - name: olares
+      version: '>=1.12.3-0'
+      type: system
+envs:
+  - envName: OLARES_USER_HUGGINGFACE_TOKEN
+    required: false
+    applyOnChange: true
+    valueFrom:
+      envName: OLARES_USER_HUGGINGFACE_TOKEN

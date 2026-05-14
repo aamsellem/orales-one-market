@@ -1,0 +1,17 @@
+metadata:
+  title: Qwen36 27B BeeLlama One
+  description: "Qwen3.6 27B fastest local — 107 t/s @ 96K via BeeLlama.cpp + DFlash drafter + TurboQuant turbo3 KV"
+
+spec:
+  fullDescription: |
+    Qwen3.6 27B served via Anbeeld/beellama.cpp v0.1.1 fork (chain: ggml-org → TheTom/turboquant → spiritbuun/buun → Anbeeld).
+    Image: aamsellem/beellama-cpp:0.1.1 (custom amd64 + CUDA 13 + sm_120 build)
+    Target: unsloth/Qwen3.6-27B-GGUF UD-Q3_K_XL (14.5 GB, non-MTP variant)
+    Drafter: spiritbuun/Qwen3.6-27B-DFlash-GGUF dflash-draft-3.6-q8_0 (1.85 GB)
+    KV cache: turbo3 (3-bit Walsh-Hadamard rotated, ~25% smaller than q4_0)
+    Spec: DFlash with --spec-dflash-cross-ctx 1024, batch 2048, ubatch 256
+    Validated 2026-05-14: 107 t/s AVG over 10 clean runs (range 97.84-115.36 t/s), peak 133 t/s. ZERO CUDA OOM, NO degradation cycle.
+    +40% vs llamacppqwen36dflashone (76 t/s), +27% vs vllmqwen36turbo27bone (88 t/s), +47% vs llamacppqwen36mtpone (72.75 t/s).
+    Fastest Qwen3.6 27B path on Olares One. Use this for max throughput.
+    For 262K context: use llamacppqwen36mtpone instead (96K limit here).
+    OpenAI-compatible API on port 8000.

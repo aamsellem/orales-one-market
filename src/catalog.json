@@ -1,5 +1,5 @@
 {
-  "hash": "86b43c90a4df7c61db3b3303c87b7834",
+  "hash": "d4e19133b5726f9faab660275526e3cf",
   "summaries": {
     "33102786": {
       "id": "33102786",
@@ -12,7 +12,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.526Z"
+      "updated_at": "2026-05-14T02:06:01.775Z"
     },
     "e1311c4c": {
       "id": "e1311c4c",
@@ -25,7 +25,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.516Z"
+      "updated_at": "2026-05-14T02:06:01.767Z"
     },
     "f9902972": {
       "id": "f9902972",
@@ -38,7 +38,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.519Z"
+      "updated_at": "2026-05-14T02:06:01.770Z"
     },
     "8a7e4366": {
       "id": "8a7e4366",
@@ -51,7 +51,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.520Z"
+      "updated_at": "2026-05-14T02:06:01.771Z"
     },
     "cf587666": {
       "id": "cf587666",
@@ -64,7 +64,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.521Z"
+      "updated_at": "2026-05-14T02:06:01.771Z"
     },
     "a4f8515c": {
       "id": "a4f8515c",
@@ -77,7 +77,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.522Z"
+      "updated_at": "2026-05-14T02:06:01.772Z"
     },
     "65b82978": {
       "id": "65b82978",
@@ -90,7 +90,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.522Z"
+      "updated_at": "2026-05-14T02:06:01.772Z"
     },
     "8c6443a7": {
       "id": "8c6443a7",
@@ -103,7 +103,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.523Z"
+      "updated_at": "2026-05-14T02:06:01.773Z"
     },
     "c1ca229f": {
       "id": "c1ca229f",
@@ -116,7 +116,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.524Z"
+      "updated_at": "2026-05-14T02:06:01.773Z"
     },
     "491be3cd": {
       "id": "491be3cd",
@@ -129,7 +129,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.525Z"
+      "updated_at": "2026-05-14T02:06:01.774Z"
     },
     "4ef430dd": {
       "id": "4ef430dd",
@@ -142,7 +142,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.525Z"
+      "updated_at": "2026-05-14T02:06:01.774Z"
     },
     "059cd05d": {
       "id": "059cd05d",
@@ -155,7 +155,20 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.526Z"
+      "updated_at": "2026-05-14T02:06:01.775Z"
+    },
+    "9ca1356f": {
+      "id": "9ca1356f",
+      "name": "llamacppqwen36beellamaone",
+      "version": "1.0.0",
+      "category": "AI",
+      "description": "Qwen3.6 27B fastest local — 107 t/s @ 96K via BeeLlama.cpp + DFlash drafter + TurboQuant turbo3 KV",
+      "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen36beellamaone.png",
+      "screenshots": null,
+      "tags": null,
+      "metadata": null,
+      "source": 1,
+      "updated_at": "2026-05-14T02:06:01.775Z"
     },
     "49ed4ea2": {
       "id": "49ed4ea2",
@@ -168,7 +181,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.527Z"
+      "updated_at": "2026-05-14T02:06:01.775Z"
     },
     "43e83ecd": {
       "id": "43e83ecd",
@@ -181,7 +194,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.528Z"
+      "updated_at": "2026-05-14T02:06:01.776Z"
     },
     "fa4ef911": {
       "id": "fa4ef911",
@@ -194,7 +207,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.528Z"
+      "updated_at": "2026-05-14T02:06:01.776Z"
     },
     "e74eca98": {
       "id": "e74eca98",
@@ -207,7 +220,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.529Z"
+      "updated_at": "2026-05-14T02:06:01.776Z"
     },
     "2c5c39c9": {
       "id": "2c5c39c9",
@@ -220,7 +233,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.530Z"
+      "updated_at": "2026-05-14T02:06:01.777Z"
     },
     "ed18683c": {
       "id": "ed18683c",
@@ -233,7 +246,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.530Z"
+      "updated_at": "2026-05-14T02:06:01.777Z"
     },
     "14fdab3c": {
       "id": "14fdab3c",
@@ -246,7 +259,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.531Z"
+      "updated_at": "2026-05-14T02:06:01.777Z"
     },
     "da30d532": {
       "id": "da30d532",
@@ -259,7 +272,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.532Z"
+      "updated_at": "2026-05-14T02:06:01.777Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -272,7 +285,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.532Z"
+      "updated_at": "2026-05-14T02:06:01.777Z"
     },
     "18a6f781": {
       "id": "18a6f781",
@@ -285,7 +298,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.533Z"
+      "updated_at": "2026-05-14T02:06:01.778Z"
     },
     "be32d4df": {
       "id": "be32d4df",
@@ -298,7 +311,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.534Z"
+      "updated_at": "2026-05-14T02:06:01.778Z"
     },
     "285e9d99": {
       "id": "285e9d99",
@@ -311,7 +324,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.534Z"
+      "updated_at": "2026-05-14T02:06:01.778Z"
     },
     "901d20e0": {
       "id": "901d20e0",
@@ -324,7 +337,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.535Z"
+      "updated_at": "2026-05-14T02:06:01.779Z"
     },
     "af406293": {
       "id": "af406293",
@@ -337,7 +350,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.535Z"
+      "updated_at": "2026-05-14T02:06:01.779Z"
     },
     "13db403f": {
       "id": "13db403f",
@@ -350,7 +363,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.536Z"
+      "updated_at": "2026-05-14T02:06:01.780Z"
     },
     "efd72908": {
       "id": "efd72908",
@@ -363,7 +376,7 @@
       "tags": null,
       "metadata": null,
       "source": 1,
-      "updated_at": "2026-05-12T07:03:17.537Z"
+      "updated_at": "2026-05-14T02:06:01.780Z"
     }
   },
   "details": {
@@ -463,14 +476,14 @@
           "appName": "llamacppqwen35iq4one",
           "version": "1.0.7",
           "versionName": "1.0.6",
-          "mergedAt": "2026-05-12T07:03:17.526Z",
+          "mergedAt": "2026-05-14T02:06:01.775Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.526Z"
+      "updated_at": "2026-05-14T02:06:01.775Z"
     },
     "e1311c4c": {
       "id": "e1311c4c",
@@ -568,14 +581,14 @@
           "appName": "acestepxlone",
           "version": "1.1.7",
           "versionName": "1.1.7",
-          "mergedAt": "2026-05-12T07:03:17.518Z",
+          "mergedAt": "2026-05-14T02:06:01.769Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.518Z"
+      "updated_at": "2026-05-14T02:06:01.769Z"
     },
     "f9902972": {
       "id": "f9902972",
@@ -673,14 +686,14 @@
           "appName": "cascade230a3bone",
           "version": "1.0.6",
           "versionName": "1.0.5",
-          "mergedAt": "2026-05-12T07:03:17.519Z",
+          "mergedAt": "2026-05-14T02:06:01.770Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.519Z"
+      "updated_at": "2026-05-14T02:06:01.770Z"
     },
     "8a7e4366": {
       "id": "8a7e4366",
@@ -778,14 +791,14 @@
           "appName": "devstralsmallone",
           "version": "1.0.6",
           "versionName": "1.0.4",
-          "mergedAt": "2026-05-12T07:03:17.520Z",
+          "mergedAt": "2026-05-14T02:06:01.771Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.520Z"
+      "updated_at": "2026-05-14T02:06:01.771Z"
     },
     "cf587666": {
       "id": "cf587666",
@@ -883,14 +896,14 @@
           "appName": "exl3qwen35a3bone",
           "version": "1.0.15",
           "versionName": "1.0.15",
-          "mergedAt": "2026-05-12T07:03:17.521Z",
+          "mergedAt": "2026-05-14T02:06:01.771Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.521Z"
+      "updated_at": "2026-05-14T02:06:01.771Z"
     },
     "a4f8515c": {
       "id": "a4f8515c",
@@ -988,14 +1001,14 @@
           "appName": "gemma426ba4bone",
           "version": "1.0.10",
           "versionName": "1.0.10",
-          "mergedAt": "2026-05-12T07:03:17.522Z",
+          "mergedAt": "2026-05-14T02:06:01.772Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.522Z"
+      "updated_at": "2026-05-14T02:06:01.772Z"
     },
     "65b82978": {
       "id": "65b82978",
@@ -1093,14 +1106,14 @@
           "appName": "gemma4e2bone",
           "version": "1.0.2",
           "versionName": "1.0.2",
-          "mergedAt": "2026-05-12T07:03:17.522Z",
+          "mergedAt": "2026-05-14T02:06:01.772Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.522Z"
+      "updated_at": "2026-05-14T02:06:01.772Z"
     },
     "8c6443a7": {
       "id": "8c6443a7",
@@ -1202,14 +1215,14 @@
           "appName": "llamacppgemma4audione",
           "version": "1.0.0",
           "versionName": "1.0.0",
-          "mergedAt": "2026-05-12T07:03:17.523Z",
+          "mergedAt": "2026-05-14T02:06:01.773Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.523Z"
+      "updated_at": "2026-05-14T02:06:01.773Z"
     },
     "c1ca229f": {
       "id": "c1ca229f",
@@ -1307,14 +1320,14 @@
           "appName": "llamacppglm47flash",
           "version": "1.0.11",
           "versionName": "1.0.10",
-          "mergedAt": "2026-05-12T07:03:17.524Z",
+          "mergedAt": "2026-05-14T02:06:01.773Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.524Z"
+      "updated_at": "2026-05-14T02:06:01.773Z"
     },
     "491be3cd": {
       "id": "491be3cd",
@@ -1412,14 +1425,14 @@
           "appName": "llamacppnemotron30a3bone",
           "version": "1.0.10",
           "versionName": "1.0.9",
-          "mergedAt": "2026-05-12T07:03:17.525Z",
+          "mergedAt": "2026-05-14T02:06:01.774Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.525Z"
+      "updated_at": "2026-05-14T02:06:01.774Z"
     },
     "4ef430dd": {
       "id": "4ef430dd",
@@ -1517,14 +1530,14 @@
           "appName": "llamacppqwen35a3bone",
           "version": "1.0.29",
           "versionName": "1.0.28",
-          "mergedAt": "2026-05-12T07:03:17.525Z",
+          "mergedAt": "2026-05-14T02:06:01.774Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.525Z"
+      "updated_at": "2026-05-14T02:06:01.774Z"
     },
     "059cd05d": {
       "id": "059cd05d",
@@ -1622,14 +1635,119 @@
           "appName": "llamacppqwen36a3bone",
           "version": "1.0.0",
           "versionName": "1.0.0",
-          "mergedAt": "2026-05-12T07:03:17.526Z",
+          "mergedAt": "2026-05-14T02:06:01.775Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.526Z"
+      "updated_at": "2026-05-14T02:06:01.775Z"
+    },
+    "9ca1356f": {
+      "id": "9ca1356f",
+      "name": "llamacppqwen36beellamaone",
+      "cfgType": "app",
+      "chartName": "llamacppqwen36beellamaone-1.0.0.tgz",
+      "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen36beellamaone.png",
+      "description": "Qwen3.6 27B fastest local — 107 t/s @ 96K via BeeLlama.cpp + DFlash drafter + TurboQuant turbo3 KV",
+      "appID": "9ca1356f",
+      "title": "Qwen36 27B BeeLlama One",
+      "version": "1.0.0",
+      "categories": [
+        "AI"
+      ],
+      "versionName": "1.0.0",
+      "fullDescription": "Qwen3.6 27B fastest local inference path on Olares One — 107 t/s AVG, peak 133 t/s.\nRTX 5090M (24 GB GDDR7, sm_120 Blackwell mobile) + 96 GB DDR5 + Core Ultra 9 275HX.\n\nStack:\n  - Image: aamsellem/beellama-cpp:0.1.1 (custom build of Anbeeld/beellama.cpp v0.1.1 for amd64+CUDA 13.0+sm_120)\n  - Target: unsloth/Qwen3.6-27B-GGUF UD-Q3_K_XL (14.5 GB, NOT the MTP variant — BeeLlama uses DFlash spec, not MTP)\n  - Drafter: spiritbuun/Qwen3.6-27B-DFlash-GGUF dflash-draft-3.6-q8_0 (1.85 GB)\n  - Spec method: --spec-type dflash with --spec-dflash-cross-ctx 1024\n  - KV cache: turbo3 (3-bit Walsh-Hadamard rotated, ~25% smaller than q4_0)\n  - Context: 96K (per-seq with DFlash dual-buffer)\n  - batch-size 2048, ubatch-size 256, flash-attn on, mlock, no-mmap\n\nBeeLlama.cpp adds over upstream / spiritbuun fork:\n  - DFlash spec decoding (inherited)\n  - TurboQuant turbo2/3/4 KV cache types (inherited from TheTom fork)\n  - CopySpec: model-free speculation via rolling-hash suffix matching\n  - Reasoning-loop protection (Qwen think-loop guard)\n\nPerformance on Olares One (validated 2026-05-14 night-bench):\n  - **107 t/s AVG** (10 clean runs, range 97.84-115.36 t/s)\n  - Peak 133 t/s on single fast run (5-run subset)\n  - ZERO CUDA OOM, NO degradation cycle\n  - +40% vs llamacppqwen36dflashone (76 t/s same drafter, different image)\n  - +27% vs vllmqwen36turbo27bone (88 t/s vLLM Genesis MTP)\n  - +47% vs llamacppqwen36mtpone (72.75 t/s MTP 262K)\n\nWhen to use this app:\n  - You want max speed on Qwen3.6 27B and 96K context is enough\n  - You don't need 262K long context (use llamacppqwen36mtpone for that)\n  - You prefer single binary path over vLLM Genesis 28-patch maintenance burden\n\nFirst launch downloads ~16 GB target + ~2 GB drafter from HuggingFace.\nExposes an OpenAI-compatible API on port 8000.\n\nCustom image source: https://github.com/Anbeeld/beellama.cpp v0.1.1 (commit 2026-05-11)\nBeeLlama is fork chain: ggml-org/llama.cpp → TheTom/llama-cpp-turboquant → spiritbuun/buun-llama-cpp → Anbeeld/beellama.cpp\n",
+      "upgradeDescription": "v1.0.0: initial release. Qwen3.6 27B served via Anbeeld/beellama.cpp v0.1.1 fork (built from spiritbuun/buun-llama-cpp + MTP + CopySpec + reasoning-loop protection + TurboQuant turbo3 KV). First public bench on RTX 5090M Blackwell consumer mobile sm_120 — **107 t/s AVG (10 clean runs, range 98-115)** @ 96K context. Stack: unsloth/Qwen3.6-27B-GGUF Q3_K_XL (14.5 GB) + spiritbuun/Qwen3.6-27B-DFlash-GGUF dflash-draft-3.6-q8_0 (1.85 GB) + turbo3 KV (3-bit Walsh-Hadamard) + DFlash spec + batch 2048/ubatch 256 + flash-attn. Custom Docker image aamsellem/beellama-cpp:0.1.1 (build from v0.1.1 source for amd64+CUDA 13+sm_120). +40% vs llamacppqwen36dflashone (76 t/s @ 96K), +27% vs vllmqwen36turbo27bone (88 t/s @ 88K). No degradation cycle, no CUDA OOM, no Genesis patches needed. Best single-GPU Qwen3.6 27B path on Olares One today.\n",
+      "promoteImage": null,
+      "promoteVideo": "",
+      "subCategory": "",
+      "locale": [
+        "en-US"
+      ],
+      "developer": "aamsellem",
+      "requiredMemory": "21474836480",
+      "requiredDisk": "26843545600",
+      "supportClient": {},
+      "supportArch": [
+        "amd64"
+      ],
+      "requiredGPU": "1073741824",
+      "requiredCPU": "4",
+      "rating": 0,
+      "target": "",
+      "permission": {
+        "appData": true
+      },
+      "entrances": [
+        {
+          "name": "llamacppqwen36beellamaone",
+          "host": "llamacppqwen36beellamaone",
+          "port": 8000,
+          "title": "Qwen36 27B BeeLlama",
+          "icon": "https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen36beellamaone.png",
+          "authLevel": "internal",
+          "invisible": false,
+          "openMethod": "window",
+          "disablePreload": false
+        }
+      ],
+      "middleware": null,
+      "options": {
+        "apiTimeout": 0,
+        "dependencies": [
+          {
+            "name": "olares",
+            "version": ">=1.12.3-0",
+            "type": "system"
+          }
+        ]
+      },
+      "submitter": "aamsellem",
+      "doc": "",
+      "website": "https://github.com/Anbeeld/beellama.cpp",
+      "featuredImage": "",
+      "sourceCode": "https://github.com/aamsellem/olares-one-market",
+      "license": [
+        {
+          "text": "MIT",
+          "url": "https://github.com/ggml-org/llama.cpp/blob/master/LICENSE"
+        }
+      ],
+      "legal": null,
+      "i18n": {
+        "en-US": {
+          "metadata": {
+            "title": "Qwen36 27B BeeLlama One",
+            "description": "Qwen3.6 27B fastest local — 107 t/s @ 96K via BeeLlama.cpp + DFlash drafter + TurboQuant turbo3 KV"
+          },
+          "entrances": null,
+          "spec": {
+            "fullDescription": "Qwen3.6 27B served via Anbeeld/beellama.cpp v0.1.1 fork (chain: ggml-org → TheTom/turboquant → spiritbuun/buun → Anbeeld).\nImage: aamsellem/beellama-cpp:0.1.1 (custom amd64 + CUDA 13 + sm_120 build)\nTarget: unsloth/Qwen3.6-27B-GGUF UD-Q3_K_XL (14.5 GB, non-MTP variant)\nDrafter: spiritbuun/Qwen3.6-27B-DFlash-GGUF dflash-draft-3.6-q8_0 (1.85 GB)\nKV cache: turbo3 (3-bit Walsh-Hadamard rotated, ~25% smaller than q4_0)\nSpec: DFlash with --spec-dflash-cross-ctx 1024, batch 2048, ubatch 256\nValidated 2026-05-14: 107 t/s AVG over 10 clean runs (range 97.84-115.36 t/s), peak 133 t/s. ZERO CUDA OOM, NO degradation cycle.\n+40% vs llamacppqwen36dflashone (76 t/s), +27% vs vllmqwen36turbo27bone (88 t/s), +47% vs llamacppqwen36mtpone (72.75 t/s).\nFastest Qwen3.6 27B path on Olares One. Use this for max throughput.\nFor 262K context: use llamacppqwen36mtpone instead (96K limit here).\nOpenAI-compatible API on port 8000.\n",
+            "upgradeDescription": ""
+          }
+        }
+      },
+      "namespace": "",
+      "onlyAdmin": false,
+      "lastCommitHash": "",
+      "createTime": 0,
+      "updateTime": 0,
+      "count": null,
+      "versionHistory": [
+        {
+          "appName": "llamacppqwen36beellamaone",
+          "version": "1.0.0",
+          "versionName": "1.0.0",
+          "mergedAt": "2026-05-14T02:06:01.775Z",
+          "upgradeDescription": ""
+        }
+      ],
+      "screenshots": null,
+      "tags": null,
+      "metadata": null,
+      "updated_at": "2026-05-14T02:06:01.775Z"
     },
     "49ed4ea2": {
       "id": "49ed4ea2",
@@ -1727,14 +1845,14 @@
           "appName": "llamacppqwen36dflashone",
           "version": "1.0.1",
           "versionName": "1.0.1",
-          "mergedAt": "2026-05-12T07:03:17.527Z",
+          "mergedAt": "2026-05-14T02:06:01.775Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.527Z"
+      "updated_at": "2026-05-14T02:06:01.775Z"
     },
     "43e83ecd": {
       "id": "43e83ecd",
@@ -1832,14 +1950,14 @@
           "appName": "llamacppqwen36mtpone",
           "version": "1.0.8",
           "versionName": "1.0.8",
-          "mergedAt": "2026-05-12T07:03:17.528Z",
+          "mergedAt": "2026-05-14T02:06:01.776Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.528Z"
+      "updated_at": "2026-05-14T02:06:01.776Z"
     },
     "fa4ef911": {
       "id": "fa4ef911",
@@ -1937,14 +2055,14 @@
           "appName": "nemotron3nano4bone",
           "version": "1.0.5",
           "versionName": "1.0.3",
-          "mergedAt": "2026-05-12T07:03:17.528Z",
+          "mergedAt": "2026-05-14T02:06:01.776Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.528Z"
+      "updated_at": "2026-05-14T02:06:01.776Z"
     },
     "e74eca98": {
       "id": "e74eca98",
@@ -2042,14 +2160,14 @@
           "appName": "omnivoiceone",
           "version": "1.1.1",
           "versionName": "1.1.1",
-          "mergedAt": "2026-05-12T07:03:17.529Z",
+          "mergedAt": "2026-05-14T02:06:01.776Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.529Z"
+      "updated_at": "2026-05-14T02:06:01.776Z"
     },
     "2c5c39c9": {
       "id": "2c5c39c9",
@@ -2147,14 +2265,14 @@
           "appName": "qwen35a3bvisionone",
           "version": "1.0.9",
           "versionName": "1.0.8",
-          "mergedAt": "2026-05-12T07:03:17.530Z",
+          "mergedAt": "2026-05-14T02:06:01.777Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.530Z"
+      "updated_at": "2026-05-14T02:06:01.777Z"
     },
     "ed18683c": {
       "id": "ed18683c",
@@ -2252,14 +2370,14 @@
           "appName": "qwen35iq4visionone",
           "version": "1.0.7",
           "versionName": "1.0.6",
-          "mergedAt": "2026-05-12T07:03:17.530Z",
+          "mergedAt": "2026-05-14T02:06:01.777Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.530Z"
+      "updated_at": "2026-05-14T02:06:01.777Z"
     },
     "14fdab3c": {
       "id": "14fdab3c",
@@ -2357,14 +2475,14 @@
           "appName": "qwen36a3bvisionone",
           "version": "1.0.2",
           "versionName": "1.0.2",
-          "mergedAt": "2026-05-12T07:03:17.531Z",
+          "mergedAt": "2026-05-14T02:06:01.777Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.531Z"
+      "updated_at": "2026-05-14T02:06:01.777Z"
     },
     "da30d532": {
       "id": "da30d532",
@@ -2462,14 +2580,14 @@
           "appName": "qwen3coder30a3bone",
           "version": "1.0.0",
           "versionName": "1.0.0",
-          "mergedAt": "2026-05-12T07:03:17.532Z",
+          "mergedAt": "2026-05-14T02:06:01.777Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.532Z"
+      "updated_at": "2026-05-14T02:06:01.777Z"
     },
     "49c5b493": {
       "id": "49c5b493",
@@ -2567,14 +2685,14 @@
           "appName": "qwen3ttstone",
           "version": "1.0.9",
           "versionName": "1.0.9",
-          "mergedAt": "2026-05-12T07:03:17.532Z",
+          "mergedAt": "2026-05-14T02:06:01.777Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.532Z"
+      "updated_at": "2026-05-14T02:06:01.777Z"
     },
     "18a6f781": {
       "id": "18a6f781",
@@ -2672,14 +2790,14 @@
           "appName": "vllmgemma4dflashone",
           "version": "1.0.4",
           "versionName": "1.0.4",
-          "mergedAt": "2026-05-12T07:03:17.533Z",
+          "mergedAt": "2026-05-14T02:06:01.778Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.533Z"
+      "updated_at": "2026-05-14T02:06:01.778Z"
     },
     "be32d4df": {
       "id": "be32d4df",
@@ -2777,14 +2895,14 @@
           "appName": "vllmgemma4e4bone",
           "version": "1.0.12",
           "versionName": "1.0.12",
-          "mergedAt": "2026-05-12T07:03:17.534Z",
+          "mergedAt": "2026-05-14T02:06:01.778Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.534Z"
+      "updated_at": "2026-05-14T02:06:01.778Z"
     },
     "285e9d99": {
       "id": "285e9d99",
@@ -2882,14 +3000,14 @@
           "appName": "vllmqwen3527bone",
           "version": "1.0.3",
           "versionName": "1.0.3",
-          "mergedAt": "2026-05-12T07:03:17.534Z",
+          "mergedAt": "2026-05-14T02:06:01.778Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.534Z"
+      "updated_at": "2026-05-14T02:06:01.778Z"
     },
     "901d20e0": {
       "id": "901d20e0",
@@ -2987,14 +3105,14 @@
           "appName": "vllmqwen36turbo27bone",
           "version": "2.5.7",
           "versionName": "2.5.7",
-          "mergedAt": "2026-05-12T07:03:17.535Z",
+          "mergedAt": "2026-05-14T02:06:01.779Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.535Z"
+      "updated_at": "2026-05-14T02:06:01.779Z"
     },
     "af406293": {
       "id": "af406293",
@@ -3092,14 +3210,14 @@
           "appName": "vllmvoxtral3bone",
           "version": "1.0.8",
           "versionName": "1.0.7",
-          "mergedAt": "2026-05-12T07:03:17.535Z",
+          "mergedAt": "2026-05-14T02:06:01.779Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.535Z"
+      "updated_at": "2026-05-14T02:06:01.779Z"
     },
     "13db403f": {
       "id": "13db403f",
@@ -3197,14 +3315,14 @@
           "appName": "vllmvoxtralrt4bone",
           "version": "1.0.9",
           "versionName": "1.0.8",
-          "mergedAt": "2026-05-12T07:03:17.536Z",
+          "mergedAt": "2026-05-14T02:06:01.780Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.536Z"
+      "updated_at": "2026-05-14T02:06:01.780Z"
     },
     "efd72908": {
       "id": "efd72908",
@@ -3302,19 +3420,20 @@
           "appName": "vllmvoxtraltts4bone",
           "version": "1.0.13",
           "versionName": "1.0.12",
-          "mergedAt": "2026-05-12T07:03:17.537Z",
+          "mergedAt": "2026-05-14T02:06:01.780Z",
           "upgradeDescription": ""
         }
       ],
       "screenshots": null,
       "tags": null,
       "metadata": null,
-      "updated_at": "2026-05-12T07:03:17.537Z"
+      "updated_at": "2026-05-14T02:06:01.780Z"
     }
   },
   "latest": [
     "llamacppgemma4audione",
     "llamacppqwen36a3bone",
+    "llamacppqwen36beellamaone",
     "qwen3coder30a3bone",
     "llamacppqwen36dflashone",
     "gemma4e2bone",
