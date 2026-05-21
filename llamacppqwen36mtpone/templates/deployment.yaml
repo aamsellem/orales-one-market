@@ -5,12 +5,12 @@ metadata:
   name: llamacpp-mtp-env
   namespace: "{{ .Release.Namespace }}"
 data:
-  TARGET_MODEL: "unsloth/Qwen3.6-27B-GGUF-MTP"
+  TARGET_MODEL: "unsloth/Qwen3.6-27B-MTP-GGUF"
   TARGET_FILE: "Qwen3.6-27B-UD-Q3_K_XL.gguf"
   MODEL_ALIAS: "qwen3.6-27b-mtp"
   CTX_SIZE: "262144"
   THREADS: "16"
-  SPEC_DRAFT_N_MAX: "5"
+  SPEC_DRAFT_N_MAX: "3"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
         - name: llamacpp-mtp-server
-          image: "docker.io/aamsellem/llamacpp-mtp:0.1.0"
+          image: "docker.io/aamsellem/llama-cpp-mtp:master-ad27757"
           command: ["/bin/bash", "-c"]
           args:
             - |
@@ -51,19 +51,19 @@ spec:
                   "https://huggingface.co/${TARGET_MODEL}/resolve/main/${TARGET_FILE}" \
                   -o "$MODELS_DIR/$TARGET_FILE"
               fi
-              exec /usr/local/bin/llama-server \
+              exec /app/llama-server \
                 --model "$MODELS_DIR/$TARGET_FILE" \
                 --alias "$MODEL_ALIAS" \
                 --host 0.0.0.0 --port 8000 \
                 --n-gpu-layers 99 \
-                --ctx-size "${CTX_SIZE:-128000}" \
+                --ctx-size "${CTX_SIZE:-262144}" \
                 --threads "${THREADS:-16}" \
                 --cache-type-k q4_0 --cache-type-v q4_0 \
                 --batch-size 512 --ubatch-size 512 \
                 --parallel 1 \
                 --flash-attn on --jinja \
-                --spec-type mtp \
-                --spec-draft-n-max "${SPEC_DRAFT_N_MAX:-5}" \
+                --spec-type draft-mtp \
+                --spec-draft-n-max "${SPEC_DRAFT_N_MAX:-3}" \
                 --chat-template-kwargs '{"enable_thinking": false}'
           envFrom:
             - configMapRef:
@@ -79,7 +79,7 @@ spec:
             # CUDA_DEVICE_MEMORY_LIMIT_0=0m which HAMi parses as "0 bytes". Override
             # to 24300m (~150 MB margin under hardware 24463 MB).
             - name: CUDA_DEVICE_MEMORY_LIMIT_0
-              value: "24300m"
+              value: "30000m"
           ports:
             - containerPort: 8000
           livenessProbe:

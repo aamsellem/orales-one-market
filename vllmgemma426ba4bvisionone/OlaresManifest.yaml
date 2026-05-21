@@ -1,0 +1,115 @@
+---
+olaresManifest.version: '0.10.0'
+olaresManifest.type: app
+apiVersion: 'v2'
+metadata:
+  name: vllmgemma426ba4bvisionone
+  icon: https://orales-one-market.aamsellem.workers.dev/icons/vllmgemma426ba4bvisionone.png
+  description: "Gemma 4 26B-A4B vision-capable via vLLM — 135 t/s @ 128K context on Olares One"
+  appid: vllmgemma426ba4bvisionone
+  title: Gemma 4 26B Vision One
+  version: '1.0.2'
+  categories:
+    - AI
+entrances:
+  - name: vllmgemma426ba4bvisionone
+    port: 8000
+    host: vllmgemma426ba4bvisionone
+    title: Gemma 4 26B Vision
+    icon: https://orales-one-market.aamsellem.workers.dev/icons/vllmgemma426ba4bvisionone.png
+    openMethod: window
+    authLevel: internal
+spec:
+  versionName: '1.0.2'
+  upgradeDescription: |
+    v1.0.2: enable **OpenAI-compatible tool calling** for Hermes Agent and other agent frameworks. Adds `--enable-auto-tool-choice --tool-call-parser gemma4` to vLLM server args. Gemma 4 uses a custom non-JSON serialization format (`<|tool_call>call:func_name{key:<|"|>value<|"|>}<tool_call|>`) for tool calls — vLLM's `gemma4` parser handles the decode→OpenAI tool_calls translation. Without this flag, requests with `tool_choice: "auto"` return HTTP 400. No throughput impact (parser only kicks in when tools are present in the request). Validated on Hermes Agent: long-context summarization + tool calling now works end-to-end against `https://llm.<user>.olares.com/v1` with model `gemma-4-26b-vision`.
+
+    v1.0.1: bump max_model_len 16384 → **131072 (128K)** for Marc's office workhorse use case (2-3 concurrent users, long PDF processing, vision input). Also bumps gpu_memory_utilization 0.85 → 0.92 to fit the larger KV cache. **Zero throughput regression** — validated 2026-05-15 bench: **135.85 t/s AVG @ 128K** (10 runs, range 135.52-136.06, range 0.54). Identical to v1.0.0 16K bench (135.97 t/s, range 0.56). 8× context for free. Marc's spec hit: vision + 128K + >100 t/s + PagedAttention (multi-user).
+
+    v1.0.0: initial release. Gemma 4 26B-A4B vision-capable served via vLLM, optimized for Olares One. Validated 2026-05-14 night-bench: **135.97 t/s AVG** (10 clean runs, range 135.67-136.23, exceptional stability 0.56) on RTX 5090M sm_120 mobile Blackwell.
+
+    Why vLLM instead of llama.cpp for this app:
+    - +9.7% throughput vs llama.cpp atomic fork (123.97 t/s validated same hardware same prompt)
+    - Native multimodal architecture (Gemma4ForConditionalGeneration) — no separate mmproj download, vision encoder bundled in model
+    - Mainline path (vs atomic fork dependency)
+    - Future v1.0.1 can add z-lab DFlash drafter for target 200+ t/s with vision (currently DFlash drafter compat with multimodal under validation)
+
+    Stack:
+    - Image: vllm/vllm-openai:tokenspeed-preview-x86_64-ubuntu2404
+    - Target: cyankiwi/gemma-4-26B-A4B-it-AWQ-4bit (compressed-tensors WNA16-Marlin, ~17 GB on GPU, native Gemma4ForConditionalGeneration with vision_config + audio_config)
+    - Vision: native (image_token_id 258880, no separate mmproj projector needed)
+    - KV cache: FP8 (vLLM native)
+    - Attention backend: triton_attn (Gemma 4 head_dim heterogeneous requires this — flash_attn errors with "partial multimodal token full attention not supported")
+    - Context: **131072 (128K)** — pushed from initial 16K, zero throughput regression validated
+    - Throughput tuning: max-num-seqs=4, max-num-batched-tokens=8192, gpu-memory-utilization=0.85, --enable-prefix-caching
+    - HAMi workaround: CUDA_DEVICE_MEMORY_LIMIT_0=24400m (Olares default 0m parses as 0 bytes by HAMi-core)
+    - Vision smoke test 2026-05-14: 64x64 base64 PNG gradient → model correctly responded "Red" in 0.73s wall time
+
+    Use case:
+    - Vision + reasoning (image input via OpenAI-compatible image_url content type)
+    - Document understanding, screenshot analysis, UI / OCR tasks
+    - Audio also supported by underlying model (audio_config present) — not yet wired in this chart
+
+    For text-only Gemma 4 at MAX throughput (224 t/s with DFlash but no vision), use vllmgemma4dflashone.
+    For text-only Gemma 4 with MTP (178 t/s no vision), use gemma426ba4bone.
+  fullDescription: |
+    Google Gemma 4 26B-A4B vision-capable (MoE, 3.8B active, 128 experts, native multimodal architecture Gemma4ForConditionalGeneration) — served via vLLM, optimized for Olares One.
+    RTX 5090M Laptop (24 GB GDDR7, sm_120 consumer Blackwell mobile, 896 GB/s) + 96 GB DDR5 + Core Ultra 9 275HX.
+
+    Bench validated 2026-05-14:
+    - 10 runs Space Invaders HTML prompt, 2000 tokens output, temp 1.0 top_p 0.95
+    - AVG: 135.97 t/s (range 135.67-136.23, range 0.56)
+    - Vision smoke test: 64x64 PNG gradient → correctly identified as "Red"
+    - +9.7% vs llama.cpp atomic fork same config
+
+    Native multimodal:
+    - Image input via OpenAI-compatible image_url content type (base64 or URL)
+    - Vision encoder bundled in model weights (no separate mmproj)
+    - Audio encoder also present (audio_config) — future v1.0.X to wire
+    - Document / OCR / UI understanding workloads
+
+    LMArena 1441. AIME 2026 88.3%. LiveCodeBench 77.1%. Apache 2.0 license.
+
+    OpenAI-compatible API on port 8000.
+    Model downloads on first launch (~17 GB target). Audio input not yet exposed.
+
+  developer: aamsellem
+  website: https://huggingface.co/cyankiwi/gemma-4-26B-A4B-it-AWQ-4bit
+  sourceCode: https://github.com/aamsellem/olares-one-market
+  submitter: aamsellem
+  locale:
+    - en-US
+  license:
+    - text: Apache 2.0
+      url: https://www.apache.org/licenses/LICENSE-2.0
+
+  limitedCpu: 16
+  requiredCpu: 4
+  requiredDisk: 30Gi
+  limitedDisk: 50Gi
+  limitedMemory: 40Gi
+  requiredMemory: 4Gi
+  requiredGpu: 1Gi
+  limitedGpu: 24Gi
+
+  supportArch:
+    - amd64
+permission:
+  appData: true
+options:
+  apiTimeout: 0
+  dependencies:
+    - name: olares
+      version: '>=1.12.3-0'
+      type: system
+envs:
+  - envName: OLARES_USER_HUGGINGFACE_SERVICE
+    required: false
+    applyOnChange: true
+    valueFrom:
+      envName: OLARES_USER_HUGGINGFACE_SERVICE
+  - envName: OLARES_USER_HUGGINGFACE_TOKEN
+    required: false
+    applyOnChange: true
+    valueFrom:
+      envName: OLARES_USER_HUGGINGFACE_TOKEN

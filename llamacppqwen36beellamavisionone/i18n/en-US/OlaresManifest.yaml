@@ -1,0 +1,16 @@
+metadata:
+  title: Qwen36 27B BeeLlama Vision One
+  description: "Qwen3.6 27B vision-capable via BeeLlama.cpp + mmproj — 106 t/s @ 200K with image input on Olares One"
+
+spec:
+  fullDescription: |
+    Qwen3.6 27B vision-capable served via Anbeeld/beellama.cpp v0.1.2 fork.
+    Image: aamsellem/beellama-cpp:0.1.2 (custom amd64 + CUDA 13 + sm_120 build).
+    Target: unsloth/Qwen3.6-27B-GGUF UD-Q3_K_XL (14.5 GB, non-MTP variant required by DFlash).
+    Vision projector: unsloth mmproj-F16.gguf (0.93 GB).
+    DFlash drafter: spiritbuun/Qwen3.6-27B-DFlash-GGUF dflash-draft-3.6-q8_0 (1.85 GB).
+    KV cache: turbo3 (3-bit Walsh-Hadamard rotated, scales linearly with context).
+    Spec: DFlash with --spec-dflash-cross-ctx 1024, batch 2048, ubatch 2048 (mandatory ≥ image_max_tokens for non-causal vision encoder).
+    Validated 2026-05-15: 106.43 t/s AVG over 10 clean runs @ 200K (range 93.29-116.67). Vision smoke test PNG gradient → "Red" correctly. DFlash drafter fires alongside mmproj (~27% accept).
+    Trade-off vs llamacppqwen36beellamaone v1.0.2 (text-only): -1% throughput, -23% max ctx (200K vs 262K), +vision capability via OpenAI image_url content type.
+    OpenAI-compatible chat API with image_url multimodal content type on port 8000.

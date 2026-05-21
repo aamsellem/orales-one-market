@@ -1,0 +1,124 @@
+---
+olaresManifest.version: '0.10.0'
+olaresManifest.type: app
+apiVersion: 'v2'
+metadata:
+  name: llamacppqwen36beellamavisionone
+  icon: https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen36beellamavisionone.png
+  description: "Qwen3.6 27B vision-capable — 106 t/s @ 200K via BeeLlama.cpp + mmproj F16 + DFlash + turbo3 KV"
+  appid: llamacppqwen36beellamavisionone
+  title: Qwen36 27B BeeLlama Vision One
+  version: '1.0.2'
+  categories:
+    - AI
+entrances:
+  - name: llamacppqwen36beellamavisionone
+    port: 8000
+    host: llamacppqwen36beellamavisionone
+    title: Qwen36 27B BeeLlama Vision
+    icon: https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen36beellamavisionone.png
+    openMethod: window
+    authLevel: internal
+spec:
+  versionName: '1.0.2'
+  upgradeDescription: |
+    v1.0.2: upgrade to BeeLlama HEAD commit `75ae2a6af` (built as `aamsellem/beellama-cpp:0.1.3-rc1`) — includes Anbeeld's fix for GPU ring crash in `llm_build_dflash_kv_update` at long context prefill (issue #16, merged 2026-05-15 17:55). This is the upstream resolution for the crash that v1.0.1 worked around via the HAMi-core memory limit bump. The original symptom on RTX 5090M sm_120 + Hermes Agent workload was a HAMi-core UINT64 underflow (`Device 0 OOM 18446744073709500456 / 25480396800`) which we now suspect was a downstream artifact of orphaned ring-buffer allocations after the underlying GPU ring crash — fixed upstream by `75ae2a6af`. Bench validated 2026-05-16 on Olares One: 105.52 t/s AVG @ 200K (10 runs, range 34.92) — perf parity with v1.0.1 (106.43 t/s, range 23.4) within noise. `system_fingerprint: b16-75ae2a6af` confirms commit. Long-context multi-turn validation (Hermes Agent at 100K+ accumulated context) is the real test — pending real-world user session.
+
+    Keeping `CUDA_DEVICE_MEMORY_LIMIT_0=30000m` (bumped from 24300m in v1.0.1) as a safety belt until the user's next long agentic session confirms the fix holds. A future v1.0.3 will restore the strict 24300m once we have empirical proof the GPU ring fix eliminates the HAMi underflow downstream.
+
+    v1.0.1: workaround HAMi-core UINT64 accounting underflow that crashes the pod after long agentic sessions (~99K active context observed in Hermes Agent usage). The crash signature is `[HAMI-core ERROR]: Device 0 OOM 18446744073709500456 / 25480396800` — that 19-digit number is NOT a real allocation request, it's `2^64 - X` from an unsigned subtraction past zero in HAMi-core's internal allocator counter after many DFlash spec decoding micro-allocations. cublasSgemm_v2 fails → ggml_abort → pod restart.
+    Workaround: bump `CUDA_DEVICE_MEMORY_LIMIT_0` 24300m → 30000m (above physical 24463 MB). HAMi-core stops gating allocations strictly, and BeeLlama hits the real physical VRAM limit cleanly via standard cudaMalloc errors if that ever happens. Tradeoff: HAMi GPU sharing no longer enforces this app's memory budget, so concurrent GPU apps could compete more aggressively. Acceptable since this app needs ~24 GB and any concurrent app would conflict anyway.
+    No bench change vs v1.0.0 (the inference path is identical) — this is purely a stability fix for sustained long-context sessions.
+
+    v1.0.0: initial release. Qwen3.6 27B vision-capable served via BeeLlama.cpp v0.1.2 with mmproj F16 vision projector + DFlash spec decoding + turbo3 KV cache. **First public bench of mmproj + DFlash + BeeLlama on consumer Blackwell sm_120**:
+
+    Validated 2026-05-15 on Olares One (10-run AVG, Space Invaders HTML prompt 2000 tokens each):
+    - **106.43 t/s AVG @ 200K context** (range 93.29-116.67, range 23.38)
+    - **101.98 t/s AVG @ 128K context** (10 runs, range 92.69-109.62)
+    - Vision smoke test: gradient PNG → correctly identified "Red" gradient
+
+    Trade-off vs llamacppqwen36beellamaone v1.0.2 (text-only, 107.54 t/s @ 262K):
+    - -1% throughput (106.43 vs 107.54)
+    - -23% max context (200K vs 262K)
+    - **+vision capability** (image input via OpenAI image_url content type)
+    - DFlash drafter still firing alongside mmproj (~27% accept rate validated on vision prompts)
+
+    Stack:
+    - Image: docker.io/aamsellem/beellama-cpp:0.1.2 (custom amd64+CUDA13+sm_120 build of Anbeeld/beellama.cpp v0.1.2)
+    - Target: unsloth/Qwen3.6-27B-GGUF UD-Q3_K_XL (14.5 GB, non-MTP variant required by DFlash spec mode)
+    - Vision projector: unsloth mmproj-F16.gguf (0.93 GB)
+    - DFlash drafter: spiritbuun/Qwen3.6-27B-DFlash-GGUF dflash-draft-3.6-q8_0 (1.85 GB)
+    - KV cache: turbo3 (3-bit Walsh-Hadamard, scales gracefully — only 6.2 GB @ 200K vs 14 GB f16 KV would be)
+    - Spec: --spec-type dflash --spec-dflash-cross-ctx 1024
+    - Throughput: --batch-size 2048 --ubatch-size 2048 (mandatory ≥ image_max_tokens for non-causal vision encoder, llama.cpp PR #21550) --parallel 1 --flash-attn on --mlock --no-mmap
+
+    VRAM budget on 24 GB (tight): target 14.5 + drafter 1.85 + mmproj 0.93 + turbo3 KV @ 200K ~6.2 = ~23.5 GB used.
+
+    When to use this app vs llamacppqwen36beellamaone v1.0.2:
+    - Need vision input (image_url content type) → use THIS app
+    - Pure text @ max context 262K → use llamacppqwen36beellamaone v1.0.2
+    - For Gemma 4 vision (different model) → vllmgemma426ba4bvisionone (136 t/s, vLLM path)
+
+    First launch downloads ~17 GB (target + drafter + mmproj). OpenAI-compatible chat API with image_url multimodal content type on port 8000.
+
+    BeeLlama fork chain: ggml-org/llama.cpp → TheTom/llama-cpp-turboquant (turbo3 KV) → spiritbuun/buun-llama-cpp (DFlash for Qwen3.6) → Anbeeld/beellama.cpp v0.1.2 (latest: profit controller fix, EOS handling for tool calling, multi-GPU correctness fallback).
+  fullDescription: |
+    Qwen3.6 27B vision-capable via BeeLlama.cpp on Olares One — 106 t/s with image input @ 200K context.
+    RTX 5090M (24 GB GDDR7, sm_120 Blackwell consumer mobile) + 96 GB DDR5 + Core Ultra 9 275HX.
+
+    Stack:
+      - Image: aamsellem/beellama-cpp:0.1.2 (custom amd64+CUDA13+sm_120 build of Anbeeld/beellama.cpp v0.1.2)
+      - Target: unsloth/Qwen3.6-27B-GGUF UD-Q3_K_XL non-MTP variant (14.5 GB)
+      - Vision projector: unsloth mmproj-F16.gguf (0.93 GB)
+      - DFlash drafter: spiritbuun dflash-draft-3.6-q8_0 (1.85 GB)
+      - KV cache: turbo3 (3-bit Walsh-Hadamard rotated, scales linearly with context)
+      - Spec method: DFlash with --spec-dflash-cross-ctx 1024
+      - Context: 200K (per-seq with DFlash dual-buffer)
+
+    Bench validated 2026-05-15 (10-run AVG, Space Invaders HTML 2000 tokens):
+      - 106.43 t/s AVG @ 200K context (range 93.29-116.67)
+      - Vision smoke test: PNG gradient → "Red" correctly identified
+      - DFlash drafter fires alongside mmproj (~27% accept on vision prompts)
+
+    Trade-off vs text-only llamacppqwen36beellamaone:
+      - -1% throughput, -23% max context (200K vs 262K)
+      - +vision capability via OpenAI image_url content type
+
+    Apache 2.0 license. Thinking mode + tool calling supported.
+    First launch downloads ~17 GB. OpenAI-compatible API on port 8000.
+
+  developer: aamsellem
+  website: https://github.com/Anbeeld/beellama.cpp
+  sourceCode: https://github.com/aamsellem/olares-one-market
+  submitter: aamsellem
+  locale:
+    - en-US
+  license:
+    - text: MIT
+      url: https://github.com/ggml-org/llama.cpp/blob/master/LICENSE
+
+  limitedCpu: 16
+  requiredCpu: 4
+  requiredDisk: 25Gi
+  limitedDisk: 40Gi
+  limitedMemory: 40Gi
+  requiredMemory: 20Gi
+  requiredGpu: 1Gi
+  limitedGpu: 24Gi
+
+  supportArch:
+    - amd64
+permission:
+  appData: true
+options:
+  apiTimeout: 0
+  dependencies:
+    - name: olares
+      version: '>=1.12.3-0'
+      type: system
+envs:
+  - envName: OLARES_USER_HUGGINGFACE_TOKEN
+    required: false
+    applyOnChange: true
+    valueFrom:
+      envName: OLARES_USER_HUGGINGFACE_TOKEN

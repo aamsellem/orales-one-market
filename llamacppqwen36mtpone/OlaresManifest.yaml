@@ -5,10 +5,10 @@ apiVersion: 'v2'
 metadata:
   name: llamacppqwen36mtpone
   icon: https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen36mtpone.png
-  description: "Qwen3.6 27B longest context — 77 t/s @ full 262K (havenoammo UD-Q3_K_XL + MTP)"
+  description: "Qwen3.6 27B longest context — 74 t/s / 86.7% accept @ full 262K (unsloth UD-Q3_K_XL + MTP master ad27757)"
   appid: llamacppqwen36mtpone
   title: Qwen36 27B Long Context
-  version: '1.0.8'
+  version: '1.0.9'
   categories:
     - AI
 entrances:
@@ -20,8 +20,26 @@ entrances:
     openMethod: window
     authLevel: internal
 spec:
-  versionName: '1.0.8'
+  versionName: '1.0.9'
   upgradeDescription: |
+    v1.0.9: SWAP to official ggml-org/llama.cpp master HEAD ad27757 (post b9219), drop custom am17an branch image. PR #22673 (MTP support) merged upstream 2026-05-16, then iterated on through three follow-up PRs we now pick up: #23269 (ggerganov 2026-05-19 "MTP clean-up") changed the default `--spec-draft-n-max` from 16 → 3, made `--spec-draft-p-min` functional again, fixed graph reuse for MTP drafting graphs (`batch.token && batch.embd` path), fixed ngram-k4v params propagation, and made all spec implementations see the accepted tokens (improving acceptance when chaining). #23287 (gaugarg-nv 2026-05-20 "Move to backend sampling for MTP draft path") is the NVIDIA-authored optimization that moves the draft-path sampling onto the CUDA backend — this is the headline. #22522 (Programmatic Dependent Launch for Hopper+ GPUs, sm_90+/sm_120 included) ships in this build too. Custom image `aamsellem/llama-cpp-mtp:master-ad27757` for amd64+CUDA13+sm_120 (Blackwell consumer mobile), built against ggml-org/llama.cpp upstream-pure (no fork patches). Includes the `-lcuda` linker workaround pending upstream issue [#23357](https://github.com/ggml-org/llama.cpp/issues/23357) which we filed against the same `CUDA::cuda_driver` PRIVATE-scope propagation bug Anbeeld already fixed on his BeeLlama fork (Anbeeld [#18](https://github.com/Anbeeld/beellama.cpp/issues/18)).
+
+    Bench validated 2026-05-21 on Olares One (10 runs, Space Invaders HTML 2000 tokens each, 262K ctx, q4_0 KV, n_max=3):
+      - **74.28 t/s AVG** (range 72.60–75.14, σ=2.54 — ultra-tight)
+      - **86.7% draft acceptance AVG** (83.4–88.6%)
+      - vs v1.0.8 prod baseline (72.75 t/s / ~64% accept): **+2.1% throughput, +22 points acceptance**
+
+    The acceptance jump is the headline. The combination of n_max=3 (fewer drafts per step but each one validated more carefully) plus NVIDIA's backend-sampling rewrite makes MTP land in a much higher acceptance regime than the n_max=5 setup v1.0.8 used. Throughput is up modestly because the per-token overhead of MTP went down even though we're drafting fewer tokens per step.
+
+    Also bumps source HF repo: `unsloth/Qwen3.6-27B-GGUF-MTP` → `unsloth/Qwen3.6-27B-MTP-GGUF` (the former redirected, the latter is the canonical name post 2026-05-16 Unsloth release). Same `Qwen3.6-27B-UD-Q3_K_XL.gguf` filename — model bits unchanged from v1.0.8.
+
+    Flag changes:
+      - `--spec-type mtp` → `--spec-type draft-mtp` (flag renamed upstream 2026-05-13)
+      - `--spec-draft-n-max 5` → `3` (matches new upstream default, validated as the better operating point on Blackwell mobile)
+      - `--n-gpu-layers 99` → `-ngl 99` (cleaner)
+      - default `CTX_SIZE` 128000 → 262144 (production ships at 262K)
+      - `CUDA_DEVICE_MEMORY_LIMIT_0` bumped 24300m → 30000m (HAMI workaround, no impact on inference)
+
     v1.0.8: switch havenoammo Q2_K_XL → unsloth UD-Q3_K_XL. Validated 2026-05-12 on Olares One: 72.75 t/s AVG (10 runs, range 69.30-75.95), ZERO CUDA OOM at FULL 262K context with MTP n=5. Same speed as v1.0.7 (havenoammo Q2 was 72.14 t/s) BUT with Q3 quality tier (+5-8% vs Q2 on benchmarks). Surprising finding: havenoammo's Q3_K_XL (14.92 GB) hit runtime OOM at 262K (v1.0.5 bug), but unsloth's UD-Q3_K_XL (14.8 GB, ~120 MB smaller) is rock-stable at the same context + spec config. Different MTP integration metadata / memory layout. Strict upgrade vs v1.0.7: same context, same speed, better quality. Image still aamsellem/llamacpp-mtp:0.1.0 — will swap to ghcr.io/ggml-org/llama.cpp:server-cuda13-bNNNN once am17an's MTP PR #22673 merges upstream.
     v1.0.7: get 262K back with MTP active. v1.0.6 was the safe-stable 128K fallback after v1.0.5's MTP CUDA OOM at 262K — but real users want both context AND MTP speed. Solution: swap havenoammo target Q3_K_XL (14.9 GB) → Q2_K_XL (12.3 GB), freeing 2.6 GB on top of the 1.9 GB Q3_K_XL already won over Q4_K_M. Total ~4.5 GB headroom recovered for MTP draft compute buffer — comfortably exceeds the ~2.5 GB gap that triggered `ggml_cuda_graph_evaluate_and_capture` exit-139 OOMs during `common_speculative_state_mtp::draft`. Restore CTX_SIZE → 262144, SPEC_DRAFT_N_MAX → 5. Trade-off: Q2_K_XL is a more aggressive Unsloth Dynamic quant (~5-8% quality drop on benchmarks vs Q3_K_XL). Direct bench validated 72.14 t/s STABLE. SUPERSEDED by v1.0.8 (unsloth UD-Q3_K_XL — same stability + Q3 quality).
     v1.0.6: stability fix. v1.0.5's 262K context was boot-stable on our short-prompt validation bench (77 t/s @ 262K confirmed 2026-05-09) but at-runtime users hit CUDA OOM during MTP drafting: `ggml_cuda_graph_evaluate_and_capture` exit 139 inside `common_speculative_state_mtp::draft`. Cause is the same problem documented in v1.0.2: the MTP draft compute buffer grows with the cudagraph capture shapes the prompt actually exercises — boot's static allocator estimate isn't enough headroom even with Q3_K_XL's ~1.9 GB savings vs Q4_K_M. Reduce CTX_SIZE 262144 → 131072 (proven stable in v1.0.3, also a "long context" tier vs the fast 88 t/s vllmqwen36turbo27bone option) and SPEC_DRAFT_N_MAX 5 → 4 (one less draft frees a few hundred MB of compute buffer). Target stays havenoammo UD-Q3_K_XL — no rebuild. Users who really want 262K and accept occasional MTP crashes can override CTX_SIZE in their values. Expected: same 65-77 t/s range from v1.0.3/1.0.5, but rock-stable. SUPERSEDED by v1.0.7 (Q2_K_XL frees enough headroom to bring back 262K + MTP).

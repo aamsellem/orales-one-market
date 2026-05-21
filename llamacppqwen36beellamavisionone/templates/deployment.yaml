@@ -2,23 +2,25 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: llamacpp-beellama-env
+  name: llamacpp-beellama-vision-env
   namespace: "{{ .Release.Namespace }}"
 data:
   TARGET_URL: "https://huggingface.co/unsloth/Qwen3.6-27B-GGUF/resolve/main/Qwen3.6-27B-UD-Q3_K_XL.gguf"
   TARGET_FILE: "Qwen3.6-27B-UD-Q3_K_XL.gguf"
   DRAFT_URL: "https://huggingface.co/spiritbuun/Qwen3.6-27B-DFlash-GGUF/resolve/main/dflash-draft-3.6-q8_0.gguf"
   DRAFT_FILE: "dflash-draft-3.6-q8_0.gguf"
-  MODEL_ALIAS: "qwen3.6-27b-beellama"
-  CTX_SIZE: "262144"
+  MMPROJ_URL: "https://huggingface.co/unsloth/Qwen3.6-27B-GGUF/resolve/main/mmproj-F16.gguf"
+  MMPROJ_FILE: "mmproj-Qwen3.6-27B-F16.gguf"
+  MODEL_ALIAS: "qwen3.6-27b-beellama-vision"
+  CTX_SIZE: "200000"
   THREADS: "16"
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    io.kompose.service: llamacppqwen36beellamaone
-  name: llamacppqwen36beellamaone
+    io.kompose.service: llamacppqwen36beellamavisionone
+  name: llamacppqwen36beellamavisionone
   namespace: "{{ .Release.Namespace }}"
   annotations:
     applications.app.bytetrade.io/gpu-inject: "true"
@@ -26,18 +28,18 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: llamacppqwen36beellamaone
+      io.kompose.service: llamacppqwen36beellamavisionone
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
         io.kompose.network/chrome-default: "true"
-        io.kompose.service: llamacppqwen36beellamaone
+        io.kompose.service: llamacppqwen36beellamavisionone
     spec:
       containers:
-        - name: beellama-server
-          image: "docker.io/aamsellem/beellama-cpp:0.1.3-rc3"
+        - name: beellama-vision-server
+          image: "docker.io/aamsellem/beellama-cpp:0.1.3-rc1"
           command: ["/bin/bash", "-c"]
           args:
             - |
@@ -56,25 +58,31 @@ spec:
                 eval curl -fL --retry 10 --retry-delay 10 $HF_AUTH \
                   "$DRAFT_URL" -o "$MODELS_DIR/$DRAFT_FILE"
               fi
+              if [ ! -s "$MODELS_DIR/$MMPROJ_FILE" ]; then
+                echo "==> Downloading mmproj $MMPROJ_FILE (~1 GB)"
+                eval curl -fL --retry 10 --retry-delay 10 $HF_AUTH \
+                  "$MMPROJ_URL" -o "$MODELS_DIR/$MMPROJ_FILE"
+              fi
               cd /app
               exec ./llama-server \
                 --model "$MODELS_DIR/$TARGET_FILE" \
                 --spec-draft-model "$MODELS_DIR/$DRAFT_FILE" \
+                --mmproj "$MODELS_DIR/$MMPROJ_FILE" \
                 --spec-type dflash \
                 --spec-dflash-cross-ctx 1024 \
                 --alias "$MODEL_ALIAS" \
                 --host 0.0.0.0 --port 8000 \
                 -ngl 99 --spec-draft-ngl 99 \
-                --ctx-size "${CTX_SIZE:-96000}" \
+                --ctx-size "${CTX_SIZE:-200000}" \
                 --threads "${THREADS:-16}" \
                 --cache-type-k turbo3 --cache-type-v turbo3 \
-                --batch-size 2048 --ubatch-size 256 \
+                --batch-size 2048 --ubatch-size 2048 \
                 --parallel 1 --kv-unified \
                 --flash-attn on --jinja --no-mmap --mlock \
                 --temp 0.6 --top-k 20 --min-p 0.0
           envFrom:
             - configMapRef:
-                name: llamacpp-beellama-env
+                name: llamacpp-beellama-vision-env
           env:
             - name: HF_HOME
               value: "/models/huggingface"
@@ -84,8 +92,6 @@ spec:
               value: "/models"
             - name: CUDA_DEVICE_MEMORY_LIMIT_0
               value: "30000m"
-            - name: LLAMA_ARG_SPEC_DM_ADAPTIVE
-              value: "true"
           ports:
             - containerPort: 8000
           livenessProbe:
@@ -129,13 +135,13 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    io.kompose.service: llamacppqwen36beellamaone
-  name: llamacppqwen36beellamaone
+    io.kompose.service: llamacppqwen36beellamavisionone
+  name: llamacppqwen36beellamavisionone
   namespace: "{{ .Release.Namespace }}"
 spec:
   ports:
-    - name: "beellama"
+    - name: "beellama-vision"
       port: 8000
       targetPort: 8000
   selector:
-    io.kompose.service: llamacppqwen36beellamaone
+    io.kompose.service: llamacppqwen36beellamavisionone
