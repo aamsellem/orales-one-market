@@ -5,10 +5,10 @@ apiVersion: 'v2'
 metadata:
   name: llamacppqwen36a3bone
   icon: https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen36a3bone.png
-  description: "Qwen3.6 35B-A3B MTP — 249 t/s on Olares One via llama.cpp master + NVIDIA backend sampling"
+  description: "Qwen3.6 35B-A3B MTP — 246 t/s @ FULL 262K context on Olares One"
   appid: llamacppqwen36a3bone
   title: Qwen36 35B-A3B MTP One
-  version: '1.0.1'
+  version: '1.0.2'
   categories:
     - AI
 entrances:
@@ -20,8 +20,28 @@ entrances:
     openMethod: window
     authLevel: internal
 spec:
-  versionName: '1.0.1'
+  versionName: '1.0.2'
   upgradeDescription: |
+    v1.0.2: bump default `CTX_SIZE` from 32K to **262144 (full native Qwen3.6 35B-A3B context window)**. Context sweep validated 2026-05-21 on Olares One showing essentially zero throughput regression across context sizes:
+
+    | Context | t/s AVG | runs | delta vs 32K |
+    |---------|--------:|-----:|-------------:|
+    | 32K | 249.30 | 10 | baseline |
+    | 64K | 252.64 | 5 | +1.3% (noise) |
+    | 128K | 250.39 | 5 | +0.4% (noise) |
+    | **262K (full native)** | **245.71** | 5 | -1.4% |
+
+    Memory budget at 262K Q3_K_XL + q4_0 KV + MTP draft buffer:
+    - Model: 17.2 GB
+    - q4_0 KV @ 262K (32 layers × 262K × 2 KV): ~3.2 GB
+    - MTP draft compute buffer: ~1 GB
+    - Compute buffer: ~0.5 GB
+    - Total: ~21.9 GB / 23.42 GB usable on 24 GB GPU (HAMi overhead-accounted)
+
+    Comfortable headroom. Full 262K context is essentially free on this stack — the MoE-A3B + MTP path doesn't have the per-token cost scaling with context that dense models exhibit (Mamba-like state-space layers carry constant per-token cost regardless of position).
+
+    Practically: this app is now **fastest AND longest-context** Qwen3.6 27B/35B path on Olares One. Beats `llamacppqwen36beellamaone` v1.0.4 (107 t/s @ 262K, dense + DFlash) by **+130%** at the same context window. Beats `llamacppqwen36mtpone` v1.0.9 (74 t/s @ 262K, dense + MTP) by **+232%**. Same image as both (`aamsellem/llama-cpp-mtp:master-ad27757`), different model + architecture pays off entirely.
+
     v1.0.1: complete rebuild. Switch to MTP path with `aamsellem/llama-cpp-mtp:master-ad27757` (ggml-org/llama.cpp master HEAD with PR #22673 MTP + #23269 cleanup + #23287 NVIDIA backend sampling + #22522 PDL Hopper+). Swap target from `unsloth/Qwen3.6-35B-A3B-GGUF` Q4_K_XL → `unsloth/Qwen3.6-35B-A3B-MTP-GGUF` Q3_K_XL (Q4_K_XL=22 GB OOMs with KV at 24 GB; Q3_K_XL=17.2 GB fits comfortably). Args: `--spec-type draft-mtp --spec-draft-n-max 3 --ctx-size 32768 --cache-type-k q4_0 --cache-type-v q4_0 --batch-size 512 --ubatch-size 512 --parallel 1 --flash-attn on --chat-template-kwargs '{"enable_thinking": false}'`.
 
     **Bench validated 2026-05-21 on Olares One**: **249.30 t/s AVG** (10 runs, range 10.15, σ ≈ 3.0), **86.6% draft acceptance** (range 83.8–89.0%). NEW absolute champion on Olares One:
