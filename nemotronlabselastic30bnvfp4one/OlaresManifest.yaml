@@ -5,10 +5,10 @@ apiVersion: 'v2'
 metadata:
   name: nemotronlabselastic30bnvfp4one
   icon: https://orales-one-market.aamsellem.workers.dev/icons/nemotronlabselastic30bnvfp4one.png
-  description: "NVIDIA Nemotron-Labs Elastic 30B-A3B NVFP4 — 166 t/s, fastest LLM on Olares One"
+  description: "NVIDIA Nemotron-Labs Elastic 30B-A3B NVFP4 — 182 t/s via FlashInfer SM120 (PR #40082) on Olares One"
   appid: nemotronlabselastic30bnvfp4one
   title: Nemotron-Labs 30B NVFP4 One
-  version: '1.0.0'
+  version: '1.0.1'
   categories:
     - AI
 entrances:
@@ -20,8 +20,12 @@ entrances:
     openMethod: window
     authLevel: internal
 spec:
-  versionName: '1.0.0'
+  versionName: '1.0.1'
   upgradeDescription: |
+    v1.0.1: swap image `vllm/vllm-openai:nightly` (v0.19.2rc1, 2026-05-20 06:22 UTC) → `vllm/vllm-openai:cu129-nightly-x86_64` (v0.21.1rc1.dev169+ga6682d1d2, 2026-05-21 07:38 UTC). New nightly includes PR [#40082](https://github.com/vllm-project/vllm/pull/40082) (meena-at-work, NVIDIA): "Integrate flashinfer b12x MoE and FP4 GEMM kernels for SM120/121". **Bench validated 2026-05-21 on Olares One: 182.14 t/s AVG post-warmup** (9 runs, range 181.85–182.65, σ ≈ 0.3 — even tighter than v1.0.0). **+9.8% vs v1.0.0 (165.91 t/s)** — pure FlashInfer SM120 kernel uplift on NVFP4 MoE. Same model, same compilation-config PIECEWISE graphs, same max_model_len=4096. Confirms the kernel-path matters: PR #40082 specifically targets sm_120/121 (Blackwell consumer) FP4 GEMM, and our hardware is exactly the target.
+
+    Trade-off: v0.21 nightly has stricter KV cache memory accounting than v0.19 — Gemma 4 + Q4 AWQ benched -1.5% on same config because v0.21 forces max_model_len from 128K → 8K to leave KV headroom. But the NVFP4-MoE FlashInfer kernels still net +10% throughput on this Nemotron path. For NVFP4 models specifically, v0.21+ is a strict upgrade. For non-NVFP4 (AWQ/GPTQ/GGUF) keep older image.
+
     v1.0.0: initial release. NVIDIA Nemotron-Labs Elastic 30B-A3B with native NVFP4 quantization. **First public bench on consumer Blackwell mobile (sm_120 / RTX 5090M): 165.91 t/s AVG** (9 runs post-warmup, range 1.37, σ ≈ 0.5). NEW Olares One champion — **+22% vs Gemma 4 26B-A4B** (135.97 prior champion), +55% vs BeeLlama Qwen3.6 27B + DFlash (107.54), +124% vs llama.cpp Qwen3.6 27B + MTP master (74.28).
 
     Why it's so fast on Blackwell:
