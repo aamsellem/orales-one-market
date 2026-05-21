@@ -5,23 +5,35 @@ apiVersion: 'v2'
 metadata:
   name: llamacppqwen36a3bone
   icon: https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen36a3bone.png
-  description: "Qwen3.6 35B-A3B via llama.cpp — optimized for Olares One"
+  description: "Qwen3.6 35B-A3B MTP — 249 t/s on Olares One via llama.cpp master + NVIDIA backend sampling"
   appid: llamacppqwen36a3bone
-  title: Qwen3.6 35B-A3B (Olares One)
-  version: '1.0.0'
+  title: Qwen36 35B-A3B MTP One
+  version: '1.0.1'
   categories:
     - AI
 entrances:
   - name: llamacppqwen36a3bone
-    port: 8080
+    port: 8000
     host: llamacppqwen36a3bone
-    title: Qwen 36B-A3B One
+    title: Qwen36 35B-A3B MTP
     icon: https://orales-one-market.aamsellem.workers.dev/icons/llamacppqwen36a3bone.png
     openMethod: window
     authLevel: internal
 spec:
-  versionName: '1.0.0'
+  versionName: '1.0.1'
   upgradeDescription: |
+    v1.0.1: complete rebuild. Switch to MTP path with `aamsellem/llama-cpp-mtp:master-ad27757` (ggml-org/llama.cpp master HEAD with PR #22673 MTP + #23269 cleanup + #23287 NVIDIA backend sampling + #22522 PDL Hopper+). Swap target from `unsloth/Qwen3.6-35B-A3B-GGUF` Q4_K_XL → `unsloth/Qwen3.6-35B-A3B-MTP-GGUF` Q3_K_XL (Q4_K_XL=22 GB OOMs with KV at 24 GB; Q3_K_XL=17.2 GB fits comfortably). Args: `--spec-type draft-mtp --spec-draft-n-max 3 --ctx-size 32768 --cache-type-k q4_0 --cache-type-v q4_0 --batch-size 512 --ubatch-size 512 --parallel 1 --flash-attn on --chat-template-kwargs '{"enable_thinking": false}'`.
+
+    **Bench validated 2026-05-21 on Olares One**: **249.30 t/s AVG** (10 runs, range 10.15, σ ≈ 3.0), **86.6% draft acceptance** (range 83.8–89.0%). NEW absolute champion on Olares One:
+    - +37% vs Nemotron-Labs 30B-A3B NVFP4 + vLLM #40082 (182.14 t/s)
+    - +83% vs Gemma 4 26B-A4B vLLM (135.97 t/s)
+    - +132% vs BeeLlama Qwen3.6 27B + DFlash (107.54 t/s)
+    - +236% vs Qwen3.6 27B dense MTP same image (74.28 t/s)
+
+    Why so fast: MoE-A3B = only ~3B params active per token (per-token compute is roughly that of a 3B model) + MTP at 86.6% accept (drafts almost always validate) + NVIDIA backend sampling moves draft sampling onto CUDA backend (fewer host roundtrips). Effective: "3B-active speed with 35B-breadth quality." Context limited to 32K because KV cache + MTP draft buffer fits on 24 GB; higher contexts would need IQ4_XS or larger memory.
+
+    Title renamed "Qwen 36B-A3B One" → "Qwen36 35B-A3B MTP" for clarity. Port 8080 → 8000 (matches llama-server default in our master image).
+
     v1.0.0: initial release. Qwen3.6-35B-A3B (Apache 2.0, April 2026). Same hybrid SSM/MoE architecture as 3.5 — reuses proven Olares One config (llama.cpp b8740, UD-Q4_K_XL, KV q4_0 with Hadamard rotation, batch 2048/ubatch 1024, 64K ctx). SWE-bench 70.0→73.4, Terminal-Bench 40.5→51.5.
   fullDescription: |
     Qwen3.6 35B-A3B (MoE, 3B active) served via llama.cpp — optimized for Olares One.
